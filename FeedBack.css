@@ -1,0 +1,72 @@
+body {
+  height: 100vh;
+}
+header {
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  padding: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  object-fit: contain;
+}
+
+.google-review-img {
+  width: 30%;
+  height: 30%;
+}
+h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-wrap {
+  padding: 2rem;
+}
+
+.rating {
+  justify-content: center;
+  align-items: center;
+}
+.rating > label {
+  margin: 1rem;
+}
+
+.rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  color: #ddd;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.rating input:checked ~ label {
+  color: #ffc107;
+}
+
+/* Optional: Add hover effect */
+.rating label:hover {
+  color: #ffcd38;
+}
+
+@media only screen and (max-width: 450px) {
+  h2 {
+    font-size: .9rem;
+  }
+  img {
+    width: 50% !important;
+    height: 50% !important;
+  }
+}

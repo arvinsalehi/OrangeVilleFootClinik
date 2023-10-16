@@ -1,0 +1,175 @@
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+    height: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #e38901;
+    border-radius: .5rem;
+}
+
+
+/* Basic styling for your page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: solid;
+    border-color: #e38901;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 1rem;
+}
+
+h2 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+button:hover {
+    background-color: #e38901;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    nav ul {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    main {
+        padding: 10px;
+    }
+}
+
+
+#scheduledEmails .color-code {
+    border-color: transparent rgb(0, 167, 245) transparent transparent;
+
+}
+
+#sentEmails,
+#scheduledEmails,
+#templateList {
+    display: flex;
+    overflow-x: auto;
+}
+
+/* Styling for patient cards */
+.patient-card,
+.template-card {
+    background-color: #fff;
+    border: 1px solid #e38901;
+    padding: 0 0 0 10px;
+    margin: 10px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: .5rem;
+    min-width: 320px;   
+    min-height: 160px;
+    transition: .3s;    
+    text-overflow: ellipsis;
+}
+
+.patient-card:hover,
+.template-card:hover {
+    background-color: #f7f7f7;
+    box-shadow: 10px 10px 5px lightblue;
+}
+
+/* Styling for email content overlay */
+#emailContentOverlay,
+#templateContentOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+#emailContent,
+#templateContent {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    border-radius: .5rem;
+
+}
+
+.emailContentCard p,
+#templateContent p {
+    font-weight: 400;
+    text-align: start;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
+
+.color-code {
+    border-style: solid;
+    border-width: 0 40px 40px 0;
+    border-color: transparent #94d82d transparent transparent;
+    border-radius: .5rem;
+}

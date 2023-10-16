@@ -1,0 +1,190 @@
+/* Custom styles using logo colors */
+:root {
+    --logo-orange: #FFA500;
+    --logo-green: #008000;
+    --logo-blue: #007BFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+h1, h2 {
+    color: #333;
+}
+
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--logo-green);
+    border-color: var(--logo-green);
+    color: white;
+}
+
+.patient-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.patient-card {
+    width: calc(33.33% - 20px);
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.patient-card:hover {
+    background-color: #f4f4f4;
+}
+
+.patient-card.selected {
+    background-color: #ffc107; /* Change to your desired selection color */
+    color: #333;
+}
+.patient-info {
+    display: none;
+    margin-top: 30px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+    border-style: solid;
+    border-color: var(--logo-orange);
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.vertical-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--logo-orange);
+    color: white;
+}
+
+.vertical-header a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    transition: background-color 0.3s;
+}
+
+.vertical-header a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar {
+    height: 100%;
+    width: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.closebtn {
+  z-index: 1;
+  position: absolute;
+  border: solid;
+  border-radius: 0.5rem;
+  left: 200px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    /* background-color: #111; */
+    color: white;
+    /* padding: 10px 15px; */
+    border: none;
+    z-index: 1;
+    position: absolute;
+    left: 1.5%;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+.content {
+    padding: 20px;
+}
+
+.main-container.push-right {
+    transition: margin-left 0.3s;
+    margin-left: 250px; /* Same width as sidebar */
+}
+
+/* Add these styles to your CSS */
+.dashboard {
+    width: 100%;
+    height: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #f3f3f3;
+    overflow-y: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align: center;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard.active {
+  
+}
