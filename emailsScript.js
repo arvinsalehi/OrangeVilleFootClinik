@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to create a new email template
     function createTemplate() {
         // Implement your logic to create a new template here
-        alert("New email template created!");
+        showNewTemplateForm();
     }
 
     // Function to populate the "Email Template" section
@@ -105,12 +105,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return card;
     }
 
-    // Function to create a patient card
+    // Function to create a template card
     function createTemplateCard(templateName, content) {
         const card = document.createElement("div");
-        const truncatedContent = content.substring(0,100);
+        const colorCode = document.createElement("div");
+        const truncatedContent = content.substring(0, 100);
+        colorCode.classList.add("color-code");
         card.classList.add("template-card");
-        card.innerHTML = `<p>${templateName}</p>`;
+        card.appendChild(colorCode);
+        card.innerHTML += `<p>${templateName}</p>`;
         card.innerHTML += `<p>${truncatedContent} ...</p>`;
         return card;
     }
@@ -127,6 +130,61 @@ document.addEventListener("DOMContentLoaded", function () {
         templateContentOverlay.style.display = "flex";
     }
 
+    function createForm() {
+        // Create a new <h1> element
+        const h1 = document.createElement('h1');
+        h1.textContent = 'Elegant Contact Form';
+
+        // Create a <form> element with the "cf" class
+        const form = document.createElement('form');
+        form.className = 'cf';
+
+        // Create the left half of the form
+        const leftDiv = document.createElement('div');
+        leftDiv.className = 'half left cf';
+
+        // Create input elements for name, email, and subject
+        const inputName = document.createElement('input');
+        inputName.type = 'text';
+        inputName.id = 'input-name';
+        inputName.placeholder = 'title';
+
+        leftDiv.appendChild(inputName);
+
+        // Create the right half of the form
+        const rightDiv = document.createElement('div');
+        rightDiv.className = 'half right cf';
+
+        // Create a textarea for the message
+        const textareaMessage = document.createElement('textarea');
+        textareaMessage.name = 'message';
+        textareaMessage.type = 'text';
+        textareaMessage.id = 'input-message';
+        textareaMessage.placeholder = 'Message';
+
+        rightDiv.appendChild(textareaMessage);
+
+        // Create the submit button
+        const submitButton = document.createElement('input');
+        submitButton.type = 'submit';
+        submitButton.value = 'Submit';
+        submitButton.id = 'input-submit';
+
+        // Append the elements to the form
+        form.appendChild(leftDiv);
+        form.appendChild(rightDiv);
+        form.appendChild(submitButton);
+
+        return form;
+    }
+
+    function showNewTemplateForm() {
+        const newTemplateForm = document.getElementById("templateContentOverlay");
+        const formContent = document.getElementById("templateContent");
+        const form = createForm();
+        formContent.appendChild(form);
+        newTemplateForm.style.display = "flex";
+    }
     // Close email content overlay when clicking outside of the content
     const emailContentOverlay = document.getElementById("emailContentOverlay");
     emailContentOverlay.addEventListener("click", (event) => {
@@ -142,6 +200,8 @@ document.addEventListener("DOMContentLoaded", function () {
     templateContentOverlay.addEventListener("click", (event) => {
         if (event.target === templateContentOverlay) {
             templateContentOverlay.style.display = "none";
+            const templateContent = document.getElementById("templateContent");
+            templateContent.innerHTML = '';
         }
     });
 
@@ -149,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("createTemplate").addEventListener("click", createTemplate);
 
     populateEmailTemplate();
-    // Populate the "Sent Emails" and "Scheduled Emails" sections
+    // Populate the "Sent Emails" and "Scheduled Emails" sectionstemplate-card
     populateSentEmails();
     populateScheduledEmails();
 });

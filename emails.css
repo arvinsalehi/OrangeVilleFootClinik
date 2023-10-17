@@ -49,11 +49,12 @@ nav ul li a {
 }
 
 main {
-    padding: 20px;
+    margin: 2rem 0 2rem 0;
+    padding: 0 5rem 0 5rem;
 }
 
 section {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 h2 {
@@ -62,19 +63,14 @@ h2 {
     margin-bottom: 20px;
 }
 
-button {
+.show-more {
     padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
     cursor: pointer;
+    border: none;
     border-radius: .5rem;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: transparent;
 }
 
-button:hover {
-    background-color: #e38901;
-}
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
@@ -82,6 +78,9 @@ button:hover {
         padding: 10px 0;
     }
 
+    main {
+        margin: 0 !important;
+    }
     nav ul {
         text-align: left;
         margin-top: 10px;
@@ -173,3 +172,6 @@ button:hover {
     border-color: transparent #94d82d transparent transparent;
     border-radius: .5rem;
 }
+
+
+
