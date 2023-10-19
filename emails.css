@@ -71,7 +71,6 @@ h2 {
     background-color: transparent;
 }
 
-
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
     header {
@@ -104,7 +103,7 @@ h2 {
 
 #sentEmails,
 #scheduledEmails,
-#templateList {
+#templatesList {
     display: flex;
     overflow-x: auto;
 }
@@ -173,5 +172,13 @@ h2 {
     border-radius: .5rem;
 }
 
+.toggeled-section {
+    height: 80vh;
+    margin-bottom: 4rem;
+}
 
+.toggeled-content {
+    height: 100%;
+    flex-direction: column;
+}
 
