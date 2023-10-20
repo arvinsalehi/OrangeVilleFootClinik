@@ -23,12 +23,22 @@
         </nav>
     </header>
     <main>
+        <section id="search">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                  <i class="fas fa-search"></i>
+                  <input type="text" id="search-input" placeholder="Search...">
+                </div>
+              </div>              
+        </section>
         <section id="templates">
             <div class="d-flex w-100 justify-content-between align-items-center mb-2">
                 <h2 class="mb-0">Email Templates</h2>
-                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl" style="color: #f46325;"></i></button>
+                <button class="show-more">
+                    <i class="fa-regular fa-square-caret-down fa-2xl" style="color: #f46325;"></i>
+                </button>
             </div>
-            <div id="templateList">
+            <div id="templatesList">
                 <button id="createTemplate" class="template-card">
                     <i class="fa-solid fa-plus fa-beat fa-2xl" style="color: #f46325;"></i>
                 </button>
@@ -38,7 +48,8 @@
         <section id="sent">
             <div class="d-flex w-100 justify-content-between align-items-center mb-2">
                 <h2 class="mb-0">Sent Emails</h2>
-                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl" style="color: #f46325;"></i></button>
+                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
+                        style="color: #f46325;"></i></button>
             </div>
             <div id="sentEmails">
                 <!-- List of sent emails goes here -->
@@ -47,7 +58,8 @@
         <section id="scheduled">
             <div class="d-flex w-100 justify-content-between align-items-center mb-2">
                 <h2 class="mb-0">Scheduled Emails</h2>
-                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl" style="color: #f46325;"></i></button>
+                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
+                        style="color: #f46325;"></i></button>
             </div>
             <div id="scheduledEmails">
                 <!-- List of scheduled emails goes here -->
@@ -64,7 +76,6 @@
             <!-- Email content goes here -->
         </div>
     </div>
-
 </body>
 <footer>
     <p>&copy; 2023 Foot Clinic</p>

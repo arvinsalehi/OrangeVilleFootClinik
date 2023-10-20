@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to populate the "Email Template" section
     function populateEmailTemplate() {
-        const emailTemplateContainer = document.getElementById("templateList");
+        const emailTemplateContainer = document.getElementById("templatesList");
         templateData.forEach((template) => {
             const templateCard = createTemplateCard(template.group, template.content);
             templateCard.addEventListener("click", () => {
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         card.classList.add("patient-card");
         colorCode.classList.add("color-code");
         card.appendChild(colorCode);
-        card.innerHTML += `<p>Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
+        card.innerHTML += `<p class="pname">Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
         card.innerHTML += `<p>Tempate: ${template}</p>`;
         return card;
     }
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         colorCode.classList.add("color-code");
         card.classList.add("template-card");
         card.appendChild(colorCode);
-        card.innerHTML += `<p>${templateName}</p>`;
+        card.innerHTML += `<p class="${templateName}">${templateName}</p>`;
         card.innerHTML += `<p>${truncatedContent} ...</p>`;
         return card;
     }
@@ -203,6 +203,61 @@ document.addEventListener("DOMContentLoaded", function () {
             const templateContent = document.getElementById("templateContent");
             templateContent.innerHTML = '';
         }
+    });
+
+    // Getting the show more buttons 
+    const showMoreBtns = document.getElementsByClassName('show-more');
+
+    // adding functionality to the buttons
+    const showMoreArr = Array.from(showMoreBtns);
+    showMoreArr.forEach((e) => {
+        e.addEventListener('click', (e) => {
+
+            // Getting the section parent Id
+            let section = e.target.parentNode;
+
+            while (section.tagName !== 'SECTION') {
+                section = section.parentNode;
+            }
+
+            // getting the parent Div
+            const contentListConainer = Array.from(section.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE)[1];
+
+            // rotating the button to show the arrow up
+            // styling the expanded section 
+            e.target.style.transform = e.target.style.transform ? '' : "rotate(180deg)";
+            section.style.height = section.style.height ? '' : '80vh';
+            section.style.marginBottom = section.style.marginBottom ? '' : '4rem';
+            contentListConainer.style.height = contentListConainer.style.height ? '' : '100%';
+            contentListConainer.style.borderRadius = contentListConainer.style.borderRadius ? '' : '.5rem';
+            contentListConainer.style.flexDirection = contentListConainer.style.flexDirection ? '' : 'column';
+            contentListConainer.style.boxShadow = contentListConainer.style.boxShadow ? '' : '0 3px 2px 0 #e38901';
+
+        })
+    });
+
+    // Function to filter and show/hide patient cards based on the search term
+    function filterPatientCards(searchTerm) {
+        const patientCards = document.querySelectorAll('.patient-card');
+
+        patientCards.forEach(card => {
+            const patientName = card.querySelector('.pname').textContent.toLowerCase();
+
+            if (patientName.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Get the search input element
+    const searchInput = document.getElementById('search-input');
+
+    // Attach an event listener to the search input (keyup event)
+    searchInput.addEventListener('keyup', function () {
+        const searchTerm = searchInput.value.toLowerCase();
+        filterPatientCards(searchTerm);
     });
 
     // Event listener for the "Create Template" button
