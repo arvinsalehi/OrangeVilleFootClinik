@@ -1,7 +1,7 @@
 /* width */
 ::-webkit-scrollbar {
     width: 1px;
-    height: 10px;
+    height: 5px;
 }
 
 /* Handle */
@@ -71,31 +71,6 @@ h2 {
     background-color: transparent;
 }
 
-/* Responsive design for smaller screens */
-@media screen and (max-width: 768px) {
-    header {
-        padding: 10px 0;
-    }
-
-    main {
-        margin: 0 !important;
-    }
-    nav ul {
-        text-align: left;
-        margin-top: 10px;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    main {
-        padding: 10px;
-    }
-}
-
-
 #scheduledEmails .color-code {
     border-color: transparent rgb(0, 167, 245) transparent transparent;
 
@@ -118,9 +93,9 @@ h2 {
     cursor: pointer;
     transition: background-color 0.3s;
     border-radius: .5rem;
-    min-width: 320px;   
+    min-width: 320px;
     min-height: 160px;
-    transition: .3s;    
+    transition: .3s;
     text-overflow: ellipsis;
 }
 
@@ -182,3 +157,76 @@ h2 {
     flex-direction: column;
 }
 
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    padding: .5rem;
+    width: 50%;
+    transition: all 0.5s;
+    /* Apply transition to all properties */
+}
+
+.search-input-wrapper i {
+    margin-right: 1rem;
+    color: #888;
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 1.5rem;
+    /* Set the border radius */
+}
+
+.search-input-wrapper:focus-within {
+    border: 1px solid #e38901 !important;
+    background-color: #fff;
+    width: 60%;
+    /* Change the background color */
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    main {
+        margin: 0 !important;
+    }
+
+    nav ul {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .search-input-wrapper {
+        width: 100%;
+    }
+
+    .search-input-wrapper:focus-within {
+        width: 100%;
+        /* Change the background color */
+    }
+}

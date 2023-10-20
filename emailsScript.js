@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         card.classList.add("patient-card");
         colorCode.classList.add("color-code");
         card.appendChild(colorCode);
-        card.innerHTML += `<p>Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
+        card.innerHTML += `<p class="pname">Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
         card.innerHTML += `<p>Tempate: ${template}</p>`;
         return card;
     }
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         colorCode.classList.add("color-code");
         card.classList.add("template-card");
         card.appendChild(colorCode);
-        card.innerHTML += `<p>${templateName}</p>`;
+        card.innerHTML += `<p class="${templateName}">${templateName}</p>`;
         card.innerHTML += `<p>${truncatedContent} ...</p>`;
         return card;
     }
@@ -234,6 +234,30 @@ document.addEventListener("DOMContentLoaded", function () {
             contentListConainer.style.boxShadow = contentListConainer.style.boxShadow ? '' : '0 3px 2px 0 #e38901';
 
         })
+    });
+
+    // Function to filter and show/hide patient cards based on the search term
+    function filterPatientCards(searchTerm) {
+        const patientCards = document.querySelectorAll('.patient-card');
+
+        patientCards.forEach(card => {
+            const patientName = card.querySelector('.pname').textContent.toLowerCase();
+
+            if (patientName.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Get the search input element
+    const searchInput = document.getElementById('search-input');
+
+    // Attach an event listener to the search input (keyup event)
+    searchInput.addEventListener('keyup', function () {
+        const searchTerm = searchInput.value.toLowerCase();
+        filterPatientCards(searchTerm);
     });
 
     // Event listener for the "Create Template" button
