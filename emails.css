@@ -1,12 +1,11 @@
 /* width */
 ::-webkit-scrollbar {
-    width: 1px;
     height: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #e38901;
+    background: #c1c1c1;
     border-radius: .5rem;
 }
 
@@ -20,22 +19,34 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #c1c1c1;
     color: white;
-    padding: 20px 0;
     text-align: center;
     border-bottom: solid;
     border-color: #e38901;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 125px;
 }
 
 h1 {
     margin: 0;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 nav ul {
     list-style-type: none;
     padding: 0;
     text-align: center;
+    margin: 0;
 }
 
 nav ul li {
@@ -45,8 +56,31 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
+    position: relative;
+    color: #333;
+    /* Default text color */
 }
+
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #333;
+    /* Default border color */
+    transition: width 0.3s;
+    /* Transition duration */
+}
+
+nav a:hover::before {
+    width: 100%;
+    background-color: #f00;
+    /* Hover border color */
+}
+
 
 main {
     margin: 2rem 0 2rem 0;
@@ -58,7 +92,7 @@ section {
 }
 
 h2 {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e38901;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -87,7 +121,7 @@ h2 {
 .patient-card,
 .template-card {
     background-color: #fff;
-    border: 1px solid #e38901;
+    border: 1px solid rgb(192, 191, 191);
     padding: 0 0 0 10px;
     margin: 10px 10px;
     cursor: pointer;
@@ -102,7 +136,7 @@ h2 {
 .patient-card:hover,
 .template-card:hover {
     background-color: #f7f7f7;
-    box-shadow: 10px 10px 5px lightblue;
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
 }
 
 /* Styling for email content overlay */
@@ -217,6 +251,18 @@ h2 {
         margin: 10px 0;
     }
 
+    nav {
+        display: flex;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        margin: 0;
+    }
     main {
         padding: 10px;
     }
@@ -230,3 +276,4 @@ h2 {
         /* Change the background color */
     }
 }
+
