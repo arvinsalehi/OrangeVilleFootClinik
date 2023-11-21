@@ -91,6 +91,7 @@ section {
     margin-bottom: 1.5rem;
 }
 
+
 h2 {
     border-bottom: 1px solid #e28c0e;
     padding-bottom: 10px;
@@ -115,6 +116,8 @@ h2 {
 #templatesList {
     display: flex;
     overflow-x: auto;
+    border-right: 1px solid #e28c0e;
+    border-radius: .7rem;
 }
 
 /* Styling for patient cards */
