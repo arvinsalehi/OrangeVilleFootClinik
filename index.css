@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: #93a1b0;
+  background: #f1f1f1;
   justify-content: center;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
@@ -43,6 +43,7 @@ body {
   align-items: center;
   z-index: 1;
   transform: translateY(100px);
+  border: 1px solid #e28c0e;
 }
 
 .container .card:hover .face.face1 {
