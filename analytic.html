@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="analytic.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="dashboard-header">
+            <div class="dheader"><p>Available Products</p> <span>12K</span></div>
+            <div class="dheader"><p>Open Request</p> <span>521</span></div>
+            <div class="dheader"><p>Approved Request</p> <span>8.65K</span></div>
+            <div class="dheader"><p>Withdrawn Request</p> <span>1.25K</span></div>
+            <div class="dheader"><p>Average Time (Days)</p> <span>7.8</span></div>
+            <div class="dheader"><p>Delivered Products</p> <span>8.86K</span></div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart">
+                <canvas id="salesChart" width="70%" height="40%"></canvas>
+                <p>Actuals vs Forecast for Net Sales in USD</p>
+                <!-- You would typically use a chart library like Chart.js or D3.js to render the chart -->
+            </div>
+        </div>
+    </div>
+
+</body>
+<footer>
+    <script src="analytic.js"></script>
+</footer>
+
+</html>
