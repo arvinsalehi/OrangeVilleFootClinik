@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #333;
+    background-color: white;
     color: white;
     margin: 0;
     padding: 0;
@@ -13,13 +13,15 @@ body {
   .wrap {
     display: flex;
     width: 100%;
-    height: 100%;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
   .dashboard-header { 
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
+    margin-bottom: 1.7rem;
   }
   .dashboard-header > div {
     flex: 1;
@@ -28,7 +30,7 @@ body {
   .dheader {
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: #121212;
     margin: .5rem;
     justify-content: center;
     align-items: center;
@@ -44,24 +46,24 @@ body {
   }
 
   .dheader span {
-    color: green;
+    color: #82ea20;
   }
   .chart-container {
     /* padding: 20px; */
     width: 100%;
-    height: 100%;
+    height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .chart {
     display: flex;
-    background-color: #222;
-    padding: 20px;
+    background-color: #121212;
     width: 80%;
     height: 40%;
     justify-content: center;
     flex-wrap: wrap;
+    border-radius: .5rem;
   }
 
   .chart p {
