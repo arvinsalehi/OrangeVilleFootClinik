@@ -79,6 +79,7 @@ nav a:hover::before {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .dashboard-header {
@@ -108,8 +109,9 @@ nav a:hover::before {
 }
 
 .dheader:hover {
-  background-color:  #e28c0e;
+  background-color: #e28c0e;
 }
+
 .dheader p {
   width: 100%;
   margin: 0;
@@ -145,6 +147,68 @@ nav a:hover::before {
   font-weight: 600;
 }
 
+.review-container {
+  position: relative;
+  overflow: hidden;
+  /* Hide the scrollbar */
+  background-color: aqua;
+  margin-top: 1.7rem;
+  margin-bottom: 1.7rem;
+  width: 80%;
+  max-height: 40vh;
+}
+
+.review-wrap {
+  display: flex;
+  /* width: calc(250px * 4); Adjust based on the number of widgets */
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.review-wrap::-webkit-scrollbar {
+  display: none;
+  /* Hide scrollbar in Webkit browsers */
+}
+
+.review-wrap div {
+  margin-right: 10px;
+  /* Adjust the margin as needed */
+}
+
+.review {
+  height: 320px;
+  background-color: red;
+  margin: 1rem;
+}
+
+.review-container button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #eee;
+  /* Style as needed */
+  border: none;
+  border-radius: 50%;
+  /* Round shape */
+  width: 30px;
+  /* Adjust size as needed */
+  height: 30px;
+  /* Adjust size as needed */
+  cursor: pointer;
+}
+
+#scrollLeft {
+  left: 0;
+}
+
+#scrollRight {
+  right: 0;
+}
+
 
 /* Add your chart styling here */
 
@@ -153,6 +217,7 @@ nav a:hover::before {
   .dashboard-header {
     flex-direction: column;
   }
+
   #feedBackChart {
     height: 50vh !important;
   }

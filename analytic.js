@@ -1,4 +1,14 @@
-
+function scroll(direction) {
+    const scrollable = document.getElementById('scrollable');
+    if (direction === 1) {
+      // Scroll right
+      scrollable.scrollLeft += 250; // Width of one widget
+    } else {
+      // Scroll left
+      scrollable.scrollLeft -= 250; // Width of one widget
+    }
+  }
+  
 const ctx = document.getElementById('salesChart').getContext('2d');
 const salesChart = new Chart(ctx, {
     type: 'line',
