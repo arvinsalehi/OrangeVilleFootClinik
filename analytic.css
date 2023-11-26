@@ -49,6 +49,7 @@ nav ul li a {
   text-decoration: none;
   position: relative;
   color: #333;
+  font-weight: 600;
   /* Default text color */
 }
 
@@ -85,6 +86,7 @@ nav a:hover::before {
   justify-content: space-between;
   width: 80%;
   margin-bottom: 1.7rem;
+  margin-top: 1.7rem;
 }
 
 .dashboard-header>div {
@@ -100,13 +102,20 @@ nav a:hover::before {
   align-items: center;
   padding: 1.5rem 0.3rem 1.5rem;
   border-radius: .5rem;
+  color: white;
+  width: 100%;
+  transition: .2s;
 }
 
+.dheader:hover {
+  background-color:  #e28c0e;
+}
 .dheader p {
   width: 100%;
   margin: 0;
   margin-bottom: .2rem;
   text-align: center;
+  background-color: transparent;
 }
 
 .dheader span {
@@ -136,12 +145,16 @@ nav a:hover::before {
   font-weight: 600;
 }
 
+
 /* Add your chart styling here */
 
 /* Responsive styling */
 @media (max-width: 600px) {
   .dashboard-header {
     flex-direction: column;
+  }
+  #feedBackChart {
+    height: 50vh !important;
   }
 }
 
