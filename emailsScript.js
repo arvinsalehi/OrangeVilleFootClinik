@@ -1,3 +1,6 @@
+/// TODO 
+// import { createFilterModal } from './createFilterModal.js';
+
 document.addEventListener("DOMContentLoaded", function () {
     // Sample data for sent and scheduled emails
     const sentEmailsData = [
@@ -130,6 +133,14 @@ document.addEventListener("DOMContentLoaded", function () {
         templateContentOverlay.style.display = "flex";
     }
 
+    // Function to show email content in an overlay
+    function showFilterContent() {
+        const filterContentOverlay = document.getElementById("filterContentOverlay");
+        const filterContent = document.getElementById("filterContent");
+        filterContent = createFilterModal(filterContent);
+        filterContentOverlay.style.display = "flex";
+    }
+
     function createForm() {
         // Create a new <h1> element
         const h1 = document.createElement('h1');
@@ -185,6 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
         formContent.appendChild(form);
         newTemplateForm.style.display = "flex";
     }
+
     // Close email content overlay when clicking outside of the content
     const emailContentOverlay = document.getElementById("emailContentOverlay");
     emailContentOverlay.addEventListener("click", (event) => {
@@ -202,6 +214,20 @@ document.addEventListener("DOMContentLoaded", function () {
             templateContentOverlay.style.display = "none";
             const templateContent = document.getElementById("templateContent");
             templateContent.innerHTML = '';
+        }
+    });
+
+    const filterBtn = document.getElementById("filterBtn");
+    filterBtn.addEventListener("click", (e)=> {
+        showFilterContent();
+    })
+    // Close filter content overlay when clicking outside of the content
+    const filterContentOverlay = document.getElementById("filterContentOverlay");
+    filterContentOverlay.addEventListener("click", (event) => {
+        if (event.target === filterContentOverlay) {
+            filterContentOverlay.style.display = "none";
+            const filterContent = document.getElementById("filterContent");
+            filterContent.innerHTML = '';
         }
     });
 

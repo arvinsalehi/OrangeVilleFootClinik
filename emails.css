@@ -143,7 +143,7 @@ h2 {
 
 /* Styling for email content overlay */
 #emailContentOverlay,
-#templateContentOverlay {
+#templateContentOverlay, #filterContentOverlay {
     display: none;
     position: fixed;
     top: 0;
@@ -157,7 +157,7 @@ h2 {
 }
 
 #emailContent,
-#templateContent {
+#templateContent, #filterContent {
     background-color: #fff;
     padding: 20px;
     max-width: 80%;
