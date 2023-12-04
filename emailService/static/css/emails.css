@@ -15,12 +15,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background-color: white;
 }
 
 header {
-    background-color: #c1c1c1;
-    color: white;
+    background-color: white;
     text-align: center;
     border-bottom: solid;
     border-color: #e28c0e;
@@ -144,7 +143,7 @@ h2 {
 
 /* Styling for email content overlay */
 #emailContentOverlay,
-#templateContentOverlay {
+#templateContentOverlay, #filterContentOverlay {
     display: none;
     position: fixed;
     top: 0;
@@ -158,7 +157,7 @@ h2 {
 }
 
 #emailContent,
-#templateContent {
+#templateContent, #filterContent {
     background-color: #fff;
     padding: 20px;
     max-width: 80%;
