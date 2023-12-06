@@ -1,9 +1,16 @@
-from flask import jsonify
+from datetime import datetime, timedelta
+
+from apscheduler.schedulers.background import BackgroundScheduler
 from flask import render_template
-from itsdangerous import base64_encode
 from . import email_blueprint
-import requests
-from requests.auth import HTTPBasicAuth
+from enum import Enum
+from .utilities.get_data import get_data
+from .utilities.time_utilities import get_time_range_str
+
+
+class Order(Enum):
+    ASC = "asc"
+    DESC = "desc"
 
 
 @email_blueprint.route("/")
@@ -14,40 +21,40 @@ def emails():
 # Define a route that sends a request to an external API
 @email_blueprint.route('/external-api', methods=['GET'])
 def get_patients():
-    try:
-        api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt-ca1"
+    external_api_url = "https://api.ca1.cliniko.com/v1/patients"
+    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+    query = {
+        "order": Order.ASC,
+        "sort": "created_at:desc"
+    }
 
-# Encode the API key using base64
-        api_key_encoded = base64_encode(f"{api_key}:".encode()).decode()
+    response = get_data(external_api=external_api_url, api_key=api_key, query=query)
+    return response
 
-# Set up the HTTPBasicAuth using the encoded API key
-        auth = HTTPBasicAuth(f"Basic {api_key_encoded}")
-        headers = {
-            'Accept': 'application/json',
-            "User-Agent": "OrangVille foot clinik (arvinsalehi99@gmail.com)"
-            }
-        query = {
-            "order": "asc",
-            "page": "0",
-            "per_page": "1",
-            "q[]": "string",
-            "sort": "created_at:desc"
-        }
-        # Replace 'https://jsonplaceholder.typicode.com/posts/1' with the actual API endpoint you want to call
-        external_api_url = "https://api.au1.cliniko.com/v1/patients"
-        
-        # Make a GET request to the external API
-        response = requests.get(external_api_url, headers=headers, params=query, auth=auth)
 
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Parse the JSON response and return it to the client
-            data = response.json()
-            return jsonify(data)
-        else:
-            # If the request was not successful, return an error message
-            return jsonify({'error': f'{response.status_code}'}), 500
+@email_blueprint.route('/get-attendees', methods=['GET'])
+def get_bookings():
+    external_api_url = "https://api.ca1.cliniko.com/v1/bookings"
+    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
 
-    except Exception as e:
-        # Handle any exceptions that might occur during the request
-        return jsonify({'error': f'An error occurred: {str(e)}'}), 500
+    # Convert datetime objects to string format expected by Cliniko API
+    # Calculate the time range for the last 10 hours
+    start_time_str, end_time_str = get_time_range_str(time_range=12)
+    # Construct the query parameters
+
+    query = {
+        "q[]": [f"ends_at:<{end_time_str}", f"starts_at:>{start_time_str}", "did_not_arrive:=false"],
+        # "q[]": [f"did_not_arrive:=true"],
+        "page": 1,
+        "sort": "starts_at:desc",
+    }
+
+    response = get_data(external_api=external_api_url, api_key=api_key, query=query)
+    # patient_res = get_data(external_api=response['attendees'][0]['patient']['links']['self'], api_key=api_key)
+
+    return response
+
+
+scheduler = BackgroundScheduler()
+# Schedule the job to run every 20 minutes
+scheduler.add_job(get_patients, 'interval', minutes=20)
