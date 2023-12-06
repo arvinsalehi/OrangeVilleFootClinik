@@ -136,8 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to show email content in an overlay
     function showFilterContent() {
         const filterContentOverlay = document.getElementById("filterContentOverlay");
-        const filterContent = document.getElementById("filterContent");
-        filterContent = createFilterModal(filterContent);
+        const filterContent = createFilterModal(document.getElementById("filterModalContent"));
         filterContentOverlay.style.display = "flex";
     }
 
@@ -226,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterContentOverlay.addEventListener("click", (event) => {
         if (event.target === filterContentOverlay) {
             filterContentOverlay.style.display = "none";
-            const filterContent = document.getElementById("filterContent");
+            const filterContent = document.getElementById("filterModalContent");
             filterContent.innerHTML = '';
         }
     });

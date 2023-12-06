@@ -1,0 +1,58 @@
+/* Add this CSS to your styles or in a <style> tag in your HTML */
+
+/* Filter Modal Styles */
+#filterModalContent {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: 50px auto;
+  position: relative;
+}
+
+#filterModalContent .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#filterModalContent h2 {
+  color: #333;
+  text-align: center;
+}
+
+#filterModalContent label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#filterModalContent input[type="radio"] {
+  margin-right: 5px;
+}
+
+#filterModalContent input,
+#filterModalContent select,
+#filterModalContent button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#filterModalContent button {
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#filterModalContent button:hover {
+  background-color: #45a049;
+}
