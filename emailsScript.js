@@ -1,5 +1,5 @@
-/// TODO 
-// import { createFilterModal } from './createFilterModal.js';
+/// TODO
+import { createFilterModal } from './createFilterModal.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     // Sample data for sent and scheduled emails
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function showEmailContent(email) {
         const emailContentOverlay = document.getElementById("emailContentOverlay");
         const emailContent = document.getElementById("emailContent");
-        contentCard = createEmailContentCard(email.patientName, email.emailDate, email.emailContent, email.template);
+        const contentCard = createEmailContentCard(email.patientName, email.emailDate, email.emailContent, email.template);
         emailContent.appendChild(contentCard);
         emailContentOverlay.style.display = "flex";
     }
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Getting the show more buttons 
+    // Getting the show more buttons
     const showMoreBtns = document.getElementsByClassName('show-more');
 
     // adding functionality to the buttons
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const contentListConainer = Array.from(section.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE)[1];
 
             // rotating the button to show the arrow up
-            // styling the expanded section 
+            // styling the expanded section
             e.target.style.transform = e.target.style.transform ? '' : "rotate(180deg)";
             section.style.height = section.style.height ? '' : '80vh';
             section.style.marginBottom = section.style.marginBottom ? '' : '4rem';
