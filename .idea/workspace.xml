@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="" />
+    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/emailService/static/css/filterForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/css/newTemplateForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/newTemplateForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/emails.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emails.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +120,7 @@
       <updated>1701810995640</updated>
       <workItem from="1701811002678" duration="22165000" />
       <workItem from="1701896514744" duration="20622000" />
-      <workItem from="1701969232609" duration="616000" />
+      <workItem from="1701969232609" duration="1607000" />
     </task>
     <servers />
   </component>
