@@ -1,89 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 
 <head>
     <title>OrangeVille Foot Clinic Email Management</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="emails.css">
+    <link rel="stylesheet" type="text/css" href="filterForm.css">
     <link rel="stylesheet" type="text/css" href="newTemplateForm.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    <header>
-        <a href=""><img class="logo" src="Orangville-foot-Logo-H.svg" alt=""></a>
-        <nav>
-            <ul>
-                <li><a href="#templates">Email Templates</a></li>
-                <li><a href="#sent">Sent Emails</a></li>
-                <li><a href="#scheduled">Scheduled Emails</a></li>
-                <li><a href="#settings">Settings</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="search">
-            <div class="search-container">
-                <div class="search-input-wrapper">
-                  <i class="fas fa-search"></i>
-                  <input type="text" id="search-input" placeholder="Search...">
-                </div>
-              </div>              
-        </section>
-        <section id="templates">
-            <div class="d-flex w-100 justify-content-between align-items-center mb-2">
-                <h2 class="mb-0">Email Templates</h2>
-                <button class="show-more">
-                    <i class="fa-regular fa-square-caret-down fa-2xl" style="color: #f46325;"></i>
-                </button>
+<header>
+    <a href=""><img class="logo" src="Orangville-foot-Logo-H.svg" alt=""></a>
+    <nav>
+        <ul>
+            <li><a href="#templates">Email Templates</a></li>
+            <li><a href="#sent">Sent Emails</a></li>
+            <li><a href="#scheduled">Scheduled Emails</a></li>
+            <li><a href="#settings">Settings</a></li>
+        </ul>
+    </nav>
+</header>
+<main id="main">
+    <section id="search">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search...">
+                <i id="filterBtn" class="fa-solid fa-filter" style="color: #888888; cursor: pointer;"></i>
             </div>
-            <div id="templatesList">
-                <button id="createTemplate" class="template-card">
-                    <i class="fa-solid fa-plus fa-beat fa-2xl" style="color: #f46325;"></i>
-                </button>
-                <!-- Template items go here -->
-            </div>
-        </section>
-        <section id="sent">
-            <div class="d-flex w-100 justify-content-between align-items-center mb-2">
-                <h2 class="mb-0">Sent Emails</h2>
-                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
-                        style="color: #f46325;"></i></button>
-            </div>
-            <div id="sentEmails">
-                <!-- List of sent emails goes here -->
-            </div>
-        </section>
-        <section id="scheduled">
-            <div class="d-flex w-100 justify-content-between align-items-center mb-2">
-                <h2 class="mb-0">Scheduled Emails</h2>
-                <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
-                        style="color: #f46325;"></i></button>
-            </div>
-            <div id="scheduledEmails">
-                <!-- List of scheduled emails goes here -->
-            </div>
-        </section>
-    </main>
-    <div id="emailContentOverlay">
-        <div id="emailContent">
-            <!-- Email content goes here -->
         </div>
-    </div>
-    <div id="templateContentOverlay">
-        <div id="templateContent">
-            <!-- Email content goes here -->
+    </section>
+    <section id="templates">
+        <div class="d-flex w-100 justify-content-between align-items-center mb-2">
+            <h2 class="mb-0">Email Templates</h2>
+            <button class="show-more">
+                <i class="fa-regular fa-square-caret-down fa-2xl" style="color: #f46325;"></i>
+            </button>
         </div>
+        <div id="templatesList">
+            <button id="createTemplate" class="template-card">
+                <i class="fa-solid fa-plus fa-beat fa-2xl" style="color: #f46325;"></i>
+            </button>
+            <!-- Template items go here -->
+        </div>
+    </section>
+    <section id="sent">
+        <div class="d-flex w-100 justify-content-between align-items-center mb-2">
+            <h2 class="mb-0">Sent Emails</h2>
+            <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
+                                         style="color: #f46325;"></i></button>
+        </div>
+        <div id="sentEmails">
+            <!-- List of sent emails goes here -->
+        </div>
+    </section>
+    <section id="scheduled">
+        <div class="d-flex w-100 justify-content-between align-items-center mb-2">
+            <h2 class="mb-0">Scheduled Emails</h2>
+            <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
+                                         style="color: #f46325;"></i></button>
+        </div>
+        <div id="scheduledEmails">
+            <!-- List of scheduled emails goes here -->
+        </div>
+    </section>
+</main>
+<div id="emailContentOverlay">
+    <div id="emailContent">
+        <!-- Email content goes here -->
     </div>
+</div>
+<div id="templateContentOverlay">
+    <div id="templateContent">
+        <!-- Email content goes here -->
+    </div>
+</div>
+<div id="filterContentOverlay">
+    <div id="filterModalContent">
+        <!-- Email content goes here -->
+    </div>
+</div>
 </body>
 <footer>
     <p>&copy; 2023 Foot Clinic</p>
     <script src="https://kit.fontawesome.com/ccdcc39714.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="emailsScript.js"></script>
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+
+    <script type="module" src="emailsScript.js"></script>
+    <!-- TODO -->
+    <!-- <script type="module" src="emailsScript.js"></script> -->
+
 </footer>
 
 </html>
