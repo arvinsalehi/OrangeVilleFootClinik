@@ -165,16 +165,105 @@ document.addEventListener("DOMContentLoaded", function () {
         return card;
     }
 
+
     // Function to show email content in an overlay
     function showTemplateContent(template) {
         const templateContentOverlay = document.getElementById("templateContentOverlay");
         const templateContent = document.getElementById("templateContent");
         const card = document.createElement("div");
         card.classList.add("template-content");
-        card.innerHTML = `<p>${template.group} template</p>`;
-        card.innerHTML += `<p>${template.content}</p>`
+
+        const row = document.createElement("div");
+
+        row.classList.add('row');
+        row.style.display = 'flex';
+        row.style.alignItems = 'baseline';
+
+
+        const h2 = document.createElement("h2");
+        h2.innerHTML = `${template.group} template`;
+        h2.classList.add('col-md-6');
+
+        const p = document.createElement('p');
+        p.innerHTML = `${template.content}`;
+        // Create the <i> element
+        const iconElement = document.createElement("i");
+        // Set the class attributes
+        iconElement.className = "fa-solid fa-pen-to-square fa-2xl";
+        iconElement.style.textAlign = 'end';
+        iconElement.style.color = '';
+        iconElement.style.cursor = 'pointer';
+        iconElement.classList.add('col-md-6');
+
+
+        let isEditMode = false;
+
+// Attach the named event listener
+
+        iconElement.addEventListener('click', () => {
+
+            if (!isEditMode) {
+                // Close template content overlay when clicking outside the content
+                templateContentOverlay.classList.add("EditMode");
+                const colorInput = document.createElement('input');
+                colorInput.type = 'color';
+                colorInput.value = "#e28c0e"; // Set initial color
+                colorInput.style.marginRight = '10px'; // Adjust spacing
+                colorInput.style.border = 'none'; // Remove border
+
+                // Create a save button
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Save';
+                saveButton.style.padding = '10px'; // Add padding
+                saveButton.style.backgroundColor = '#00a34f'; // Set background color
+                saveButton.style.color = 'white'; // Set text color
+                saveButton.style.border = 'none'; // Remove border
+                saveButton.style.borderRadius = '.5rem'; // Remove border
+                saveButton.style.cursor = 'pointer'; // Change cursor
+
+                // Add click event listener to the save button
+                saveButton.addEventListener('click', () => {
+                    // Save the changes
+                    iconElement.style.color = colorInput.value;
+                    h2.contentEditable = false;
+                    p.contentEditable = false;
+                    isEditMode = false;
+                    const cd = document.getElementById('controlsDiv');
+                    card.removeChild(cd);
+                });
+
+                const controlsDiv = document.createElement('div');
+                controlsDiv.id = "controlsDiv";
+                controlsDiv.style.display = 'flex';
+                controlsDiv.style.justifyContent = 'space-between';
+                controlsDiv.style.alignItems = 'center';
+
+                controlsDiv.appendChild(colorInput);
+                controlsDiv.appendChild(saveButton);
+                // Make h2 and p editable
+                h2.contentEditable = true;
+                p.contentEditable = true;
+                // Create a div to hold the color input and save button
+
+                isEditMode = true;
+                // Append controlsDiv to the card
+                card.appendChild(controlsDiv);
+            } else {
+                const cd = document.getElementById('controlsDiv');
+                card.removeChild(cd);
+                isEditMode = false;
+            }
+        });
+
+        // Append the <i> element to the document body or another container
+        row.appendChild(h2);
+        row.appendChild(iconElement);
+        card.appendChild(row);
+        card.appendChild(p);
         templateContent.appendChild(card);
         templateContentOverlay.style.display = "flex";
+
+
     }
 
     // Function to show email content in an overlay
@@ -254,11 +343,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const templateContentOverlay = document.getElementById("templateContentOverlay");
     templateContentOverlay.addEventListener("click", (event) => {
         if (event.target === templateContentOverlay) {
-            templateContentOverlay.style.display = "none";
-            const templateContent = document.getElementById("templateContent");
-            templateContent.innerHTML = '';
+            if (templateContentOverlay.classList.contains('EditMode')) {
+                // Display a confirmation dialog
+                const userResponse = confirm("Do you want to proceed?");
+
+                // Check the user's response
+                if (userResponse) {
+
+                    templateContentOverlay.style.display = "none";
+                    const templateContent = document.getElementById("templateContent");
+                    templateContent.innerHTML = '';
+                    templateContentOverlay.classList.remove("EditMode");
+                }
+
+            } else {
+                templateContentOverlay.style.display = "none";
+                const templateContent = document.getElementById("templateContent");
+                templateContent.innerHTML = '';
+            }
         }
+
     });
+
 
     const filterBtn = document.getElementById("filterBtn");
     filterBtn.addEventListener("click", () => {
