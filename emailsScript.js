@@ -1,40 +1,84 @@
 /// TODO
-import { createFilterModal } from './createFilterModal.js';
+import {createFilterModal} from './createFilterModal.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     // Sample data for sent and scheduled emails
     const sentEmailsData = [
-        { patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, Officia sint cupidatat mollit voluptate consequat. Dolore ut mollit culpa elit nostrud dolore deserunt. Commodo nulla magna pariatur id quis cillum aute sunt. Officia et Lorem eu amet voluptate enim irure in occaecat do consectetur voluptate labore. Veniam quis occaecat proident incididunt ipsum ad in ad non.", template: "Birthday" },
-        { patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, Enim sunt irure amet sunt minim id eu esse tempor aute nisi est. Cillum culpa consectetur velit officia excepteur irure cupidatat minim ipsum. Cupidatat ipsum velit incididunt occaecat dolor tempor est velit reprehenderit do non velit. Dolor cupidatat pariatur nisi aute eu anim nisi ex duis sit fugiat.Do ipsum et excepteur cupidatat esse exercitation aliqua ipsum exercitation pariatur. Pariatur consequat cillum laborum commodo mollit adipisicing ullamco qui ut. Officia cupidatat consectetur et laboris et cillum. Laboris aute magna proident nisi non dolore ullamco velit aliquip do velit consequat. Aute sunt cupidatat ipsum nulla.Elit cillum duis veniam voluptate dolore cupidatat pariatur consectetur ad qui labore. Proident elit cillum adipisicing labore nisi. Id officia veniam eu non ad sint ea. Mollit tempor ea deserunt elit. Minim pariatur elit amet consequat ad velit ut irure amet est. Ad enim exercitation pariatur pariatur cupidatat ad et pariatur do esse deserunt tempor.", template: "Reveiw" },
-        { patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday" },
-        { patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw" },
-        { patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday" },
-        { patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw" },
-        { patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday" },
-        { patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw" },
+        {
+            patientName: "John Doe",
+            emailDate: "2023-10-15",
+            emailContent: "Hello John, Officia sint cupidatat mollit voluptate consequat. Dolore ut mollit culpa elit nostrud dolore deserunt. Commodo nulla magna pariatur id quis cillum aute sunt. Officia et Lorem eu amet voluptate enim irure in occaecat do consectetur voluptate labore. Veniam quis occaecat proident incididunt ipsum ad in ad non.",
+            template: "Birthday"
+        },
+        {
+            patientName: "Jane Smith",
+            emailDate: "2023-10-12",
+            emailContent: "Dear Jane, Enim sunt irure amet sunt minim id eu esse tempor aute nisi est. Cillum culpa consectetur velit officia excepteur irure cupidatat minim ipsum. Cupidatat ipsum velit incididunt occaecat dolor tempor est velit reprehenderit do non velit. Dolor cupidatat pariatur nisi aute eu anim nisi ex duis sit fugiat.Do ipsum et excepteur cupidatat esse exercitation aliqua ipsum exercitation pariatur. Pariatur consequat cillum laborum commodo mollit adipisicing ullamco qui ut. Officia cupidatat consectetur et laboris et cillum. Laboris aute magna proident nisi non dolore ullamco velit aliquip do velit consequat. Aute sunt cupidatat ipsum nulla.Elit cillum duis veniam voluptate dolore cupidatat pariatur consectetur ad qui labore. Proident elit cillum adipisicing labore nisi. Id officia veniam eu non ad sint ea. Mollit tempor ea deserunt elit. Minim pariatur elit amet consequat ad velit ut irure amet est. Ad enim exercitation pariatur pariatur cupidatat ad et pariatur do esse deserunt tempor.",
+            template: "Reveiw"
+        },
+        {patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday"},
+        {patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw"},
+        {patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday"},
+        {patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw"},
+        {patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday"},
+        {patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw"},
         // Add more sent email data as needed
     ];
 
-    const scheduledEmailsData = [
-        { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-        { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-        { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-        { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-        { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-        { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-        { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-        { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-        // Add more scheduled email data as needed
-    ];
+    // const scheduledEmailsData = [
+    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
+    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
+    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
+    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
+    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
+    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
+    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
+    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
+    //     // Add more scheduled email data as needed
+    // ];
+    const scheduledEmailsData = null;
 
     const templateData = [
-        { group: "Birthday", content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut." },
-        { group: "Review", content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut." },
-        { group: "Custom", content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut." },
-        { group: "Custom", content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut." },
-        { group: "Review", content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut." },
+        {
+            group: "Birthday",
+            content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut."
+        },
+        {
+            group: "Review",
+            content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut."
+        },
+        {
+            group: "Custom",
+            content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut."
+        },
+        {
+            group: "Custom",
+            content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut."
+        },
+        {
+            group: "Review",
+            content: "Magna quis do magna nostrud reprehenderit eiusmod aute aliqua do tempor deserunt ipsum. Adipisicing ullamco esse excepteur in reprehenderit cupidatat eu labore excepteur velit cillum occaecat. Sit mollit fugiat pariatur ad proident tempor mollit eu consequat esse. Officia do ad pariatur reprehenderit occaecat veniam aliqua eiusmod officia exercitation occaecat laborum. Sint labore labore minim esse elit velit laboris. Duis voluptate anim laboris quis ut laborum. In nostrud culpa in ut."
+        },
 
     ]
+
+    // if (scheduledEmailsData == null) {
+    //     const sentEmailsContainer = document.getElementById("scheduled");
+    //     const h2 = document.createElement('h2');
+    //     h2.innerHTML = "No Emails Found";
+    //     h2.style.border = 'none';
+    //     h2.style.margin = "1rem";
+    //     sentEmailsContainer.appendChild(h2)
+    // }
+    //
+    // if (templateData == null) {
+    //     const sentEmailsContainer = document.getElementById("sent");
+    //     const h2 = document.createElement('h2');
+    //     h2.innerHTML = "No Emails Found";
+    //     h2.style.border = 'none';
+    //     h2.style.margin = "1rem";
+    //     sentEmailsContainer.appendChild(h2)
+    // }
 
     // Function to create a new email template
     function createTemplate() {
@@ -100,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to create email content card
-    function createEmailContentCard(patientName, emailDate, emailContent, template) {
+    function createEmailContentCard(patientName, emailDate, emailContent) {
         const card = document.createElement("div");
         card.classList.add("emailContentCard");
         card.innerHTML = `<p>Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
@@ -196,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
         newTemplateForm.style.display = "flex";
     }
 
-    // Close email content overlay when clicking outside of the content
+    // Close email content overlay when clicking outside the content
     const emailContentOverlay = document.getElementById("emailContentOverlay");
     emailContentOverlay.addEventListener("click", (event) => {
         if (event.target === emailContentOverlay) {
@@ -206,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Close template content overlay when clicking outside of the content
+    // Close template content overlay when clicking outside the content
     const templateContentOverlay = document.getElementById("templateContentOverlay");
     templateContentOverlay.addEventListener("click", (event) => {
         if (event.target === templateContentOverlay) {
@@ -217,10 +261,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const filterBtn = document.getElementById("filterBtn");
-    filterBtn.addEventListener("click", (e)=> {
+    filterBtn.addEventListener("click", () => {
         showFilterContent();
     })
-    // Close filter content overlay when clicking outside of the content
+    // Close filter content overlay when clicking outside the content
     const filterContentOverlay = document.getElementById("filterContentOverlay");
     filterContentOverlay.addEventListener("click", (event) => {
         if (event.target === filterContentOverlay) {
@@ -238,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showMoreArr.forEach((e) => {
         e.addEventListener('click', (e) => {
 
-            // Getting the section parent Id
+            // Getting the section parent ID
             let section = e.target.parentNode;
 
             while (section.tagName !== 'SECTION') {
@@ -291,5 +335,5 @@ document.addEventListener("DOMContentLoaded", function () {
     populateEmailTemplate();
     // Populate the "Sent Emails" and "Scheduled Emails" sectionstemplate-card
     populateSentEmails();
-    populateScheduledEmails();
+    // populateScheduledEmails();
 });

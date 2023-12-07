@@ -1,3 +1,5 @@
+let QUERY = [];
+
 export function createFilterModal(modalContent) {
     // Create the close button
     const closeModalBtn = document.createElement('span');
@@ -9,25 +11,22 @@ export function createFilterModal(modalContent) {
     const modalHeading = document.createElement('h2');
     modalHeading.textContent = 'Email Filters';
 
+
     // Create the filter type label
     const filterTypeLabel = document.createElement('label');
-    filterTypeLabel.htmlFor = 'filterType';
     filterTypeLabel.textContent = 'Filter Type:';
 
-    // Create the filter type dropdown
-    const filterTypeDropdown = document.createElement('select');
-    filterTypeDropdown.id = 'filterType';
 
-    // Create the filter type radio inputs
-    const sentRadio = createRadioInput('filterType', 'sent', 'Sent Emails');
-    const queueRadio = createRadioInput('filterType', 'queue', 'Emails in Queue');
-
-    // Append radio inputs to the filter type label
-    filterTypeDropdown.appendChild(sentRadio[0]);
-    filterTypeDropdown.appendChild(sentRadio[1]);
-    filterTypeDropdown.appendChild(queueRadio[0]);
-    filterTypeDropdown.appendChild(queueRadio[1]);
-
+    // Create a hidden select element
+    const filterTypeDropdownWidgets = createDropDown();
+    const filterTypeDropdown = filterTypeDropdownWidgets[0];
+    const listContainer = filterTypeDropdownWidgets[1];
+    // Add a global click event listener to hide the dropdown list when clicking outside
+    filterTypeDropdown.addEventListener("click", function (event) {
+        if (!filterTypeDropdown.contains(event.target)) {
+            listContainer.style.display = "none";
+        }
+    });
 
     // Create the sort order label
     const sortOrderLabel = document.createElement('label');
@@ -77,6 +76,14 @@ export function createFilterModal(modalContent) {
     applyFilterBtn.textContent = 'Apply Filter';
 
     modalContent.id = 'filterModalContent';
+
+    // Add a click event listener to the close button
+    closeModalBtn.addEventListener('click', () => {
+        // Hide or remove the parent widget
+        modalContent.parentElement.style.display = 'none'; // You can use 'block' to show it again
+        // Alternatively, you can remove it from the DOM: modalContainer.remove();
+        modalContent.innerHTML = "";
+    });
     // Append all elements to the modal content
     modalContent.appendChild(closeModalBtn);
     modalContent.appendChild(modalHeading);
@@ -94,16 +101,65 @@ export function createFilterModal(modalContent) {
 }
 
 // Function to create radio input
-function createRadioInput(name, value, label) {
-    const radioInput = document.createElement('input');
-    radioInput.type = 'radio';
-    radioInput.name = name;
-    radioInput.value = value;
-    radioInput.id = `${name}-${value}`;
+function createDropDown() {
+// Create the main container
+    const dropdownContainer = document.createElement("div");
+    dropdownContainer.classList.add("custom-dropdown");
 
-    const radioLabel = document.createElement('label');
-    radioLabel.htmlFor = radioInput.id;
-    radioLabel.textContent = label;
+    // Create the input element
+    const inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.classList.add("custom-dropdown-input");
+    inputElement.placeholder = "Select options";
+    inputElement.readOnly = true;
 
-    return [radioInput, radioLabel];
+    // Create the dropdown list container
+    const listContainer = document.createElement("div");
+    listContainer.classList.add("custom-dropdown-list");
+
+    // Create individual dropdown items
+    const optionValues = ["Emails Sent", "Emails In Queue", "Email Templates", "ALL"];
+    optionValues.forEach(function (value, index) {
+
+        const item = document.createElement("div");
+        item.classList.add("custom-dropdown-item");
+        item.id = `${value.replace(/\s/g, '')}`;
+        item.value = value;
+        item.innerHTML = value;
+
+        item.addEventListener('click', (e) => {
+            const thisElement = e.target;
+
+            if (thisElement.classList.contains('checked')) {
+                const iconElement = thisElement.querySelector('i');
+                thisElement.removeChild(iconElement);
+                QUERY = QUERY.filter(item => item !== thisElement.id);
+
+            } else {
+
+                // Create the <i> element
+                const iconElement = document.createElement("i");
+                iconElement.className = "fa-solid fa-circle-check fa-xl";
+                iconElement.style.color = "#00a34f";
+                QUERY.push(thisElement.id);
+                thisElement.appendChild(iconElement);
+            }
+            thisElement.classList.toggle('checked');
+        })
+        listContainer.appendChild(item);
+    });
+
+    // Append elements to the main container
+    dropdownContainer.appendChild(inputElement);
+    dropdownContainer.appendChild(listContainer);
+
+    // Append the main container to the document body
+    document.body.appendChild(dropdownContainer);
+
+    // Add click event listener to toggle the visibility of the dropdown list
+    inputElement.addEventListener("click", function () {
+        listContainer.style.display = listContainer.style.display === "block" ? "none" : "block";
+    });
+
+    return [dropdownContainer, listContainer];
 }
