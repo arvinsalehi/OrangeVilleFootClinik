@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/api/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/api/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/createFilterModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/createFilterModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/utilities/get_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/utilities/get_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +125,7 @@
       <updated>1701810995640</updated>
       <workItem from="1701811002678" duration="22165000" />
       <workItem from="1701896514744" duration="20622000" />
-      <workItem from="1701969232609" duration="26637000" />
+      <workItem from="1701969232609" duration="27402000" />
     </task>
     <servers />
   </component>
