@@ -64,10 +64,10 @@ def get_data(external_api=None, api_key=None, *args, **kwargs):
             return response
         else:
             # If the request was not successful, return an error message
-            return response.json()
+            error_message = {'error': f'An error occurred: {response}'}
+            return jsonify(error_message), 500
     except Exception as e:
+        # Handle any exceptions that mig
         # Handle any exceptions that might occur during the request
         error_message = {'error': f'An error occurred: {str(e)}'}
-        error_response = jsonify(error_message)
-        error_response.status_code = 500
-        return error_response
+        return jsonify(error_message), 500

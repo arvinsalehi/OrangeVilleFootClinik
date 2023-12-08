@@ -1,41 +1,36 @@
 /// TODO
 import {createFilterModal} from './createFilterModal.js';
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Sample data for sent and scheduled emails
-    const sentEmailsData = [
-        {
-            patientName: "John Doe",
-            emailDate: "2023-10-15",
-            emailContent: "Hello John, Officia sint cupidatat mollit voluptate consequat. Dolore ut mollit culpa elit nostrud dolore deserunt. Commodo nulla magna pariatur id quis cillum aute sunt. Officia et Lorem eu amet voluptate enim irure in occaecat do consectetur voluptate labore. Veniam quis occaecat proident incididunt ipsum ad in ad non.",
-            template: "Birthday"
-        },
-        {
-            patientName: "Jane Smith",
-            emailDate: "2023-10-12",
-            emailContent: "Dear Jane, Enim sunt irure amet sunt minim id eu esse tempor aute nisi est. Cillum culpa consectetur velit officia excepteur irure cupidatat minim ipsum. Cupidatat ipsum velit incididunt occaecat dolor tempor est velit reprehenderit do non velit. Dolor cupidatat pariatur nisi aute eu anim nisi ex duis sit fugiat.Do ipsum et excepteur cupidatat esse exercitation aliqua ipsum exercitation pariatur. Pariatur consequat cillum laborum commodo mollit adipisicing ullamco qui ut. Officia cupidatat consectetur et laboris et cillum. Laboris aute magna proident nisi non dolore ullamco velit aliquip do velit consequat. Aute sunt cupidatat ipsum nulla.Elit cillum duis veniam voluptate dolore cupidatat pariatur consectetur ad qui labore. Proident elit cillum adipisicing labore nisi. Id officia veniam eu non ad sint ea. Mollit tempor ea deserunt elit. Minim pariatur elit amet consequat ad velit ut irure amet est. Ad enim exercitation pariatur pariatur cupidatat ad et pariatur do esse deserunt tempor.",
-            template: "Reveiw"
-        },
-        {patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday"},
-        {patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw"},
-        {patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday"},
-        {patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw"},
-        {patientName: "John Doe", emailDate: "2023-10-15", emailContent: "Hello John, ...", template: "Birthday"},
-        {patientName: "Jane Smith", emailDate: "2023-10-12", emailContent: "Dear Jane, ...", template: "Reveiw"},
-        // Add more sent email data as needed
-    ];
+function get_data(query = null) {
+    // URL of your Flask API
+    const apiUrl = 'http://127.0.0.1:5000/emailService/get-today-attendees';
 
-    // const scheduledEmailsData = [
-    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-    //     { patientName: "Alice Johnson", emailDate: "2023-10-18", emailContent: "Hi Alice, ...", template: "Birthday" },
-    //     { patientName: "Bob Brown", emailDate: "2023-10-20", emailContent: "Hello Bob, ...", template: "Reveiw" },
-    //     // Add more scheduled email data as needed
-    // ];
+    // Make a GET request to the Flask API
+    return fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Query': JSON.stringify(query || {}),  // Convert query to JSON if not null
+            // Add any other headers if needed
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();  // Parse the response body as JSON
+        })
+        .catch(error => {
+            // Handle errors
+            console.error('Error:', error);
+            throw error;  // Re-throw the error to propagate it
+        });
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
     const scheduledEmailsData = null;
 
     const templateData = [
@@ -99,15 +94,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to populate the "Sent Emails" section
-    function populateSentEmails() {
+    async function populateSentEmails() {
         const sentEmailsContainer = document.getElementById("sentEmails");
-        sentEmailsData.forEach((email) => {
-            const patientCard = createPatientCard(email.patientName, email.emailDate, email.template);
-            patientCard.addEventListener("click", () => {
-                showEmailContent(email);
+        try {
+            const responseData = await get_data();
+            const bookingsArray = responseData.bookings;
+            bookingsArray.forEach((booking) => {
+                const patientCard = createPatientCard(booking['patient_name'], booking['ends_at'], 'Birthday');
+                patientCard.addEventListener("click", () => {
+                    showEmailContent(booking);
+                });
+                sentEmailsContainer.appendChild(patientCard);
             });
-            sentEmailsContainer.appendChild(patientCard);
-        });
+            // Now you can use bookingsArray as needed
+        } catch (error) {
+            sentEmailsContainer.innerHTML = "Something went wrong :("
+            console.error('Error:', error);
+        }
+
     }
 
     // Function to populate the "Scheduled Emails" section
@@ -135,10 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to show email content in an overlay
-    function showEmailContent(email) {
+    function showEmailContent(content) {
         const emailContentOverlay = document.getElementById("emailContentOverlay");
         const emailContent = document.getElementById("emailContent");
-        const contentCard = createEmailContentCard(email.patientName, email.emailDate, email.emailContent, email.template);
+        const contentCard = createEmailContentCard(content['patient_name'], content['ends_at'], templateData[1].content, "Review");
         emailContent.appendChild(contentCard);
         emailContentOverlay.style.display = "flex";
     }

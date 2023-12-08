@@ -57,14 +57,14 @@ def get_patients():
     return response
 
 
-@email_blueprint.route('/get-today-attendees', methods=['GET'])
-def get_today_attendees():
+@email_blueprint.route('/get-today-attendees-names', methods=['GET'])
+def get_today_attendees_names():
     external_api_url = "https://api.ca1.cliniko.com/v1/bookings"
     api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
 
     # Convert datetime objects to string format expected by Cliniko API
     # Calculate the time range for the last 10 hours
-    start_time_str, end_time_str = get_time_range_str(time_range=5)
+    start_time_str, end_time_str = get_time_range_str(time_range=12)
     # Construct the query parameters
     appointment_query_str = "appointment_type_id:=" + ",".join([item for item in ACCEPTED_APPOINTMENT_TYPE_ID])
     query = {
@@ -89,14 +89,14 @@ def get_today_attendees():
         return response.json()
 
 
-@email_blueprint.route('/get-bookings', methods=['GET'])
-def get_bookings():
+@email_blueprint.route('/get-today-attendees', methods=['GET'])
+def get_today_attendees():
     external_api_url = "https://api.ca1.cliniko.com/v1/bookings"
     api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
 
     # Convert datetime objects to string format expected by Cliniko API
     # Calculate the time range for the last 10 hours
-    start_time_str, end_time_str = get_time_range_str(time_range=5)
+    start_time_str, end_time_str = get_time_range_str(time_range=12)
     # Construct the query parameters
     appointment_query_str = "appointment_type_id:=" + ",".join([item for item in ACCEPTED_APPOINTMENT_TYPE_ID])
     query = {
@@ -107,8 +107,28 @@ def get_bookings():
     }
 
     response = get_data(external_api=external_api_url, api_key=api_key, query=query)
+    return response.json()
 
-    return response
+
+@email_blueprint.route('/get-bookings', methods=['GET'])
+def get_bookings():
+    external_api_url = "https://api.ca1.cliniko.com/v1/bookings"
+    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+
+    # Convert datetime objects to string format expected by Cliniko API
+    # Calculate the time range for the last 10 hours
+    start_time_str, end_time_str = get_time_range_str(time_range=15)
+    # Construct the query parameters
+    appointment_query_str = "appointment_type_id:=" + ",".join([item for item in ACCEPTED_APPOINTMENT_TYPE_ID])
+    query = {
+        "q[]": [f"ends_at:<{end_time_str}", f"starts_at:>{start_time_str}", "did_not_arrive:=false",
+                appointment_query_str],
+        "page": 1,
+        "sort": "starts_at:desc",
+    }
+
+    response = get_data(external_api=external_api_url, api_key=api_key, query=query)
+    return response.json()
 
 
 @email_blueprint.route('/get-appointment_types', methods=['GET'])
@@ -118,7 +138,26 @@ def get_appointment_types():
 
     response = get_data(external_api=external_api_url, api_key=api_key)
 
-    return response
+    return response.json()
+
+
+@email_blueprint.route('/get-appointment-name', methods=['GET'])
+def get_appointment_type_name():
+    external_api_url = "https://api.ca1.cliniko.com/v1/appointment_types/436844012444322144"
+    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+
+    response = get_data(external_api=external_api_url, api_key=api_key)
+    try:
+        if response.status_code == 200:
+            # Parse the JSON response and return it
+            return response.json()['name']
+        else:
+            # If the request was not successful, return an error message
+            return jsonify({'error': f'Request failed with status code {response.status_code}'}), response.status_code
+    except Exception as e:
+        # Handle any exceptions that might occur during the request
+        error_message = {'error': f'An error occurred: {str(e)}'}
+        return jsonify(error_message), 500
 
 
 scheduler = BackgroundScheduler()
