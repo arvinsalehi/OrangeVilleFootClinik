@@ -1,4 +1,9 @@
-let QUERY = [];
+export let QUERY = {
+    'Emails Sent': false,
+    'Emails In Queue': false,
+    'Emails Templates': false,
+    'All': true,
+};
 
 export function createFilterModal(modalContent) {
     // Create the close button
@@ -84,6 +89,13 @@ export function createFilterModal(modalContent) {
         // Alternatively, you can remove it from the DOM: modalContainer.remove();
         modalContent.innerHTML = "";
     });
+
+    applyFilterBtn.addEventListener('click', () => {
+        // Hide or remove the parent widget
+        modalContent.parentElement.style.display = 'none'; // You can use 'block' to show it again
+        // Alternatively, you can remove it from the DOM: modalContainer.remove();
+        modalContent.innerHTML = "";
+    })
     // Append all elements to the modal content
     modalContent.appendChild(closeModalBtn);
     modalContent.appendChild(modalHeading);
@@ -118,7 +130,8 @@ function createDropDown() {
     listContainer.classList.add("custom-dropdown-list");
 
     // Create individual dropdown items
-    const optionValues = ["Emails Sent", "Emails In Queue", "Email Templates", "ALL"];
+    // const optionValues = ["Emails Sent", "Emails In Queue", "Email Templates", "ALL"];
+    const optionValues = Object.keys(QUERY);
     optionValues.forEach(function (value, index) {
 
         const item = document.createElement("div");
@@ -127,13 +140,23 @@ function createDropDown() {
         item.value = value;
         item.innerHTML = value;
 
+        if (QUERY[`${item.value}`]) {
+            // Create the <i> element
+            const iconElement = document.createElement("i");
+            iconElement.className = "fa-solid fa-circle-check fa-xl";
+            iconElement.style.color = "#00a34f";
+            item.appendChild(iconElement);
+            QUERY[`${item.value}`] = true;
+        }
+
         item.addEventListener('click', (e) => {
             const thisElement = e.target;
 
-            if (thisElement.classList.contains('checked')) {
+            if (QUERY[`${thisElement.value}`]) {
                 const iconElement = thisElement.querySelector('i');
                 thisElement.removeChild(iconElement);
-                QUERY = QUERY.filter(item => item !== thisElement.id);
+                // QUERY = QUERY.filter(item => item !== thisElement.id);
+                QUERY[`${thisElement.value}`] = false;
 
             } else {
 
@@ -141,8 +164,8 @@ function createDropDown() {
                 const iconElement = document.createElement("i");
                 iconElement.className = "fa-solid fa-circle-check fa-xl";
                 iconElement.style.color = "#00a34f";
-                QUERY.push(thisElement.id);
                 thisElement.appendChild(iconElement);
+                QUERY[`${thisElement.value}`] = true
             }
             thisElement.classList.toggle('checked');
         })
