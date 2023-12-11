@@ -5,7 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/db/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/db/db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/db/emailServiceDB.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/emailService.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/migrations/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/migrations/alembic.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/migrations/env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/migrations/script.py.mako" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/models/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/errorPopup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/templates/componants/templateCard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/OrangeVilleFootClinik.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OrangeVilleFootClinik.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/api/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/api/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/emails.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filterForm.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app_sim.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app_sim.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +40,19 @@
       <list>
         <option value="CSS File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
     </option>
   </component>
   <component name="Git.Settings">
@@ -43,28 +78,36 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/arvin/OrangeVilleFootClinik",
+    "last_opened_file_path": "/home/arvin/OrangeVilleFootClinik/emailService/db",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/emailService/db" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/emailService/api" />
       <recent name="$PROJECT_DIR$/emailService" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.time_utilities">
+  <component name="RunManager" selected="Python.emailService">
     <configuration name="OrangeVilleFootClinik" type="PythonConfigurationType" factoryName="Python">
       <module name="OrangeVilleFootClinik" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -79,6 +122,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_app_sim.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="emailService" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="OrangeVilleFootClinik" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/emailService" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/emailService/emailService.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -111,6 +176,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.emailService" />
         <item itemvalue="Python.time_utilities" />
       </list>
     </recent_temporary>
@@ -126,6 +192,9 @@
       <workItem from="1701811002678" duration="22165000" />
       <workItem from="1701896514744" duration="20622000" />
       <workItem from="1701969232609" duration="27402000" />
+      <workItem from="1702068489922" duration="6509000" />
+      <workItem from="1702096310015" duration="1404000" />
+      <workItem from="1702146323273" duration="26824000" />
     </task>
     <servers />
   </component>
@@ -137,5 +206,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OrangeVilleFootClinik$t.coverage" NAME="t Coverage Results" MODIFIED="1701820480413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/emailService/utilities" />
+    <SUITE FILE_PATH="coverage/OrangeVilleFootClinik$emailService.coverage" NAME="emailService Coverage Results" MODIFIED="1702178212861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/emailService" />
   </component>
 </project>

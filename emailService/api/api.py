@@ -1,13 +1,13 @@
 from datetime import datetime, timedelta
-
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import render_template
-from .. import email_blueprint
+from ..routes import email_blueprint
 from enum import Enum
 from ..utilities.get_data import get_data
 from ..utilities.time_utilities import get_time_range_str
 from ..utilities.filterBody import filter_field
-from flask import jsonify
+from flask import jsonify, request
+from ..models.models import User, EmailTemplates, EmailsSent, Bookings, db
 
 ACCEPTED_APPOINTMENT_TYPE = [
     "Advanced Foot care",
@@ -158,6 +158,28 @@ def get_appointment_type_name():
         # Handle any exceptions that might occur during the request
         error_message = {'error': f'An error occurred: {str(e)}'}
         return jsonify(error_message), 500
+
+
+@email_blueprint.route('/get_email_templates', methods=['GET'])
+def get_email_templates():
+    emailTemplates = EmailTemplates.query.all()
+    return response
+
+
+@email_blueprint.route('/create_email_templates', methods=['POST'])
+def create_email_templates():
+    try:
+        # Get data from the request
+        data = request.get_json()
+
+        # Create a new Person object and add it to the database
+        new_email_template = EmailTemplates(name=data['name'], content=data['content'], color='e28c0e')
+        db.session.add(new_email_template)
+        db.session.commit()
+        return jsonify({'message': 'Data added successfully!'}), 200
+    except Exception as e:
+        print("Error:", str(e))  # Print the error message to the console
+        return jsonify({'error': str(e)}), 500
 
 
 scheduler = BackgroundScheduler()

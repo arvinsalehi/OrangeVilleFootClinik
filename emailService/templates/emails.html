@@ -46,6 +46,11 @@
             <button id="createTemplate" class="template-card">
                 <i class="fa-solid fa-plus fa-beat fa-2xl" style="color: #f46325;"></i>
             </button>
+            {% for template in emailTemplates %}
+            {% with emailTemplate=template %}
+            {% include 'componants/templateCard.html' %}
+            {% endwith %}
+            {% endfor %}
             <!-- Template items go here -->
         </div>
     </section>

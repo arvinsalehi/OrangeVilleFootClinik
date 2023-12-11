@@ -1,6 +1,5 @@
-from flask import Blueprint
+# __init__.py
 
-email_blueprint = Blueprint('emailService', __name__, url_prefix='/emailService', template_folder='templates', static_folder='static')
+from .emailService import create_app
 
-# Import the routes after creating the Blueprint to avoid circular imports
-from . import routes
+app = create_app()

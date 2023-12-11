@@ -3,7 +3,7 @@ import {createFilterModal} from './createFilterModal.js';
 
 function get_data(query = null) {
     // URL of your Flask API
-    const apiUrl = 'http://127.0.0.1:5000/emailService/get-today-attendees';
+    const apiUrl = 'http://127.0.0.1:5001/emailService/get-today-attendees';
 
     // Make a GET request to the Flask API
     return fetch(apiUrl, {
@@ -57,24 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ]
 
-    // if (scheduledEmailsData == null) {
-    //     const sentEmailsContainer = document.getElementById("scheduled");
-    //     const h2 = document.createElement('h2');
-    //     h2.innerHTML = "No Emails Found";
-    //     h2.style.border = 'none';
-    //     h2.style.margin = "1rem";
-    //     sentEmailsContainer.appendChild(h2)
-    // }
-    //
-    // if (templateData == null) {
-    //     const sentEmailsContainer = document.getElementById("sent");
-    //     const h2 = document.createElement('h2');
-    //     h2.innerHTML = "No Emails Found";
-    //     h2.style.border = 'none';
-    //     h2.style.margin = "1rem";
-    //     sentEmailsContainer.appendChild(h2)
-    // }
-
     // Function to create a new email template
     function createTemplate() {
         // Implement your logic to create a new template here
@@ -100,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const responseData = await get_data();
             const bookingsArray = responseData.bookings;
             bookingsArray.forEach((booking) => {
+                console.log(booking);
                 const patientCard = createPatientCard(booking['patient_name'], booking['ends_at'], 'Birthday');
                 patientCard.addEventListener("click", () => {
                     showEmailContent(booking);
@@ -305,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Create a textarea for the message
         const textareaMessage = document.createElement('textarea');
         textareaMessage.name = 'message';
-        textareaMessage.type = 'text';
+        // textareaMessage.type = 'text';
         textareaMessage.id = 'input-message';
         textareaMessage.placeholder = 'Message';
 
@@ -317,6 +300,24 @@ document.addEventListener("DOMContentLoaded", function () {
         submitButton.value = 'Submit';
         submitButton.id = 'input-submit';
 
+        submitButton.addEventListener('click', () => {
+
+            // Make an AJAX request to the Flask API
+            const dataToSend = {
+                name: inputName.value,
+                content: textareaMessage.value
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:5001/emailService/create_email_templates', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                // alert(textareaMessage.value);
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log('Data added successfully:', xhr.responseText);
+                }
+            };
+            xhr.send(JSON.stringify(dataToSend));
+        });
         // Append the elements to the form
         form.appendChild(leftDiv);
         form.appendChild(rightDiv);
