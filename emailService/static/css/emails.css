@@ -9,6 +9,32 @@
     border-radius: .5rem;
 }
 
+.scrollable-container {
+    position: relative;
+    overflow: hidden; /* Ensure the buttons are within the container */
+}
+
+.scroll-buttons {
+    display: flex;
+    justify-content: end;
+}
+
+.scroll-button {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: .5rem;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+#scrollLeft {
+    border-right: 1px solid #e28c0e;
+}
+
+.scroll-button:hover {
+    background-color: #f7f7f7;
+}
 
 /* Basic styling for your page */
 body {
@@ -108,6 +134,10 @@ h2 {
 #scheduledEmails .color-code {
     border-color: transparent #1b4077 transparent transparent;
 
+}
+
+#sentEmails {
+    position: relative;
 }
 
 #sentEmails,

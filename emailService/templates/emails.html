@@ -80,13 +80,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
             <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
                                          style="color: #f46325;"></i></button>
         </div>
-        <div id="sentEmails">
-            <!-- List of sent emails goes here -->
-            {% for email in emailsSent %}
-            {% with emailsSent=email %}
-            {% include 'componants/patientCard.html' %}
-            {% endwith %}
-            {% endfor %}
+        <div class="d-flex scroll-buttons">
+
+            <button class="scroll-button scroll-left" id="scrollLeft">
+                <i class="fa-regular fa-square-caret-left fa-2xl" style="color: #f46325;"></i>
+            </button>
+            <div id="sentEmails" class="scrollable-container">
+                <!-- List of sent emails goes here -->
+                {% for email in emailsSent %}
+                {% with emailsSent=email %}
+                {% include 'componants/patientCard.html' %}
+                {% endwith %}
+                {% endfor %}
+            </div>
+            <button class="scroll-button scroll-right" id="scrollRight">
+                <i class="fa-regular fa-square-caret-right fa-2xl" style="color: #f46325;"></i>
+            </button>
         </div>
     </section>
     <section id="scheduled">

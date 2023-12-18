@@ -8,6 +8,44 @@ document.addEventListener("DOMContentLoaded", function () {
     // TODO: Consider removing unused variable
     // const scheduledEmailsData = null;
 
+    function initScrolls() {
+        const scrollContainer = document.getElementById("sentEmails");
+        // const scrollBtnHolder = document.getElementById("sentEmailsScroll");
+        const scrollLeftButton = document.getElementById("scrollLeft");
+        const scrollRightButton = document.getElementById("scrollRight");
+
+        scrollRightButton.addEventListener("click", function () {
+            scrollContainer.scrollBy({
+                left: scrollContainer.offsetWidth,
+                behavior: "smooth"
+            });
+            // scrollBtnHolder.style.justifyContent = 'space-between';
+        });
+
+        scrollLeftButton.addEventListener("click", function () {
+            scrollContainer.scrollBy({
+                left: -scrollContainer.offsetWidth,
+                behavior: "smooth"
+            });
+        });
+
+        // Initial check for the scroll buttons
+        updateScrollButtons();
+
+        function updateScrollButtons() {
+            let maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+            scrollLeftButton.style.display = scrollContainer.scrollLeft > 0 ? "block" : "none";
+            // scrollBtnHolder.style.justifyContent = scrollContainer.scrollLeft > 0 ? "space-between" : "end";
+            scrollRightButton.style.display = scrollContainer.scrollLeft < maxScrollLeft ? "block" : "none";
+        }
+
+        // Show/hide scroll buttons based on scroll position
+        scrollContainer.addEventListener("scroll", function () {
+            updateScrollButtons();
+        });
+    }
+
+    initScrolls()
     // Function to create a new email template
     function createTemplate() {
         const newTemplateForm = document.getElementById("NewTemplateContentOverlay");
