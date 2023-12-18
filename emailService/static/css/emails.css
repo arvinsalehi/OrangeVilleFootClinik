@@ -129,6 +129,7 @@ h2 {
     cursor: pointer;
     border-radius: .5rem;
     min-width: 320px;
+    max-width: 320px;
     min-height: 160px;
     transition: .3s;
     text-overflow: ellipsis;
@@ -164,7 +165,8 @@ h2 {
     position: relative;
     text-align: center;
     border-radius: .5rem;
-
+    max-height: 70%;
+    overflow-y: scroll;
 }
 
 .template-content {
