@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="" />
+    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/api/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/api/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -205,7 +209,7 @@
       <workItem from="1702622727137" duration="4413000" />
       <workItem from="1702668993738" duration="7103000" />
       <workItem from="1702757859350" duration="31412000" />
-      <workItem from="1702927457326" duration="5062000" />
+      <workItem from="1702927457326" duration="8777000" />
     </task>
     <servers />
   </component>
@@ -231,7 +235,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/emailService/static/js/emailsScript.js</url>
-          <line>103</line>
+          <line>110</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

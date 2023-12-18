@@ -82,6 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const card = document.createElement("div");
 
+        const wrap = document.createElement("div");
+
+        wrap.style.display = 'flex';
+        wrap.style.justifyContent = 'space-between';
+        wrap.style.alignItems = 'center';
+
         const row = document.createElement("div");
         row.classList.add('row');
         row.style.display = 'flex';
@@ -101,12 +107,22 @@ document.addEventListener("DOMContentLoaded", function () {
         iconElement.style.cursor = 'pointer';
         iconElement.classList.add('col-md-6');
 
+
         let isEditMode = false;
         let controlsDiv;
 
         iconElement.addEventListener('click', async () => {
             if (!isEditMode) {
                 templateContentOverlay.classList.add("EditMode");
+
+                const deleteIconElement = document.createElement('i');
+
+// Set the class attribute
+                deleteIconElement.className = 'fa-solid fa-square-minus fa-2xl';
+                deleteIconElement.style.cursor = 'pointer';
+
+// Set the style attribute for color
+                deleteIconElement.style.color = '#df0707';
 
                 const colorInput = document.createElement('input');
                 colorInput.type = 'color';
@@ -168,6 +184,33 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
 
+                deleteIconElement.addEventListener('click', async () => {
+                    const userConfirm = confirm(`Are you sure you want to delete ${template.name} template?`);
+                    if (userConfirm) {
+                        const data = {
+                            'name': template.name,
+                            "csrf_token": template.csrf_token
+                        };
+
+                        const formData = new FormData();
+                        for (const key in data) {
+                            formData.append(key, data[key]);
+                        }
+
+                        const res = await postData("http://127.0.0.1:5001/emailService/delete_email_templates", formData);
+
+                        if (showResponseStatus(res)) {
+                            isEditMode = false;
+                            $("#templates").load(window.location.href + " #templatesList", () => {
+                                initTemplateCard();
+                                templateContentOverlay.classList.remove("EditMode");
+                                templateContentOverlay.style.display = 'none';
+                                card.innerHTML = "";
+                                controlsDiv = null;
+                            });
+                        }
+                    }
+                })
                 if (!controlsDiv) {
                     controlsDiv = document.createElement('div');
                     controlsDiv.id = "controlsDiv";
@@ -175,6 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     controlsDiv.style.justifyContent = 'space-between';
                     controlsDiv.style.alignItems = 'center';
 
+                    controlsDiv.appendChild(deleteIconElement);
                     controlsDiv.appendChild(colorInput);
                     controlsDiv.appendChild(saveButton);
 
@@ -197,8 +241,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        row.appendChild(h2);
-        row.appendChild(iconElement);
+        wrap.appendChild(h2);
+        wrap.appendChild(iconElement);
+        row.appendChild(wrap);
         card.appendChild(row);
         card.appendChild(p);
         templateContent.appendChild(card);

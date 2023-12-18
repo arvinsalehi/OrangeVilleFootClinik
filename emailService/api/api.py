@@ -290,6 +290,24 @@ def update_email_templates():
         return jsonify({'error': str(e)}), 500
 
 
+@email_blueprint.route('/delete_email_templates', methods=['POST'])
+def delete_email_templates():
+    try:
+        # Get data from the request
+        name = request.form.get('name')
+
+        # Create a new Person object and add it to the database
+        template = EmailTemplates.query.filter_by(name=name).first_or_404()
+
+        db.session.delete(template)
+        db.session.commit()
+
+        return jsonify({'message': 'Data Deleted successfully!'}), 200
+    except Exception as e:
+        print("Error:", str(e))  # Print the error message to the console
+        return jsonify({'error': str(e)}), 500
+
+
 @email_blueprint.route('/send-email', methods=['GET'])
 def send_email():
     try:
