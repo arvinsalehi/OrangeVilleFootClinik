@@ -142,7 +142,7 @@ h2 {
 
 /* Styling for email content overlay */
 #emailContentOverlay,
-#templateContentOverlay, #filterContentOverlay {
+#templateContentOverlay, #NewTemplateContentOverlay, #filterContentOverlay {
     display: none;
     position: fixed;
     top: 0;
@@ -166,10 +166,12 @@ h2 {
     border-radius: .5rem;
 
 }
+
 .template-content {
     display: flex;
     flex-direction: column;
 }
+
 .emailContentCard p,
 #templateContent p {
     font-weight: 400;
@@ -268,6 +270,7 @@ h2 {
     li {
         margin: 0;
     }
+
     main {
         padding: 10px;
     }

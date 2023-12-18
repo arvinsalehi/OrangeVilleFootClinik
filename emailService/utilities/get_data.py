@@ -58,6 +58,7 @@ def get_data(external_api=None, api_key=None, *args, **kwargs):
         # Make a GET request to the external API
         response = requests.get(external_api, headers=headers, params=query)
         # Check if the request was successful (status code 200)
+        print(response)
         if response.status_code == 200:
             # Parse the JSON response and return it to the client
             # data = response.json()

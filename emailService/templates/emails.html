@@ -9,6 +9,25 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/emails.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('emailService.static', filename='css/newTemplateForm.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.css"
+          integrity="sha512-KuSX+43gVS5MEIJD2ewtrFPOHqC1PJnL8o2f5ciggPC0JUZ8XV0QXlfArO1mSzKkVFdRjsBDfrTU96C5SuRfqQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"
+            integrity="sha512-1aNp9qKP+hKU/VJwCtYqJP9tdZWbMDN5pEEXXoXT0pTAxZq1HHZhNBR/dtTNSrHO4U1FsFGGILbqG1O9nl8Mdg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include SweetAlert2 CSS and JS -->
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js
+"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+
+    {{ bootstrap.load_css() }}
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -47,6 +66,7 @@
                 <i class="fa-solid fa-plus fa-beat fa-2xl" style="color: #f46325;"></i>
             </button>
             {% for template in emailTemplates %}
+            {% set csrf_token = csrf_token() %}
             {% with emailTemplate=template %}
             {% include 'componants/templateCard.html' %}
             {% endwith %}
@@ -62,6 +82,11 @@
         </div>
         <div id="sentEmails">
             <!-- List of sent emails goes here -->
+            {% for email in emailsSent %}
+            {% with emailsSent=email %}
+            {% include 'componants/patientCard.html' %}
+            {% endwith %}
+            {% endfor %}
         </div>
     </section>
     <section id="scheduled">
@@ -82,9 +107,42 @@
 </div>
 <div id="templateContentOverlay">
     <div id="templateContent">
-        <!-- Email content goes here -->
     </div>
 </div>
+<div id="NewTemplateContentOverlay">
+    <div id="FormContent">
+        <form method="POST" action="/" id="emailForm">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                {{ form.title() }}
+                {% for error in form.title.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                {{ form.content() }}
+                {% for error in form.content.errors %}
+                <span class="text-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="mb-3">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" id="color-picker" name="color" class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" id="createNewTemplateSubmit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
 <div id="filterContentOverlay">
     <div id="filterModalContent">
         <!-- Email content goes here -->
@@ -92,14 +150,31 @@
 </div>
 </body>
 <footer>
+    <!-- Initialize Spectrum Color Picker -->
+    <script>
+        $("#color-picker").spectrum({
+            preferredFormat: "hex",
+            showInput: true,
+            showPalette: true,
+            showPaletteOnly: true,
+            togglePaletteOnly: true,
+            palette: [
+                ["#000", "#fff", "#808080", "#999999", "#cccccc", "#e6e6e6", "#f2f2f2"],
+                ["#e60012", "#f39800", "#fff100", "#8fc31f", "#009944", "#009e96", "#00a0e9", "#0068b7", "#1d2088", "#920783"]
+            ],
+            containerClassName: 'sp-container', // Custom class for the container
+            replacerClassName: 'sp-replacer', // Custom class for the color preview box
+            replacerStyle: {border: '1px solid #ced4da', borderRadius: '5px'}, // Custom style for the color preview box
+            showInitial: true,
+        });
+    </script>
     <p>&copy; 2023 Foot Clinic</p>
     <script src="https://kit.fontawesome.com/ccdcc39714.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-
     <script type="module" src="{{ url_for('emailService.static', filename='js/emailsScript.js') }}"></script>
+    {{ bootstrap.load_js() }}
 
 </footer>
-
 </html>

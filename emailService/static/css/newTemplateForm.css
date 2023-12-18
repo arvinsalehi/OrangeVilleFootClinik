@@ -1,103 +1,73 @@
-@import url(https://fonts.googleapis.com/css?family=Merriweather);
 
-*,
-*:before,
-*:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    font-family: 'Merriweather', sans-serif;
+#FormContent {
+    width: 40%;
+    margin-top: 50px;
 }
 
 h1 {
-    text-align: center;
-    color: #a8a8a8;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+    color: #343a40;
 }
 
 form {
-    max-width: 600px;
-    text-align: center;
-    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-form input,
-form textarea {
-    border: solid 1px #e74c3c;
-    outline: 0;
-    padding: 1em;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    display: block;
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Customize Spectrum Color Picker */
+#color-picker {
     width: 100%;
-    margin-top: 1em;
-    font-family: 'Merriweather', sans-serif;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    resize: none;
-    border-color: #e74c3c;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
 }
 
-form input:focus,
-form textarea:focus {
-    -webkit-box-shadow: 0 0px 2px rgba(#e74c3c, 1) !important;
-    -moz-box-shadow: 0 0px 2px rgba(#e74c3c, 1) !important;
-    box-shadow: 0 0px 2px rgba(#e74c3c, 1) !important;
+.sp-replacer {
+    border-radius: 5px;
+    box-shadow: none;
 }
 
-form #input-submit {
-    color: white;
-    background: #e74c3c;
-    cursor: pointer;
+.sp-input {
+    height: 36px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-form #input-submit:hover {
-    -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
-    -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
-    box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+.sp-preview {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
 }
 
-form textarea {
-    height: 126px;
-}
-
-.half {
-    float: left;
-    width: 48%;
-    margin-bottom: 1em;
-}
-
-.right {
-    width: 50%;
-}
-
-.left {
-    margin-right: 2%;
-}
-
-@media (max-width: 480px) {
-    .half {
-        width: 100%;
-        float: none;
-        margin-bottom: 0;
+/* Media Query for Mobile Viewports */
+@media (max-width: 767px) {
+    #FormContent {
+        /*margin: 10px;*/
+        width: 90%  ;
     }
-}
-
-/* Clearfix */
-.cf:before,
-.cf:after {
-    content: " ";
-    /* 1 */
-    display: table;
-    /* 2 */
-}
-
-.cf:after {
-    clear: both;
 }
