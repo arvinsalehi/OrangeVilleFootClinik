@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/api/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/api/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/models/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/models/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/static/css/emails.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emails.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/componants/patientCard.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/componants/patientCard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/componants/patientCard.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/components/patientCard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/componants/templateCard.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/components/templateCard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/templates/emails.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/utilities/time_utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/utilities/time_utilities.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +214,7 @@
       <workItem from="1702668993738" duration="7103000" />
       <workItem from="1702757859350" duration="31412000" />
       <workItem from="1702927457326" duration="19846000" />
+      <workItem from="1703022138092" duration="3119000" />
     </task>
     <servers />
   </component>
@@ -240,7 +240,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/emailService/static/js/emailsScript.js</url>
-          <line>153</line>
+          <line>192</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
