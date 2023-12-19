@@ -7,7 +7,7 @@ from ..utilities.get_data import get_data
 from ..utilities.time_utilities import get_time_range_str
 from ..utilities.filterBody import filter_field
 from flask import jsonify, request
-from ..models.models import User, EmailTemplates, EmailsSent, Bookings, db
+from ..models.models import User, EmailTemplates, Emails, Bookings, db
 from sqlalchemy import func
 
 ACCEPTED_APPOINTMENT_TYPE = [
@@ -114,12 +114,12 @@ def get_today_attendees():
 def get_bookings():
     try:
         external_api_url_bookings = "https://api.ca1.cliniko.com/v1/bookings"
-        external_api_url = "https://api.ca1.cliniko.com/v1/appointment_types"
+        external_api_url_appointments = "https://api.ca1.cliniko.com/v1/appointment_types"
         api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
 
         # Convert datetime objects to string format expected by Cliniko API
         # Calculate the time range for the last 10 hours
-        start_time_str, end_time_str = get_time_range_str(time_range=100)
+        start_time_str, end_time_str = get_time_range_str(time_range=100, previous=False)
 
         # Construct the query parameters
         appointment_query_str = "appointment_type_id:=" + ",".join([item for item in ACCEPTED_APPOINTMENT_TYPE_ID])
@@ -135,7 +135,7 @@ def get_bookings():
         for booking in response['bookings']:
             patient_id = booking['patient']['links']['self'].split("/")[-1]
 
-            response_appointment = get_data(external_api=external_api_url, api_key=api_key).json()
+            response_appointment = get_data(external_api=external_api_url_appointments, api_key=api_key).json()
             # for appointment in response_appointment['appointment_types']:
             #     appointment_in_db = Bookings.query.filter_by(cliniko_id=booking['id']).first()
             #     if appointment_in_db is not None and appointment_in_db.appointment_type_ID == appointment['id']:
@@ -182,7 +182,6 @@ def get_bookings():
                     username=username,
                     email=email,
                     bookings_id=booking['id'],
-                    # Add other user info fields as needed
                 )
                 db.session.add(new_user)
 
@@ -277,11 +276,11 @@ def update_email_templates():
         # Create a new Person object and add it to the database
         template = EmailTemplates.query.filter_by(name=name).first()
 
-        if name.replace(" ", "") == new_name.replace(" ", "") and template.content == content.replace(" ", "")\
+        if name.replace(" ", "") == new_name.replace(" ", "") and template.content == content.replace(" ", "") \
                 and template.color == color_input:
             return jsonify({'error': "No change was detected"}), 402
 
-        emailsSent = EmailsSent.query.filter_by(template_color_code=template.color)
+        emailsSent = Emails.query.filter_by(template_color_code=template.color)
         if emailsSent is not None:
             for email in emailsSent:
                 email.template_color_code = color_input
@@ -324,11 +323,13 @@ def send_email():
         for booking in bookings:
             user = User.query.filter_by(cliniko_id=booking.user_id).first()
             if user:
-                emailSent = EmailsSent(username=user.username, template="Review",
-                                       content="Email Content", user_cliniko_id=user.cliniko_id,
-                                       booking_cliniko_id=booking.cliniko_id)
+                today = datetime.utcnow()
+                scheduledEmails = Emails(username=user.username, template="Review",
+                                         content="Email Content", user_cliniko_id=user.cliniko_id,
+                                         booking_cliniko_id=booking.cliniko_id,
+                                         date=today.strftime('%Y-%m-%dT%H:%M:%SZ'))
 
-                db.session.add(emailSent)
+                db.session.add(scheduledEmails)
                 db.session.commit()
         return jsonify({'message': 'Data Added successfully!'}), 200
     except Exception as e:
