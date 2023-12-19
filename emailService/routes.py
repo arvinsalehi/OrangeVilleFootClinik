@@ -32,7 +32,7 @@ def emails():
 
     emailTemplates = EmailTemplates.query.all()
     # emailsSent = EmailsSent.query.filter_by(isShown=False)
-    emailsSent = EmailsSent.query.filter_by()
+    emailsSent = EmailsSent.query.all()
 
     # for email in emailsSent:
     #     email.isShown = True

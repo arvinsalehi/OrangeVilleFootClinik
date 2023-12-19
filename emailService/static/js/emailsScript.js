@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
         patientCards.forEach((card) => {
             const patient_name = card.querySelector('.pname').textContent;
             const template_name = card.querySelector('.tname').textContent;
+            const colorCodeContainer = $(card).find('.color-code');
+            const colorCode = $(colorCodeContainer).find('.color-code-value').text();
+            colorCodeContainer.css('display', "block");
+            colorCodeContainer.css('border-color', `transparent ${colorCode} transparent transparent`);
+
             card.addEventListener("click", () => {
                 const data = {
                     'patient_name': patient_name,
@@ -146,10 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 saveButton.addEventListener('click', async (e) => {
                     const new_name = h2.textContent;
                     const new_content = p.textContent;
-
+                    const color_value = colorInput.value;
                     if (new_name === '' || new_content === "") {
                         alert('Fill out the necessary fields');
-                    } else if (name === new_name && new_content === content) {
+                    } else if (name === new_name && new_content === content && template.color_code === color_value) {
                         alert('No change was detected');
                     } else {
                         iconElement.style.color = colorInput.value;
@@ -161,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             "name": name,
                             "new_content": new_content,
                             "content": content,
+                            "color_value": color_value,
                             "csrf_token": template.csrf_token
                         };
 
@@ -327,14 +333,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         templateCards.forEach(card => {
+            const colorCodeContainer = $(card).find('.color-code');
+            const colorCode = $(colorCodeContainer).find('.color-code-value').text();
+            colorCodeContainer.css('display', "block");
+            colorCodeContainer.css('border-color', `transparent ${colorCode} transparent transparent`);
             card.addEventListener('click', function (e) {
                 const templateName = card.querySelector('.template-name').textContent;
                 const templateContent = card.querySelector('.template-content').textContent;
                 const csrfTokenInput = card.querySelector('.csrfTokenInput');
                 const csrfToken = csrfTokenInput.value;
+                // alert(colorCode);
                 const data = {
                     "name": templateName,
                     "content": templateContent,
+                    'color_code': colorCode,
                     'csrf_token': csrfToken
                 }
                 showTemplateContent(data);

@@ -235,7 +235,7 @@ def get_email_template_by_name(name):
     emailTemplate = EmailTemplates.query.filter_by(name=name).first()
 
     if emailTemplate is not None:
-        template = [{'name': emailTemplate.name, 'content': emailTemplate.content}]
+        template = [{'name': emailTemplate.name, 'content': emailTemplate.content, "colorCode": emailTemplate.color}]
         return jsonify(template), 200
 
     return jsonify("Error: template not found"), 404
@@ -273,15 +273,23 @@ def update_email_templates():
         new_name = request.form.get('new_name')
         content = request.form.get('content')
         new_content = request.form.get('new_content')
-
+        color_input = request.form.get('color_value')
         # Create a new Person object and add it to the database
         template = EmailTemplates.query.filter_by(name=name).first()
 
-        if name.replace(" ", "") == new_name.replace(" ", "") and template.content == content.replace(" ", ""):
+        if name.replace(" ", "") == new_name.replace(" ", "") and template.content == content.replace(" ", "")\
+                and template.color == color_input:
             return jsonify({'error': "No change was detected"}), 402
+
+        emailsSent = EmailsSent.query.filter_by(template_color_code=template.color)
+        if emailsSent is not None:
+            for email in emailsSent:
+                email.template_color_code = color_input
 
         template.name = new_name
         template.content = new_content
+        template.color = color_input
+
         db.session.commit()
 
         return jsonify({'message': 'Data Updated successfully!'}), 200

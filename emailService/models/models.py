@@ -35,6 +35,7 @@ class EmailsSent(db.Model):
     username = db.Column(db.String(80), nullable=False)
     user_cliniko_id = db.Column(db.String(120), nullable=False)
     booking_cliniko_id = db.Column(db.String(120), nullable=True)
+    template_color_code = db.Column(db.String(80), nullable=True)
 
 
 class EmailTemplates(db.Model):
