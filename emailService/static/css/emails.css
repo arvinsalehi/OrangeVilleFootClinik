@@ -14,7 +14,7 @@
     overflow: hidden; /* Ensure the buttons are within the container */
 }
 
-.scroll-buttons {
+.scroll-container-wrap {
     display: flex;
     justify-content: end;
 }
@@ -28,7 +28,7 @@
     margin-bottom: 10px;
 }
 
-#scrollLeft {
+.scroll-left {
     border-right: 1px solid #e28c0e;
 }
 

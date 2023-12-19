@@ -68,19 +68,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
             {% for template in emailTemplates %}
             {% set csrf_token = csrf_token() %}
             {% with emailTemplate=template %}
-            {% include 'componants/templateCard.html' %}
+            {% include 'components/templateCard.html' %}
             {% endwith %}
             {% endfor %}
             <!-- Template items go here -->
         </div>
     </section>
-    <section id="sent">
+    <section class="btn-scroll-widget" id="sent">
         <div class="d-flex w-100 justify-content-between align-items-center mb-2">
             <h2 class="mb-0">Sent Emails</h2>
             <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
                                          style="color: #f46325;"></i></button>
         </div>
-        <div class="d-flex scroll-buttons">
+        <div class="d-flex scroll-container-wrap">
 
             <button class="scroll-button scroll-left" id="scrollLeft">
                 <i class="fa-regular fa-square-caret-left fa-2xl" style="color: #f46325;"></i>
@@ -89,7 +89,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
                 <!-- List of sent emails goes here -->
                 {% for email in emailsSent %}
                 {% with emailsSent=email %}
-                {% include 'componants/patientCard.html' %}
+                {% include 'components/patientCard.html' %}
                 {% endwith %}
                 {% endfor %}
             </div>
@@ -98,19 +98,27 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
             </button>
         </div>
     </section>
-    <section id="scheduled">
+    <section class="btn-scroll-widget" id="scheduled">
         <div class="d-flex w-100 justify-content-between align-items-center mb-2">
             <h2 class="mb-0">Scheduled Emails</h2>
             <button class="show-more"><i class="fa-regular fa-square-caret-down fa-2xl"
                                          style="color: #f46325;"></i></button>
         </div>
-        <div id="scheduledEmails">
-            <!-- List of scheduled emails goes here -->
-            {% for email in scheduledEmails %}
-            {% with scheduledEmails=email %}
-            {% include 'componants/patientCard.html' %}
-            {% endwith %}
-            {% endfor %}
+        <div class="d-flex scroll-container-wrap">
+            <button class="scroll-button scroll-left">
+                <i class="fa-regular fa-square-caret-left fa-2xl" style="color: #f46325;"></i>
+            </button>
+            <div id="scheduledEmails" class="scrollable-container">
+                <!-- List of scheduled emails goes here -->
+                {% for email in scheduledEmails %}
+                {% with scheduledEmails=email %}
+                {% include 'components/patientCard.html' %}
+                {% endwith %}
+                {% endfor %}
+            </div>
+            <button class="scroll-button scroll-right">
+                <i class="fa-regular fa-square-caret-right fa-2xl" style="color: #f46325;"></i>
+            </button>
         </div>
     </section>
 </main>
