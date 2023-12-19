@@ -22,12 +22,13 @@ class Bookings(db.Model):
     cliniko_id = db.Column(db.String(120), nullable=False)
     user_id = db.Column(db.String(120), unique=True)
     appointment_type_str = db.Column(db.String(250), nullable=False)
+    db.Column(db.Boolean(), nullable=True, default=False)
 
     def __repr__(self):
         return f"Appointment type {self.appointment_type}"
 
 
-class EmailsSent(db.Model):
+class Emails(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     isShown = db.Column(db.Boolean(), nullable=True, default=False)
     template = db.Column(db.String(80), nullable=False)
@@ -36,6 +37,8 @@ class EmailsSent(db.Model):
     user_cliniko_id = db.Column(db.String(120), nullable=False)
     booking_cliniko_id = db.Column(db.String(120), nullable=True)
     template_color_code = db.Column(db.String(80), nullable=True)
+    date = db.Column(db.String(80), nullable=False)
+    isSent = db.Column(db.Boolean(), nullable=False, default=False)
 
 
 class EmailTemplates(db.Model):

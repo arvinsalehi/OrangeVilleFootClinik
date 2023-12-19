@@ -9,7 +9,7 @@ from flask import jsonify
 from .db import db
 from flask_migrate import Migrate
 from flask import Flask
-from .models.models import EmailsSent, EmailTemplates, User, Bookings
+from .models.models import Emails, EmailTemplates, User, Bookings
 from flask import Blueprint
 from .forms.forms import NewTemplate
 
@@ -31,14 +31,13 @@ def emails():
         patient_list.append(user)
 
     emailTemplates = EmailTemplates.query.all()
-    # emailsSent = EmailsSent.query.filter_by(isShown=False)
-    emailsSent = EmailsSent.query.all()
+    emailsSent = Emails.query.filter_by(isSent=True)
+    scheduledEmails = Emails.query.filter_by(isSent=False)
 
-    # for email in emailsSent:
-    #     email.isShown = True
-    # db.session.commit()
+    # scheduled_emails = E
     newTemplateForm = NewTemplate()
-    return render_template("emails.html", emailTemplates=emailTemplates, emailsSent=emailsSent, form=newTemplateForm)
+    return render_template("emails.html", emailTemplates=emailTemplates, emailsSent=emailsSent, form=newTemplateForm,
+                           scheduledEmails=scheduledEmails)
 
 
 from .api.api import *
