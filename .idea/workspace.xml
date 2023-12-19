@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/css/emails.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emails.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/componants/patientCard.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/components/patientCard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/componants/templateCard.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/components/templateCard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/emails.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emails.html" afterDir="false" />
-    </list>
+    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +206,7 @@
       <workItem from="1702668993738" duration="7103000" />
       <workItem from="1702757859350" duration="31412000" />
       <workItem from="1702927457326" duration="19846000" />
-      <workItem from="1703022138092" duration="3119000" />
+      <workItem from="1703022138092" duration="3632000" />
     </task>
     <servers />
   </component>
