@@ -81,8 +81,10 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
+    font-family: Arial, sans-serif !important;
     position: relative;
     color: #333;
+    font-weight: 600;
     /* Default text color */
 }
 
@@ -128,7 +130,14 @@ h2 {
     cursor: pointer;
     border: none;
     border-radius: .5rem;
+    border-bottom: 1px solid #e28c0e;
     background-color: transparent;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+}
+
+.show-more:hover {
+    background-color: #eeeaea;
 }
 
 #scheduledEmails .color-code {

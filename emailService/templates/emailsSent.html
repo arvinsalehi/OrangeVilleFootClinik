@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/emails.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('emailService.static', filename='css/newTemplateForm.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('emailService.static', filename='css/emailsSent.css') }}">
+    <!-- ... (rest of your head content) ... -->
+</head>
+<body>
+<header>
+    <a href=""><img class="logo" src="{{ url_for('emailService.static', filename='img/Orangville-foot-Logo-H.svg') }}"
+                    alt=""></a>
+    <nav>
+        <ul>
+            <li><a href="#templates">Email Templates</a></li>
+            <li><a href="#sent" style="color: #e28c0e">Sent Emails</a></li>
+            <li><a href="#scheduled">Scheduled Emails</a></li>
+            <li><a href="#settings">Settings</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Paginated Items</h1>
+
+    <div class="wrap">
+        {% for email in sentEmails %}
+        {% with sentEmails=email %}
+        {% include 'components/patientCard.html' %}
+        {% endwith %}
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span>Page {{ sentEmails.page }} of {{ sentEmails.pages }}.</span>
+        {% if sentEmails.has_prev %}
+        <a href="?page={{ sentEmails.prev_num }}">previous</a>
+        {% endif %}
+        {% if sentEmails.has_next %}
+        <a href="?page={{ sentEmails.next_num }}">next</a>
+        {% endif %}
+    </div>
+    <div id="emailContentOverlay">
+        <div id="emailContent">
+            <!-- Email content goes here -->
+        </div>
+    </div>
+
+</main>
+</body>
+<footer>
+    <p>&copy; 2023 Foot Clinic</p>
+    <script src="https://kit.fontawesome.com/ccdcc39714.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <script type="module" src="{{ url_for('emailService.static', filename='js/emailsScript.js') }}"></script>
+    {{ bootstrap.load_js() }}
+</footer>
+</html>

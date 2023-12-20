@@ -368,24 +368,37 @@ document.addEventListener("DOMContentLoaded", function () {
         showFilterContent();
     });
 
-    const showMoreBtns = document.getElementsByClassName('show-more');
-    const showMoreArr = Array.from(showMoreBtns);
-    showMoreArr.forEach((e) => {
-        e.addEventListener('click', (e) => {
-            let section = e.target.parentNode;
-            while (section.tagName !== 'SECTION') {
-                section = section.parentNode;
-            }
+    $('.show-more').on('click', function () {
+        let section = $(this).parent();
+        while (section.prop('tagName') !== 'SECTION') {
+            section = section.parent();
+        }
 
-            const contentListContainer = Array.from(section.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE)[1];
+        const contentListContainer = Array.from(section.children()).filter(function (node) {
+            return node.nodeType === Node.ELEMENT_NODE;
+        })[1];
 
-            e.target.style.transform = e.target.style.transform ? '' : "rotate(180deg)";
-            section.style.height = section.style.height ? '' : '80vh';
-            section.style.marginBottom = section.style.marginBottom ? '' : '4rem';
-            contentListContainer.style.height = contentListContainer.style.height ? '' : '100%';
-            contentListContainer.style.borderRadius = contentListContainer.style.borderRadius ? '' : '.5rem';
-            contentListContainer.style.flexDirection = contentListContainer.style.flexDirection ? '' : 'column';
-            contentListContainer.style.boxShadow = contentListContainer.style.boxShadow ? '' : '0 3px 2px 0 #e38901';
+        $.get("http://127.0.0.1:5001/emailService/Sent-Emails", function (data) {
+            // Create an iframe
+            const iframe = $("<iframe>").attr({
+                "srcdoc": data,  // Set the API response as the iframe content
+                "width": "100%",
+                "height": "400px",
+                "frameborder": "0"
+            });
+
+            // const emailContent = $("#emailContent");
+
+            // Append the iframe to the container
+            // emailContent.empty().append(iframe);
+            // $("#emailContentOverlay").css('display', 'flex');
+            // emailContent.css({
+            //     // "display": "flex",
+            //     "height": "100%",
+            //     "width": "100%"
+            // });
+            window.open('http://127.0.0.1:5001/emailService/Sent-Emails', '_blank');
+
         });
     });
 
