@@ -386,17 +386,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 "height": "400px",
                 "frameborder": "0"
             });
-
-            // const emailContent = $("#emailContent");
-
-            // Append the iframe to the container
-            // emailContent.empty().append(iframe);
-            // $("#emailContentOverlay").css('display', 'flex');
-            // emailContent.css({
-            //     // "display": "flex",
-            //     "height": "100%",
-            //     "width": "100%"
-            // });
             window.open('http://127.0.0.1:5001/emailService/Sent-Emails', '_blank');
 
         });

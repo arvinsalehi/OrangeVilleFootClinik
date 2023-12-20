@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emailService/templates/emailsSent.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/css/emails.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emails.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/emails.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/emailsSent.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emailsSent.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +211,7 @@
       <workItem from="1702757859350" duration="31412000" />
       <workItem from="1702927457326" duration="19846000" />
       <workItem from="1703022138092" duration="10658000" />
-      <workItem from="1703106941460" duration="1584000" />
+      <workItem from="1703106941460" duration="7603000" />
     </task>
     <servers />
   </component>

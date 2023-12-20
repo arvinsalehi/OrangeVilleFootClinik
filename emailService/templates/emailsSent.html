@@ -25,15 +25,53 @@
     </nav>
 </header>
 <main>
-    <h1>Paginated Items</h1>
+    <h1>Sent Emails</h1>
+    <section id="search">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search...">
+                <i id="filterBtn" class="fa-solid fa-filter" style="color: #888888; cursor: pointer;"></i>
+            </div>
+        </div>
+    </section>
 
-    <div class="wrap">
-        {% for email in sentEmails %}
-        {% with sentEmails=email %}
-        {% include 'components/patientCard.html' %}
-        {% endwith %}
-        {% endfor %}
-    </div>
+    <section id="sent">
+        <div class="d-flex scroll-container-wrap">
+            <div id="sentEmails" class="scrollable-container">
+                <!-- List of sent emails goes here -->
+                {% for email in sentEmails %}
+                {% with sentEmails=email %}
+                {% include 'components/patientCard.html' %}
+                {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="simple-filter">
+                <button><span style="color: red;font-weight: 600; text-align: center">Unread: 100</span></button>
+                <button><span style="color: green; font-weight: 600; text-align: center">Total Sent: 1000</span>
+                </button>
+            </div>
+            <div class="advanced-filter">
+                <form id="dateRangeForm">
+                    <!-- Start Date Section -->
+                    <div class="date-wrap">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" id="startDate">
+                    </div>
+
+                    <!-- End Date Section -->
+                    <div class="date-wrap">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" id="endDate">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
 
     <div class="pagination">
         <span>Page {{ sentEmails.page }} of {{ sentEmails.pages }}.</span>
