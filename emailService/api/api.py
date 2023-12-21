@@ -231,13 +231,20 @@ def get_email_templates():
 
 @email_blueprint.route('/get_email_template_by_name/<name>', methods=['GET'])
 def get_email_template_by_name(name):
-    emailTemplate = EmailTemplates.query.filter_by(name=name).first()
+    try:
 
-    if emailTemplate is not None:
-        template = [{'name': emailTemplate.name, 'content': emailTemplate.content, "colorCode": emailTemplate.color}]
-        return jsonify(template), 200
+        emailTemplate = EmailTemplates.query.filter_by(name=name).first()
 
-    return jsonify("Error: template not found"), 404
+        if emailTemplate is not None:
+            template = [
+                {'name': emailTemplate.name, 'content': emailTemplate.content, "colorCode": emailTemplate.color}]
+            # return jsonify(template), 200
+            return jsonify({'message': "OK", "template": template}), 200
+        else:
+            return jsonify("error: template not found"), 404
+    except Exception as e:
+        print(e)
+        return jsonify({'internalError': "Something wrong in our end"}), 500
 
 
 @email_blueprint.route('/create_email_templates', methods=['POST'])
@@ -269,29 +276,32 @@ def update_email_templates():
     try:
         # Get data from the request
         name = request.form.get('name')
-        new_name = request.form.get('new_name')
-        content = request.form.get('content')
-        new_content = request.form.get('new_content')
-        color_input = request.form.get('color_value')
-        # Create a new Person object and add it to the database
+
         template = EmailTemplates.query.filter_by(name=name).first()
 
-        if name.replace(" ", "") == new_name.replace(" ", "") and template.content == content.replace(" ", "") \
-                and template.color == color_input:
-            return jsonify({'error': "No change was detected"}), 402
+        if template is not None:
+            new_name = request.form.get('new_name', name)
+            new_content = request.form.get('new_content', template.content)
+            color_input = request.form.get('color_value', template.color)
 
-        emailsSent = Emails.query.filter_by(template_color_code=template.color)
-        if emailsSent is not None:
-            for email in emailsSent:
-                email.template_color_code = color_input
+            # Create a new Person object and add it to the database
 
-        template.name = new_name
-        template.content = new_content
-        template.color = color_input
+            emailsSent = Emails.query.filter_by(template_color_code=template.color)
+            if emailsSent is not None:
+                for email in emailsSent:
+                    email.template_color_code = color_input
 
-        db.session.commit()
+            emailsSent = Emails.query.filter_by(template=template.name)
+            template.name = new_name
+            template.content = new_content
+            template.color = color_input
+            if emailsSent is not None:
+                for email in emailsSent:
+                    email.template = new_name
 
-        return jsonify({'message': 'Data Updated successfully!'}), 200
+            db.session.commit()
+
+            return jsonify({'message': 'Data Updated successfully!'}), 200
     except Exception as e:
         print("Error:", str(e))  # Print the error message to the console
         return jsonify({'error': str(e)}), 500

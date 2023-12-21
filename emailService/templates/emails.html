@@ -156,7 +156,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
 
             <div class="mb-3">
                 <label for="color" class="form-label">Color</label>
-                <input type="text" id="color-picker" name="color" class="form-control"/>
+                <input type="text" id="color-picker" name="color" class="form-control" value="#e60012"/>
             </div>
 
             <div class="mb-3">
@@ -188,8 +188,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
             ],
             containerClassName: 'sp-container', // Custom class for the container
             replacerClassName: 'sp-replacer', // Custom class for the color preview box
-            replacerStyle: {border: '1px solid #ced4da', borderRadius: '5px'}, // Custom style for the color preview box
+            replacerStyle: {border: '1px solid #ced4da', borderRadius: '.5rem'}, // Custom style for the color preview box
             showInitial: true,
+            color: "#e60012" // Set the default color here
+
         });
     </script>
     <p>&copy; 2023 Foot Clinic</p>
