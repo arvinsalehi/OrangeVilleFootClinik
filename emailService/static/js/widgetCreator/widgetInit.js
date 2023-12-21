@@ -118,26 +118,10 @@ export function closeOverlay(overlay, content) {
     });
 }
 
-export function showMore(document) {
+export function showMore(document, url) {
 
-    let section = $(document).parent();
-    while (section.prop('tagName') !== 'SECTION') {
-        section = section.parent();
-    }
-
-    const contentListContainer = Array.from(section.children()).filter(function (node) {
-        return node.nodeType === Node.ELEMENT_NODE;
-    })[1];
-
-    $.get("http://127.0.0.1:5001/emailService/Sent-Emails", function (data) {
-        // Create an iframe
-        const iframe = $("<iframe>").attr({
-            "srcdoc": data,  // Set the API response as the iframe content
-            "width": "100%",
-            "height": "400px",
-            "frameborder": "0"
-        });
-        window.open('http://127.0.0.1:5001/emailService/Sent-Emails', '_blank');
+    $.get(url, function (data) {
+        window.open(url, '_blank');
 
     });
 }

@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/emailService/static/js/utilities/FormUtil.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetCreator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetDisplay.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/emailsSent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/createFilterModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/createFilterModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/utilities/Glovebox.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/utilities/Glovebox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/emailsSent.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emailsSent.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +45,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/emailService/emailService.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/emailsScript.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/emailsSent.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/utilities/FormUtil.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/utilities/api.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/createEditEmailTemplate.js" root0="FORCE_HIGHLIGHTING" />
@@ -221,7 +220,7 @@
       <workItem from="1702757859350" duration="31412000" />
       <workItem from="1702927457326" duration="19846000" />
       <workItem from="1703022138092" duration="10658000" />
-      <workItem from="1703106941460" duration="19972000" />
+      <workItem from="1703106941460" duration="22316000" />
     </task>
     <servers />
   </component>
@@ -247,7 +246,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/emailService/static/js/emailsScript.js</url>
-          <line>28</line>
+          <line>23</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

@@ -34,6 +34,7 @@ h1 {
     /*height: 60vh;*/
     /*width: 70vw;*/
     justify-content: start;
+    min-width: 60%;
 }
 
 .dashboard {

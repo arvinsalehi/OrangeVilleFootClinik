@@ -89,6 +89,12 @@
     </div>
 
 </main>
+<div id="filterContentOverlay">
+    <div id="filterModalContent">
+        <!-- Email content goes here -->
+    </div>
+</div>
+
 </body>
 <footer>
     <p>&copy; 2023 Foot Clinic</p>
@@ -96,7 +102,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-    <script type="module" src="{{ url_for('emailService.static', filename='js/emailsScript.js') }}"></script>
+    <script type="module" src="{{ url_for('emailService.static', filename='js/emailsSent.js') }}"></script>
     {{ bootstrap.load_js() }}
 </footer>
 </html>
