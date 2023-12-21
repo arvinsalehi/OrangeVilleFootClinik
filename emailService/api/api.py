@@ -119,7 +119,7 @@ def get_bookings():
 
         # Convert datetime objects to string format expected by Cliniko API
         # Calculate the time range for the last 10 hours
-        start_time_str, end_time_str = get_time_range_str(time_range=100, previous=False)
+        start_time_str, end_time_str = get_time_range_str(time_range=24, previous=False)
 
         # Construct the query parameters
         appointment_query_str = "appointment_type_id:=" + ",".join([item for item in ACCEPTED_APPOINTMENT_TYPE_ID])
@@ -136,13 +136,13 @@ def get_bookings():
             patient_id = booking['patient']['links']['self'].split("/")[-1]
 
             response_appointment = get_data(external_api=external_api_url_appointments, api_key=api_key).json()
-            # for appointment in response_appointment['appointment_types']:
-            #     appointment_in_db = Bookings.query.filter_by(cliniko_id=booking['id']).first()
-            #     if appointment_in_db is not None and appointment_in_db.appointment_type_ID == appointment['id']:
-            #         appointment_in_db.appointment_type_str = appointment['name']
-            #         appointment_in_db.appointment_type_ID = appointment['id']
-            #
-            #         db.session.commit()
+            for appointment in response_appointment['appointment_types']:
+                appointment_in_db = Bookings.query.filter_by(cliniko_id=booking['id']).first()
+                if appointment_in_db is not None and appointment_in_db.appointment_type_ID == appointment['id']:
+                    appointment_in_db.appointment_type_str = appointment['name']
+                    appointment_in_db.appointment_type_ID = appointment['id']
+
+                    db.session.commit()
 
             # Check if the user_id from the database is not equal to the patient_id
             user = User.query.filter_by(cliniko_id=patient_id).first()
@@ -163,7 +163,7 @@ def get_bookings():
 
             db.session.add(new_booking)
             db.session.commit()
-            if user is None or user.id != patient_id:
+            if user is None:
                 query = {
                     "q[]": "string"
                 }
@@ -349,4 +349,5 @@ def send_email():
 
 scheduler = BackgroundScheduler()
 # Schedule the job to run every 20 minutes
-scheduler.add_job(get_patients, 'interval', minutes=20)
+scheduler.add_job(get_bookings, 'interval', minutes=1440)
+scheduler.add_job(send_email, 'interval', minutes=30)
