@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="" />
+    <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/utilities/FormUtil.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetCreator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetDisplay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/createFilterModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/createFilterModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/utilities/Glovebox.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/utilities/Glovebox.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,9 +24,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -37,15 +47,19 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/emailService/emailService.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/emailsScript.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/utilities/FormUtil.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/utilities/api.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/createEditEmailTemplate.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/newTemplateForm.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetCreator.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetDisplay.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2Z8kG6xOQXNQqegAZpiKzyLI3MR" />
   <component name="ProjectLevelVcsManager">
@@ -207,7 +221,7 @@
       <workItem from="1702757859350" duration="31412000" />
       <workItem from="1702927457326" duration="19846000" />
       <workItem from="1703022138092" duration="10658000" />
-      <workItem from="1703106941460" duration="15632000" />
+      <workItem from="1703106941460" duration="19972000" />
     </task>
     <servers />
   </component>
@@ -233,7 +247,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/emailService/static/js/emailsScript.js</url>
-          <line>195</line>
+          <line>28</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
