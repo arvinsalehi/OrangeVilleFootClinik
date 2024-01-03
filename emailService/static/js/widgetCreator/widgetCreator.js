@@ -8,7 +8,7 @@ export function createEmailContentCard(document, patientName, emailDate, emailCo
 }
 
 
-export function createFilterModal(modalContent) {
+export function createFilterModal(document,modalContent) {
 
     // Create the close button
     const closeModalBtn = document.createElement('span');
@@ -27,7 +27,7 @@ export function createFilterModal(modalContent) {
 
 
     // Create a hidden select element
-    const filterTypeDropdownWidgets = createDropDown();
+    const filterTypeDropdownWidgets = createDropDown(document);
     const filterTypeDropdown = filterTypeDropdownWidgets[0];
     const listContainer = filterTypeDropdownWidgets[1];
     // Add a global click event listener to hide the dropdown list when clicking outside
@@ -118,7 +118,7 @@ export function createFilterModal(modalContent) {
 }
 
 // Function to create radio input
-function createDropDown() {
+function createDropDown(document) {
 
     let QUERY = {
         "FilterType": {

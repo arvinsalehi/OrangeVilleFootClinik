@@ -94,7 +94,7 @@ export function initFilterBtn(document) {
     const filterBtn = document.getElementById("filterBtn");
     filterBtn.addEventListener("click", () => {
         const filterContentOverlay = document.getElementById("filterContentOverlay");
-        createFilterModal(document.getElementById("filterModalContent"));
+        createFilterModal(document, document.getElementById("filterModalContent"));
         filterContentOverlay.style.display = "flex";
     });
 }
