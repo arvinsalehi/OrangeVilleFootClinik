@@ -110,3 +110,43 @@ function createTemplateCard(templateName, content) {
     });
     return card;
 }
+
+    function populateScheduledEmails(scheduledEmailsData) {
+        const scheduledEmailsContainer = document.getElementById("scheduledEmails");
+        scheduledEmailsData.forEach((email) => {
+            const patientCard = createPatientCard(email.patientName, email.emailDate, email.template);
+            patientCard.addEventListener("click", () => {
+                showEmailContent(email);
+            });
+            scheduledEmailsContainer.appendChild(patientCard);
+        });
+    }
+
+        function createPatientCard(patientName, emailDate, template) {
+        const card = document.createElement("div");
+        const colorCode = document.createElement("div");
+        card.classList.add("patient-card");
+        colorCode.classList.add("color-code");
+        card.appendChild(colorCode);
+        card.innerHTML += `<p class="pname">Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
+        card.innerHTML += `<p>Tempate: ${template}</p>`;
+        return card;
+    }
+        async function showEmailContent(content) {
+        const templateContent = await get_data(`http://127.0.0.1:5001/emailService/get_email_template_by_name/${content['template_name']}`);
+        if (showResponseStatus(templateContent, false)) {
+            const emailContentOverlay = document.getElementById("emailContentOverlay");
+            const emailContent = document.getElementById("emailContent");
+            const contentCard = createEmailContentCard(content['patient_name'], "2023/04/11", templateContent['template'][0]['content'] || '');
+            emailContent.appendChild(contentCard);
+            emailContentOverlay.style.display = "flex";
+        }
+    }
+
+        function createEmailContentCard(patientName, emailDate, emailContent) {
+        const card = document.createElement("div");
+        card.classList.add("emailContentCard");
+        card.innerHTML = `<p>Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
+        card.innerHTML += `<p>${emailContent}</p>`;
+        return card;
+    }

@@ -119,7 +119,7 @@ def get_bookings():
 
         # Convert datetime objects to string format expected by Cliniko API
         # Calculate the time range for the last 10 hours
-        start_time_str, end_time_str = get_time_range_str(time_range=100, previous=False)
+        start_time_str, end_time_str = get_time_range_str(time_range=24, previous=False)
 
         # Construct the query parameters
         appointment_query_str = "appointment_type_id:=" + ",".join([item for item in ACCEPTED_APPOINTMENT_TYPE_ID])
@@ -136,13 +136,13 @@ def get_bookings():
             patient_id = booking['patient']['links']['self'].split("/")[-1]
 
             response_appointment = get_data(external_api=external_api_url_appointments, api_key=api_key).json()
-            # for appointment in response_appointment['appointment_types']:
-            #     appointment_in_db = Bookings.query.filter_by(cliniko_id=booking['id']).first()
-            #     if appointment_in_db is not None and appointment_in_db.appointment_type_ID == appointment['id']:
-            #         appointment_in_db.appointment_type_str = appointment['name']
-            #         appointment_in_db.appointment_type_ID = appointment['id']
-            #
-            #         db.session.commit()
+            for appointment in response_appointment['appointment_types']:
+                appointment_in_db = Bookings.query.filter_by(cliniko_id=booking['id']).first()
+                if appointment_in_db is not None and appointment_in_db.appointment_type_ID == appointment['id']:
+                    appointment_in_db.appointment_type_str = appointment['name']
+                    appointment_in_db.appointment_type_ID = appointment['id']
+
+                    db.session.commit()
 
             # Check if the user_id from the database is not equal to the patient_id
             user = User.query.filter_by(cliniko_id=patient_id).first()
@@ -163,7 +163,7 @@ def get_bookings():
 
             db.session.add(new_booking)
             db.session.commit()
-            if user is None or user.id != patient_id:
+            if user is None:
                 query = {
                     "q[]": "string"
                 }
@@ -231,13 +231,20 @@ def get_email_templates():
 
 @email_blueprint.route('/get_email_template_by_name/<name>', methods=['GET'])
 def get_email_template_by_name(name):
-    emailTemplate = EmailTemplates.query.filter_by(name=name).first()
+    try:
 
-    if emailTemplate is not None:
-        template = [{'name': emailTemplate.name, 'content': emailTemplate.content, "colorCode": emailTemplate.color}]
-        return jsonify(template), 200
+        emailTemplate = EmailTemplates.query.filter_by(name=name).first()
 
-    return jsonify("Error: template not found"), 404
+        if emailTemplate is not None:
+            template = [
+                {'name': emailTemplate.name, 'content': emailTemplate.content, "colorCode": emailTemplate.color}]
+            # return jsonify(template), 200
+            return jsonify({'message': "OK", "template": template}), 200
+        else:
+            return jsonify("error: template not found"), 404
+    except Exception as e:
+        print(e)
+        return jsonify({'internalError': "Something wrong in our end"}), 500
 
 
 @email_blueprint.route('/create_email_templates', methods=['POST'])
@@ -269,29 +276,32 @@ def update_email_templates():
     try:
         # Get data from the request
         name = request.form.get('name')
-        new_name = request.form.get('new_name')
-        content = request.form.get('content')
-        new_content = request.form.get('new_content')
-        color_input = request.form.get('color_value')
-        # Create a new Person object and add it to the database
+
         template = EmailTemplates.query.filter_by(name=name).first()
 
-        if name.replace(" ", "") == new_name.replace(" ", "") and template.content == content.replace(" ", "") \
-                and template.color == color_input:
-            return jsonify({'error': "No change was detected"}), 402
+        if template is not None:
+            new_name = request.form.get('new_name', name)
+            new_content = request.form.get('new_content', template.content)
+            color_input = request.form.get('color_value', template.color)
 
-        emailsSent = Emails.query.filter_by(template_color_code=template.color)
-        if emailsSent is not None:
-            for email in emailsSent:
-                email.template_color_code = color_input
+            # Create a new Person object and add it to the database
 
-        template.name = new_name
-        template.content = new_content
-        template.color = color_input
+            emailsSent = Emails.query.filter_by(template_color_code=template.color)
+            if emailsSent is not None:
+                for email in emailsSent:
+                    email.template_color_code = color_input
 
-        db.session.commit()
+            emailsSent = Emails.query.filter_by(template=template.name)
+            template.name = new_name
+            template.content = new_content
+            template.color = color_input
+            if emailsSent is not None:
+                for email in emailsSent:
+                    email.template = new_name
 
-        return jsonify({'message': 'Data Updated successfully!'}), 200
+            db.session.commit()
+
+            return jsonify({'message': 'Data Updated successfully!'}), 200
     except Exception as e:
         print("Error:", str(e))  # Print the error message to the console
         return jsonify({'error': str(e)}), 500
@@ -339,4 +349,5 @@ def send_email():
 
 scheduler = BackgroundScheduler()
 # Schedule the job to run every 20 minutes
-scheduler.add_job(get_patients, 'interval', minutes=20)
+scheduler.add_job(get_bookings, 'interval', minutes=1440)
+scheduler.add_job(send_email, 'interval', minutes=30)

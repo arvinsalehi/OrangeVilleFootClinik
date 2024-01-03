@@ -20,7 +20,7 @@ email_blueprint = Blueprint('emailService', __name__, url_prefix='/emailService'
 
 
 @email_blueprint.route("/")
-def emails():
+def index():
     today_date = datetime.now().strftime('%Y-%m-%d')
     bookings = Bookings.query.filter(
         func.DATE(func.STR_TO_DATE(Bookings.ends_at, '%Y-%m-%dT%H:%i:%SZ')) == today_date
@@ -38,6 +38,22 @@ def emails():
     newTemplateForm = NewTemplate()
     return render_template("emails.html", emailTemplates=emailTemplates, emailsSent=emailsSent, form=newTemplateForm,
                            scheduledEmails=scheduledEmails)
+
+
+@email_blueprint.route("/Sent-Emails")
+def sent_emails():
+    page = request.args.get('page', 1, type=int)
+    items_per_page = 30
+    sentEmails = Emails.query.filter_by(isSent=True).paginate(page=page, per_page=items_per_page, error_out=False)
+    return render_template('emailsSent.html', sentEmails=sentEmails)
+
+
+@email_blueprint.route("/Scheduled-Emails")
+def scheduled_emails():
+    page = request.args.get('page', 1, type=int)
+    items_per_page = 150
+    sentEmails = Emails.query.filter_by(isSent=False).paginate(page=page, per_page=items_per_page, error_out=False)
+    return render_template('emailsSent.html', sentEmails=sentEmails)
 
 
 from .api.api import *
