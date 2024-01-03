@@ -8,6 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 from .utilities.key_generator import generate_random_secret_key
 import secrets
 from flask_bootstrap import Bootstrap5
+import jinja2
 
 
 def create_app():
@@ -22,6 +23,14 @@ def create_app():
 
     # Register the email blueprint
     app.register_blueprint(email_blueprint)
+
+    # Custom Jinja filter for word-based truncation
+    @app.template_filter('word_truncate')
+    def word_truncate(s, max_length, suffix='...'):
+        words = s.split()
+        truncated_words = words[:max_length]
+        truncated_string = ' '.join(truncated_words)
+        return f'{truncated_string} {suffix}' if len(words) > max_length else s
 
     return app
 

@@ -11,11 +11,6 @@ import {
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
-    // initialize scrolls
-    $('section.btn-scroll-widget').each(function () {
-        initScrolls(this);
-    });
-
     // initialize sent emails
     initSentEmails(document);
 

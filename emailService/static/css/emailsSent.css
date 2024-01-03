@@ -13,6 +13,92 @@ body {
     /*overflow: hidden;*/
 }
 
+header {
+    background-color: white;
+    text-align: center;
+    border-bottom: solid;
+    border-color: #e28c0e;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 125px;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-family: Arial, sans-serif !important;
+    position: relative;
+    color: #333;
+    font-weight: 600;
+    /* Default text color */
+}
+
+
+nav a::before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #1b4077;
+    /* Default border color */
+    transition: width 0.3s;
+    /* Transition duration */
+}
+
+nav a:hover::before {
+    width: 100%;
+    background-color: #1b4077;
+    /* Hover border color */
+}
+
+main {
+    margin: 2rem 0 2rem 0;
+    padding: 0 5rem 0 5rem;
+}
+
+section {
+    margin-bottom: 1.5rem;
+}
+
+
+h2 {
+    border-bottom: 1px solid #e28c0e;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#emails {
+    position: relative;
+    display: flex;
+    overflow-x: auto;
+}
+
 #search-input {
     padding: .4rem;
 }
@@ -24,6 +110,36 @@ h1 {
 
 #sent {
     display: flex;
+    /*flex-direction: column;*/
+}
+
+.emailsWrap {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    min-width: 90%;
+    border: 1px solid #e28c0e;
+    border-radius: .5rem;
+    /*padding: 2px;*/
+}
+
+#sentEmails {
+    border-right: none;
+}
+
+.header-row {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #e28c0e;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /*padding: 12px;*/
+    margin: 0 12px;
 }
 
 .btn-scroll-widget {
@@ -34,7 +150,6 @@ h1 {
     /*height: 60vh;*/
     /*width: 70vw;*/
     justify-content: start;
-    min-width: 60%;
 }
 
 .dashboard {
@@ -51,6 +166,7 @@ h1 {
 
 .simple-filter {
     display: flex;
+    flex-direction: column;
     width: 100%;
     align-items: center;
 }
@@ -59,9 +175,9 @@ h1 {
     border-radius: .5rem;
     border: none;
     font-weight: 400;
-    margin: auto auto 1rem;
+    margin: .3rem .3rem;
     cursor: pointer;
-    width: calc(40% - 10px); /* 4 columns for large viewports */
+    width: 80%; /* 4 columns for large viewports */
     height: 50px;
 }
 
@@ -96,6 +212,46 @@ h1 {
     margin: auto auto 1.5rem;
 }
 
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 1.5rem;
+    padding: .5rem;
+    width: 50%;
+    transition: all 0.5s;
+    /* Apply transition to all properties */
+}
+
+.search-input-wrapper i {
+    margin-right: 1rem;
+    color: #888;
+}
+
+#search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 1.5rem;
+    /* Set the border radius */
+}
+
+.search-input-wrapper:focus-within {
+    border: 1px solid #e38901 !important;
+    background-color: #fff;
+    width: 60%;
+    /* Change the background color */
+}
+
 .scrollable-container {
     display: flex;
     flex-wrap: wrap;
@@ -103,11 +259,73 @@ h1 {
     width: 100%;
 }
 
+
 .patient-card {
     /* Style for each patient card */
-    width: calc(25% - 10px); /* 4 columns for large viewports */
-    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    width: 100%;
+    height: 50px !important;
     box-sizing: border-box;
+    background-color: #fff;
+    border-bottom: 1px solid rgb(192, 191, 191);
+    cursor: pointer;
+    transition: .3s;
+    text-overflow: ellipsis;
+}
+
+.patient-card:last-child {
+    border-radius: .5rem;
+}
+
+.pname, .tname{
+    flex-grow: 1;
+    width: 35%;
+}
+
+.tname {
+    text-align: end;
+}
+
+.patient-card:hover,
+.template-card:hover {
+    background-color: #f7f7f7;
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
+}
+
+/* Styling for email content overlay */
+#emailContentOverlay,
+#templateContentOverlay, #NewTemplateContentOverlay, #filterContentOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+#emailContent, #filterContent {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    border-radius: .5rem;
+    max-height: 70%;
+    overflow-y: scroll;
+}
+
+.emailContentCard p {
+    font-weight: 400;
+    text-align: start;
+    padding: 10px 10px;
+    margin: 10px 10px;
 }
 
 .pagination {
@@ -146,6 +364,10 @@ h1 {
     background-color: #e38901;
 }
 
+.color-code {
+    display: none !important;
+}
+
 footer {
     background-color: #f8f9fa;
     padding: 10px;
@@ -154,6 +376,50 @@ footer {
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 1063px) {
+
+    header {
+        padding: 10px 0;
+    }
+
+    main {
+        margin: 0 !important;
+    }
+
+    nav ul {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    nav {
+        display: flex;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        margin: 0;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .search-input-wrapper {
+        width: 100%;
+    }
+
+    .search-input-wrapper:focus-within {
+        width: 100%;
+        /* Change the background color */
+    }
 
     #sent {
         flex-direction: column-reverse;
@@ -174,5 +440,11 @@ footer {
 
     .scroll-button {
         display: none;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .tname, .pname, .edate {
+        margin: 0;
     }
 }

@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/emails.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('emailService.static', filename='css/newTemplateForm.css') }}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('emailService.static', filename='css/emailsSent.css') }}">
-    <!-- ... (rest of your head content) ... -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/filterForm.css')}}">
 </head>
 <body>
 <header>
@@ -37,14 +36,21 @@
     </section>
 
     <section id="sent">
-        <div class="d-flex scroll-container-wrap">
-            <div id="sentEmails" class="scrollable-container">
-                <!-- List of sent emails goes here -->
-                {% for email in sentEmails %}
-                {% with sentEmails=email %}
-                {% include 'components/patientCard.html' %}
-                {% endwith %}
-                {% endfor %}
+        <div class="emailsWrap">
+            <div class="header-row">
+                <div class="row"><p>Patient</p>
+                    <p>Date</p>
+                    <p>Template</p></div>
+            </div>
+            <div class="d-flex scroll-container-wrap">
+                <div id="emails" class="scrollable-container">
+                    <!-- List of sent emails goes here -->
+                    {% for email in sentEmails %}
+                    {% with sentEmails=email %}
+                    {% include 'components/patientCardList.html' %}
+                    {% endwith %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
 
@@ -53,21 +59,6 @@
                 <button><span style="color: red;font-weight: 600; text-align: center">Unread: 100</span></button>
                 <button><span style="color: green; font-weight: 600; text-align: center">Total Sent: 1000</span>
                 </button>
-            </div>
-            <div class="advanced-filter">
-                <form id="dateRangeForm">
-                    <!-- Start Date Section -->
-                    <div class="date-wrap">
-                        <label for="startDate">Start Date:</label>
-                        <input type="date" id="startDate">
-                    </div>
-
-                    <!-- End Date Section -->
-                    <div class="date-wrap">
-                        <label for="endDate">End Date:</label>
-                        <input type="date" id="endDate">
-                    </div>
-                </form>
             </div>
         </div>
     </section>
