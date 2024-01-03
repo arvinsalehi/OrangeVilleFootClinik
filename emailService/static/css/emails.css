@@ -9,6 +9,32 @@
     border-radius: .5rem;
 }
 
+.scrollable-container {
+    position: relative;
+    overflow: hidden; /* Ensure the buttons are within the container */
+}
+
+.scroll-container-wrap {
+    display: flex;
+    justify-content: end;
+}
+
+.scroll-button {
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: .5rem;
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.scroll-left {
+    border-right: 1px solid #e28c0e;
+}
+
+.scroll-button:hover {
+    background-color: #f7f7f7;
+}
 
 /* Basic styling for your page */
 body {
@@ -55,8 +81,10 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
+    font-family: Arial, sans-serif !important;
     position: relative;
     color: #333;
+    font-weight: 600;
     /* Default text color */
 }
 
@@ -102,12 +130,23 @@ h2 {
     cursor: pointer;
     border: none;
     border-radius: .5rem;
+    border-bottom: 1px solid #e28c0e;
     background-color: transparent;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+}
+
+.show-more:hover {
+    background-color: #eeeaea;
 }
 
 #scheduledEmails .color-code {
     border-color: transparent #1b4077 transparent transparent;
 
+}
+
+#sentEmails {
+    position: relative;
 }
 
 #sentEmails,
@@ -129,6 +168,7 @@ h2 {
     cursor: pointer;
     border-radius: .5rem;
     min-width: 320px;
+    max-width: 320px;
     min-height: 160px;
     transition: .3s;
     text-overflow: ellipsis;
@@ -142,7 +182,7 @@ h2 {
 
 /* Styling for email content overlay */
 #emailContentOverlay,
-#templateContentOverlay, #filterContentOverlay {
+#templateContentOverlay, #NewTemplateContentOverlay, #filterContentOverlay {
     display: none;
     position: fixed;
     top: 0;
@@ -164,12 +204,15 @@ h2 {
     position: relative;
     text-align: center;
     border-radius: .5rem;
-
+    max-height: 70%;
+    overflow-y: scroll;
 }
+
 .template-content {
     display: flex;
     flex-direction: column;
 }
+
 .emailContentCard p,
 #templateContent p {
     font-weight: 400;
@@ -181,6 +224,7 @@ h2 {
 .color-code {
     border-style: solid;
     border-width: 0 40px 40px 0;
+    display: none;
     border-color: transparent #94d82d transparent transparent;
     border-radius: .5rem;
 }
@@ -268,6 +312,7 @@ h2 {
     li {
         margin: 0;
     }
+
     main {
         padding: 10px;
     }

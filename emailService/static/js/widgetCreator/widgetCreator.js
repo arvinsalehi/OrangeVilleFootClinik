@@ -1,6 +1,15 @@
-let QUERY = [];
+// Function to create a new email template
+export function createEmailContentCard(document, patientName, emailDate, emailContent) {
+    const card = document.createElement("div");
+    card.classList.add("emailContentCard");
+    card.innerHTML = `<p>Patient: ${patientName}</p><p>Email Date: ${emailDate}</p>`;
+    card.innerHTML += `<p>${emailContent}</p>`;
+    return card;
+}
 
-export function createFilterModal(modalContent) {
+
+export function createFilterModal(document,modalContent) {
+
     // Create the close button
     const closeModalBtn = document.createElement('span');
     closeModalBtn.className = 'close';
@@ -18,7 +27,7 @@ export function createFilterModal(modalContent) {
 
 
     // Create a hidden select element
-    const filterTypeDropdownWidgets = createDropDown();
+    const filterTypeDropdownWidgets = createDropDown(document);
     const filterTypeDropdown = filterTypeDropdownWidgets[0];
     const listContainer = filterTypeDropdownWidgets[1];
     // Add a global click event listener to hide the dropdown list when clicking outside
@@ -84,6 +93,14 @@ export function createFilterModal(modalContent) {
         // Alternatively, you can remove it from the DOM: modalContainer.remove();
         modalContent.innerHTML = "";
     });
+
+    applyFilterBtn.addEventListener('click', () => {
+
+        // Hide or remove the parent widget
+        modalContent.parentElement.style.display = 'none'; // You can use 'block' to show it again
+        // Alternatively, you can remove it from the DOM: modalContainer.remove();
+        modalContent.innerHTML = "";
+    })
     // Append all elements to the modal content
     modalContent.appendChild(closeModalBtn);
     modalContent.appendChild(modalHeading);
@@ -101,7 +118,20 @@ export function createFilterModal(modalContent) {
 }
 
 // Function to create radio input
-function createDropDown() {
+function createDropDown(document) {
+
+    let QUERY = {
+        "FilterType": {
+            'Emails Sent': false,
+            'Emails In Queue': false,
+            'Emails Templates': false,
+            'All': true,
+        },
+        "Sort_Order": {
+            'asc': true,
+            'des': false,
+        }
+    };
 // Create the main container
     const dropdownContainer = document.createElement("div");
     dropdownContainer.classList.add("custom-dropdown");
@@ -118,7 +148,7 @@ function createDropDown() {
     listContainer.classList.add("custom-dropdown-list");
 
     // Create individual dropdown items
-    const optionValues = ["Emails Sent", "Emails In Queue", "Email Templates", "ALL"];
+    const optionValues = Object.keys(QUERY['FilterType']);
     optionValues.forEach(function (value, index) {
 
         const item = document.createElement("div");
@@ -127,24 +157,32 @@ function createDropDown() {
         item.value = value;
         item.innerHTML = value;
 
+        if (QUERY['FilterType'][`${item.value}`]) {
+            // Create the <i> element
+            const iconElement = document.createElement("i");
+            iconElement.className = "fa-solid fa-circle-check fa-xl";
+            iconElement.style.color = "#00a34f";
+            item.appendChild(iconElement);
+            QUERY['FilterType'][`${item.value}`] = true;
+        }
+
         item.addEventListener('click', (e) => {
             const thisElement = e.target;
 
-            if (thisElement.classList.contains('checked')) {
+            if (QUERY['FilterType'][`${thisElement.value}`]) {
                 const iconElement = thisElement.querySelector('i');
                 thisElement.removeChild(iconElement);
-                QUERY = QUERY.filter(item => item !== thisElement.id);
+                QUERY['FilterType'][`${thisElement.value}`] = false;
 
             } else {
-
                 // Create the <i> element
                 const iconElement = document.createElement("i");
                 iconElement.className = "fa-solid fa-circle-check fa-xl";
                 iconElement.style.color = "#00a34f";
-                QUERY.push(thisElement.id);
                 thisElement.appendChild(iconElement);
+                QUERY['FilterType'][`${thisElement.value}`] = true;
             }
-            thisElement.classList.toggle('checked');
+            // thisElement.classList.toggle('checked');
         })
         listContainer.appendChild(item);
     });

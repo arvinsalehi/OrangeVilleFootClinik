@@ -1,0 +1,73 @@
+
+#FormContent {
+    width: 40%;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #343a40;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Customize Spectrum Color Picker */
+#color-picker {
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.sp-replacer {
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+.sp-input {
+    height: 36px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sp-preview {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+/* Media Query for Mobile Viewports */
+@media (max-width: 767px) {
+    #FormContent {
+        /*margin: 10px;*/
+        width: 90%  ;
+    }
+}

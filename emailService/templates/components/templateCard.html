@@ -1,0 +1,7 @@
+<div class="template-card">
+    <!-- Include a hidden input field for CSRF token -->
+    <input type="hidden" class="csrfTokenInput" value="{{ csrf_token }}">
+    <div class="color-code" id="color-code"><span style="display: none" class="color-code-value">{{template.color}}</span></div>
+    <p class="template-name">{{template.name}}</p>
+    <p class="template-content">{{ template.content | truncate(length=100) }}</p>
+</div>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('emailService.static', filename='css/newTemplateForm.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('emailService.static', filename='css/emailsSent.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/filterForm.css')}}">
+</head>
+<body>
+<header>
+    <a href=""><img class="logo" src="{{ url_for('emailService.static', filename='img/Orangville-foot-Logo-H.svg') }}"
+                    alt=""></a>
+    <nav>
+        <ul>
+            <li><a href="#templates">Email Templates</a></li>
+            <li><a href="#sent" style="color: #e28c0e">Sent Emails</a></li>
+            <li><a href="#scheduled">Scheduled Emails</a></li>
+            <li><a href="#settings">Settings</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Sent Emails</h1>
+    <section id="search">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search...">
+                <i id="filterBtn" class="fa-solid fa-filter" style="color: #888888; cursor: pointer;"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="sent">
+        <div class="emailsWrap">
+            <div class="header-row">
+                <div class="row"><p>Patient</p>
+                    <p>Date</p>
+                    <p>Template</p></div>
+            </div>
+            <div class="d-flex scroll-container-wrap">
+                <div id="emails" class="scrollable-container">
+                    <!-- List of sent emails goes here -->
+                    {% for email in sentEmails %}
+                    {% with sentEmails=email %}
+                    {% include 'components/patientCardList.html' %}
+                    {% endwith %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard">
+            <div class="simple-filter">
+                <button><span style="color: red;font-weight: 600; text-align: center">Unread: 100</span></button>
+                <button><span style="color: green; font-weight: 600; text-align: center">Total Sent: 1000</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="pagination">
+        {% if sentEmails.has_prev %}
+        <a class="pagination-link" href="?page={{ sentEmails.prev_num }}">previous</a>
+        {% endif %}
+
+        {% for num in sentEmails.iter_pages() %}
+        {% if num %}
+        {% if sentEmails.page == num %}
+        <span class="pagination-link pagination-current">{{ num }}</span>
+        {% else %}
+        <a class="pagination-link" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% else %}
+        <span class="pagination-ellipsis">...</span>
+        {% endif %}
+        {% endfor %}
+
+        {% if sentEmails.has_next %}
+        <a class="pagination-link" href="?page={{ sentEmails.next_num }}">next</a>
+        {% endif %}
+        <span style="font-weight: 600; margin-left: .1rem; ">{{ sentEmails.page }} of {{ sentEmails.pages }}.</span>
+    </div>
+    <div id="emailContentOverlay">
+        <div id="emailContent">
+            <!-- Email content goes here -->
+        </div>
+    </div>
+
+</main>
+<div id="filterContentOverlay">
+    <div id="filterModalContent">
+        <!-- Email content goes here -->
+    </div>
+</div>
+
+</body>
+<footer>
+    <p>&copy; 2023 Foot Clinic</p>
+    <script src="https://kit.fontawesome.com/ccdcc39714.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <script type="module" src="{{ url_for('emailService.static', filename='js/emailsSent.js') }}"></script>
+    {{ bootstrap.load_js() }}
+</footer>
+</html>
