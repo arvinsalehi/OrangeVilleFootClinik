@@ -279,6 +279,13 @@ h2 {
     /* Change the background color */
 }
 
+#input-message {
+    /*visibility: visible !important;*/
+}
+
+.ck {
+    height: 400px;
+}
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {

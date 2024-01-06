@@ -10,6 +10,8 @@ from flask import jsonify, request
 from ..models.models import User, EmailTemplates, Emails, Bookings, db
 from sqlalchemy import func
 
+# from flask_ckeditor.utils import
+
 ACCEPTED_APPOINTMENT_TYPE = [
     "Advanced Foot care",
     "Emergency Appointment",
@@ -252,12 +254,12 @@ def create_email_templates():
     try:
         # Get data from the request
         title = request.form.get('title')
-        email_template_lis = EmailTemplates.query.all()
-        for email in email_template_lis:
-            if email.name == title:
-                return jsonify({'error': "Check for duplicate names"}), 400
+        email_template = EmailTemplates.query.filter_by(name=title).first()
+        if email_template:
+            return jsonify({'error': 'Check for duplicate names'}), 400
 
         content = request.form.get('content')
+        print(content)
         color = request.form.get('color', '#e28c0e')  # Default color if not provided
 
         # Create a new EmailTemplates object and add it to the database
@@ -268,7 +270,7 @@ def create_email_templates():
         return jsonify({'message': 'Data added successfully!'}), 200
     except Exception as e:
         print("Error:", str(e))
-        return jsonify({'internalError': "Something wrong in our end"}), 500
+        return jsonify({'internalError': 'Something went wrong on our end'}), 500
 
 
 @email_blueprint.route('/update_email_templates', methods=['POST'])
@@ -345,6 +347,37 @@ def send_email():
     except Exception as e:
         print("Error:", str(e))  # Print the error message to the console
         return jsonify({'error': str(e)}), 500
+
+
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# Route for handling file uploads
+@email_blueprint.route('/upload', methods=['POST'])
+def upload_file():
+    # Check if the POST request has the file part
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 404
+
+    file = request.files['file']
+
+    # If the user does not select a file, browser may submit an empty file without a filename
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 404
+
+    # Check if the file has an allowed extension
+    if file and allowed_file(file.filename):
+        # Save the file to the upload folder
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
+        # Return the URL of the uploaded file
+        return jsonify({'url': f'/uploads/{file.filename}'})
+
+    # If the file has an invalid extension
+    return jsonify({'error': 'Invalid file extension'}), 404
 
 
 scheduler = BackgroundScheduler()

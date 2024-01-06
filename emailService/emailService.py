@@ -1,6 +1,6 @@
 # emailService.py
 
-from flask import Flask
+from flask import Flask, url_for
 from .db.db import init_app
 from .routes import email_blueprint
 from flask_cors import CORS  # Import CORS
@@ -8,7 +8,10 @@ from flask_wtf.csrf import CSRFProtect
 from .utilities.key_generator import generate_random_secret_key
 import secrets
 from flask_bootstrap import Bootstrap5
+from werkzeug.utils import secure_filename
 import jinja2
+
+from flask_wtf.csrf import CSRFProtect
 
 
 def create_app():
@@ -20,8 +23,14 @@ def create_app():
 
     # Initialize and configure the database
     db = init_app(app)
+    app.config['CKEDITOR_ENABLE_CSRF'] = True
+    app.config['CKEDITOR_SERVE_LOCAL'] = True
+    # upload_path = 'http://127.0.0.1:5001/emailService/upload'
+    UPLOAD_FOLDER = './uploads'
 
     # Register the email blueprint
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
     app.register_blueprint(email_blueprint)
 
     # Custom Jinja filter for word-based truncation

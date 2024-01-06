@@ -1,0 +1,7 @@
+{
+  "name": ".idea",
+  "version": "1.0.0",
+  "dependencies": {
+    "@ckeditor/ckeditor5-core": "^40.2.0"
+  }
+}
