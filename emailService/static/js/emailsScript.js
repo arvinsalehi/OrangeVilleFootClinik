@@ -11,6 +11,20 @@ import {
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
+    $("#toggleLeftSide").click(function () {
+        $(".left-side").toggleClass('show-side-bar');
+        $(".navbar").toggleClass("navbar-reposition");
+        $(this).find('i').toggleClass('rotate-180');
+
+    });
+    $(".round-widget").click(function () {
+        $(".dropdown-content").css('display', 'flex');
+        $("#dropdownOverlay").css({
+            "display": "block",
+        })
+
+    });
+
     // initialize scrolls
     $('section.btn-scroll-widget').each(function () {
         initScrolls(this);
@@ -27,11 +41,26 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
     // initialize overlay close functions
-    closeOverlay(document.getElementById("emailContentOverlay"), document.getElementById("emailContent"));
-    closeOverlay(document.getElementById("templateContentOverlay"), document.getElementById("templateContent"));
-    closeOverlay(document.getElementById("NewTemplateContentOverlay"), null);
-    closeOverlay(document.getElementById("filterContentOverlay"), document.getElementById("filterModalContent"));
+    closeOverlay(document.getElementById("emailContentOverlay"), document.getElementById("emailContent"), {
+        closeParent: true,
+        emptyElement: true
+    });
 
+    closeOverlay(document.getElementById("templateContentOverlay"), document.getElementById("templateContent"), {
+        closeParent: true,
+        emptyElement: true
+    });
+
+    closeOverlay(document.getElementById("NewTemplateContentOverlay"), null, {closeParent : true, emptyElement : true});
+
+    closeOverlay(document.getElementById("filterContentOverlay"), document.getElementById("filterModalContent"), {
+        closeParent: true,
+        emptyElement: true
+    });
+
+    closeOverlay(document.getElementById('dropdownOverlay'), document.getElementById("dropdown-content"), {
+        closeParent: true,
+    });
     // initialize show more button
     $('.show-more').on('click', function () {
         const urls = [
@@ -44,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         // Check if the index is within the range of the URLs array
         if (index >= 0 && index < urls.length) {
-            showMore(this,urls[index]);
+            showMore(this, urls[index]);
         } else {
             console.error('Invalid index or URL not defined for the clicked button.');
         }

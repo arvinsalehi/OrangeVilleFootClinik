@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/emailService/templates/components/patientCardList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/emailService.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/emailService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emailsSent.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsSent.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsSent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetCreator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/css/emails.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/emails.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/emailsScript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/emailsSent.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emailsSent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/emails.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/emails.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +24,7 @@
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -43,18 +41,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/emailService/emailService.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/emailsScript.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/emailsSent.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/utilities/FormUtil.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/utilities/api.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/createEditEmailTemplate.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/newTemplateForm.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetCreator.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetDisplay.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetInit.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -86,8 +72,9 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -224,7 +211,15 @@
       <workItem from="1703022138092" duration="10658000" />
       <workItem from="1703106941460" duration="25411000" />
       <workItem from="1703190939265" duration="8846000" />
-      <workItem from="1704243174991" duration="1765000" />
+      <workItem from="1704243174991" duration="6222000" />
+      <workItem from="1704321041184" duration="15922000" />
+      <workItem from="1704485932333" duration="6120000" />
+      <workItem from="1704571418697" duration="13003000" />
+      <workItem from="1704658721327" duration="7436000" />
+      <workItem from="1704740153380" duration="10570000" />
+      <workItem from="1704755293344" duration="4328000" />
+      <workItem from="1704762658140" duration="3089000" />
+      <workItem from="1704820654556" duration="4588000" />
     </task>
     <servers />
   </component>
@@ -250,7 +245,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/emailService/static/js/emailsScript.js</url>
-          <line>23</line>
+          <line>37</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
