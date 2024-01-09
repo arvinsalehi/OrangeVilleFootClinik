@@ -5,6 +5,16 @@ html {
     background-color: #efefef;
 }
 
+h1 {
+    margin: 0;
+}
+
+h2 {
+    border-bottom: 1px solid #e28c0e;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
 h1, h2 {
     font-family: 'Amaranth', sans-serif !important;
 }
@@ -31,33 +41,6 @@ a {
     border-radius: .5rem;
 }
 
-.scrollable-container {
-    position: relative;
-    overflow: hidden; /* Ensure the buttons are within the container */
-}
-
-.scroll-container-wrap {
-    display: flex;
-    justify-content: end;
-}
-
-.scroll-button {
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    border-radius: .5rem;
-    background-color: transparent;
-    margin-bottom: 10px;
-}
-
-.scroll-left {
-    border-right: 1px solid #e28c0e;
-}
-
-.scroll-button:hover {
-    background-color: #f7f7f7;
-}
-
 /* Basic styling for your page */
 body {
     font-family: 'Amaranth', sans-serif;
@@ -66,6 +49,41 @@ body {
     background-color: transparent !important;
     max-height: 100vh;
     overflow: hidden;
+}
+
+header {
+    background-color: white;
+    text-align: center;
+    border-bottom: solid 1px;
+    border-color: #e28c0e;
+    border-left: solid 1px;
+    display: flex;
+    justify-content: end;
+    height: 100px;
+    flex-wrap: wrap;
+
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 2rem 0;
+    padding: 0 5rem 0 250px;
+    height: 83vh;
+    overflow-y: scroll;
+}
+
+.logo-wrap {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    border-bottom: 1px solid #e28c0e;
+
+}
+
+.logo {
+    width: 125px;
 }
 
 .round-widget {
@@ -109,27 +127,6 @@ body {
 
 .dropdown-content a:hover {
     background-color: #efefef;
-}
-
-header {
-    background-color: white;
-    text-align: center;
-    border-bottom: solid 1px;
-    border-color: #e28c0e;
-    border-left: solid 1px;
-    display: flex;
-    justify-content: end;
-    height: 100px;
-    flex-wrap: wrap;
-
-}
-
-.logo {
-    width: 125px;
-}
-
-h1 {
-    margin: 0;
 }
 
 nav {
@@ -177,7 +174,6 @@ nav ul li a span {
     flex-grow: 1;
 }
 
-
 nav ul li a::before {
     content: "";
     position: absolute;
@@ -196,7 +192,6 @@ nav a:hover::before {
     background-color: #1b4077;
     /* Hover border color */
 }
-
 
 .submenu {
     list-style: none;
@@ -217,26 +212,8 @@ nav a:hover::before {
     background-color: white;
 }
 
-.logo-wrap {
-    display: flex;
-    width: 100%;
-    height: 100px;
-    background-color: white;
-    border-bottom: 1px solid #e28c0e;
-
-}
-
 #toggleLeftSide {
     outline: none !important;
-}
-
-.rotate-180 {
-    transform: rotate(180deg);
-    transition: transform 0.3s ease; /* Add a smooth transition effect */
-}
-
-.navbar-reposition {
-    width: 64% !important;
 }
 
 .left-side .logo-wrap a img {
@@ -261,241 +238,9 @@ nav a:hover::before {
     padding: .7rem;
     background-color: #ffff;
 }
-main {
-    display: flex;
-    flex-direction: column;
-    margin: 2rem 0 2rem 0;
-    padding: 0 5rem 0 250px;
-    height: 83vh;
-    overflow-y: scroll;
-}
-
-
-section {
-    /*margin-bottom: 2.5rem;*/
-    margin: 2rem 15%;
-
-}
-
-#action-list {
-    display: flex;
-    justify-content: space-between;
-}
-
-.q-action-btn {
-    border-radius: 3rem;
-    background-color: white;
-    padding: 1rem;
-    width: 25%;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    transition: .3s;
-    margin: 0 auto;
-    text-align: start;
-}
-
-.q-action-btn:hover {
-    background-color: #f7f7f7;
-    box-shadow: 10px 10px 5px rgb(184, 184, 184);
-}
 
 #search {
     margin-top: 0;
-}
-
-#audience, #analytics {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.contacts-info-wrap, .clicks-info {
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    height: 250px;
-    background-color: white;
-    border-radius: .5rem;
-    box-shadow: 10px 10px 5px rgb(184, 184, 184);
-    margin-right: 2rem;
-    max-width: 100%; /* Ensure it takes the full width initially */
-}
-
-.groups-info-wrap, .top-campaigns {
-    padding: 1rem;
-    height: 250px;
-    background-color: white;
-    border-radius: .5rem;
-    box-shadow: 10px 10px 5px rgb(184, 184, 184);
-    margin: 0 auto;
-    flex-grow: 1;
-    max-width: 100%; /* Ensure it takes the full width initially */
-    overflow: auto;
-}
-
-.responsive-table {
-    width: 100%;
-    margin-top: 1rem;
-    border-collapse: collapse;
-}
-
-.responsive-table th, .responsive-table td {
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-
-}
-
-.responsive-table td {
-    color: grey;
-}
-
-.responsive-table td:first-child {
-    color: blue;
-}
-
-.responsive-table td {
-    color: #595959;
-}
-
-.responsive-table th {
-    border: none;
-}
-
-
-.contact-info h2, .subs-info h2, .open-rate-info h2 {
-    border: none;
-    color: grey;
-}
-
-h2 {
-    border-bottom: 1px solid #e28c0e;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.show-more {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: .5rem;
-    border-bottom: 1px solid #e28c0e;
-    background-color: transparent;
-    font-family: Arial, sans-serif;
-    font-weight: 600;
-}
-
-.show-more:hover {
-    background-color: #eeeaea;
-}
-
-#scheduledEmails .color-code {
-    border-color: transparent #1b4077 transparent transparent;
-
-}
-
-#sentEmails {
-    position: relative;
-}
-
-#sentEmails,
-#scheduledEmails,
-#analyticsContainer {
-    display: flex;
-    overflow-x: auto;
-    /*border-right: 1px solid #e28c0e;*/
-    border-radius: .7rem;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: 10px 10px 5px rgb(184, 184, 184);
-
-}
-
-/* Styling for patient cards */
-.patient-card,
-.template-card {
-    background-color: #fff;
-    border: 1px solid rgb(192, 191, 191);
-    padding: 0 0 0 10px;
-    margin: 10px 10px;
-    cursor: pointer;
-    border-radius: .5rem;
-    min-width: 320px;
-    max-width: 320px;
-    min-height: 160px;
-    transition: .3s;
-    text-overflow: ellipsis;
-}
-
-.patient-card:hover,
-.template-card:hover {
-    background-color: #f7f7f7;
-    box-shadow: 10px 10px 5px rgb(184, 184, 184);
-}
-
-/* Styling for email content overlay */
-#emailContentOverlay,
-#templateContentOverlay, #NewTemplateContentOverlay, #filterContentOverlay, #dropdownOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
-}
-
-#dropdownOverlay {
-    background-color: transparent;
-}
-
-#emailContent,
-#templateContent, #filterContent {
-    background-color: #fff;
-    padding: 20px;
-    max-width: 80%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    text-align: center;
-    border-radius: .5rem;
-    max-height: 70%;
-    overflow-y: scroll;
-}
-
-.template-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.emailContentCard p,
-#templateContent p {
-    font-weight: 400;
-    text-align: start;
-    padding: 10px 10px;
-    margin: 10px 10px;
-}
-
-.color-code {
-    border-style: solid;
-    border-width: 0 40px 40px 0;
-    display: none;
-    border-color: transparent #94d82d transparent transparent;
-    border-radius: .5rem;
-}
-
-.toggeled-section {
-    height: 80vh;
-    margin-bottom: 4rem;
-}
-
-.toggeled-content {
-    height: 100%;
-    flex-direction: column;
-}
-
-#search {
     padding: 1rem;
 }
 
@@ -541,10 +286,175 @@ h2 {
     /* Change the background color */
 }
 
+section {
+    /*margin-bottom: 2.5rem;*/
+    margin: 2rem 15%;
+
+}
+
+#action-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.q-action-btn {
+    border-radius: 3rem;
+    background-color: white;
+    padding: 1rem;
+    width: 25%;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: .3s;
+    margin: 0 auto;
+    text-align: start;
+}
+
+.q-action-btn:hover {
+    background-color: #f7f7f7;
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
+}
+
+#audience, #analytics {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contacts-info-wrap, .clicks-info {
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 250px;
+    background-color: white;
+    border-radius: .5rem;
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
+    margin-right: 2rem;
+    max-width: 100%; /* Ensure it takes the full width initially */
+}
+
+.groups-info-wrap, .top-campaigns {
+    padding: 1rem;
+    height: 250px;
+    background-color: white;
+    border-radius: .5rem;
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
+    margin: 0 auto;
+    flex-grow: 1;
+    max-width: 100%; /* Ensure it takes the full width initially */
+    overflow: auto;
+}
+
+.contact-info h2, .subs-info h2, .open-rate-info h2 {
+    border: none;
+    color: grey;
+}
+
+.responsive-table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+
+.responsive-table th, .responsive-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+
+}
+
+.responsive-table td {
+    color: grey;
+}
+
+.responsive-table td:first-child {
+    color: blue;
+}
+
+.responsive-table td {
+    color: #595959;
+}
+
+.responsive-table th {
+    border: none;
+}
+
+.show-more {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: .5rem;
+    border-bottom: 1px solid #e28c0e;
+    background-color: transparent;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+}
+
+.show-more:hover {
+    background-color: #eeeaea;
+}
+
+#analyticsContainer {
+    display: flex;
+    overflow-x: auto;
+    /*border-right: 1px solid #e28c0e;*/
+    border-radius: .7rem;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
+
+}
+
+/* Styling for email content overlay */
+#emailContentOverlay,
+#templateContentOverlay, #NewTemplateContentOverlay, #filterContentOverlay, #dropdownOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+#dropdownOverlay {
+    background-color: transparent;
+}
+
+#emailContent,
+#templateContent, #filterContent {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    border-radius: .5rem;
+    max-height: 70%;
+    overflow-y: scroll;
+}
+
+.emailContentCard p,
+#templateContent p {
+    font-weight: 400;
+    text-align: start;
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
+
 .show-side-bar {
     width: 35% !important;
 }
 
+.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.navbar-reposition {
+    width: 64% !important;
+}
 
 @media screen and (max-width: 1024px) {
 
