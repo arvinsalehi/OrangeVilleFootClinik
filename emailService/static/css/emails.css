@@ -155,7 +155,7 @@ a.nav-link {
     color: #333 !important;
     margin-top: .5rem !important;
     align-items: center !important;
-    justify-content: space-around !important;
+    justify-content: start !important;
     /* Default text color */
 }
 

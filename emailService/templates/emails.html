@@ -1,273 +1,144 @@
-<!DOCTYPE html>
-<html lang="">
+{% extends 'components/__MainLayout__.html' %}
 
-<head>
-    <title>OrangeVille Foot Clinic Email Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/filterForm.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/emails.css') }}">
-    <link rel="stylesheet" type="text/css"
-          href="{{ url_for('emailService.static', filename='css/newTemplateForm.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.css"
-          integrity="sha512-KuSX+43gVS5MEIJD2ewtrFPOHqC1PJnL8o2f5ciggPC0JUZ8XV0QXlfArO1mSzKkVFdRjsBDfrTU96C5SuRfqQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"
-            integrity="sha512-1aNp9qKP+hKU/VJwCtYqJP9tdZWbMDN5pEEXXoXT0pTAxZq1HHZhNBR/dtTNSrHO4U1FsFGGILbqG1O9nl8Mdg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Include SweetAlert2 CSS and JS -->
-    <script src="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js
-"></script>
-    <link href="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
-" rel="stylesheet">
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll('.dropdown-nav').forEach(function (element) {
-
-                element.addEventListener('click', function (e) {
-
-                    let nextEl = element.nextElementSibling;
-                    let parentEl = element.parentElement;
-
-                    if (nextEl) {
-                        e.preventDefault();
-                        let mycollapse = new bootstrap.Collapse(nextEl);
-
-                        if (nextEl.classList.contains('show')) {
-                            mycollapse.hide();
-                        } else {
-                            mycollapse.show();
-                            // find other submenus with class=show
-                            let opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
-                            // if it exists, then close all of them
-                            if (opened_submenu) {
-                                new bootstrap.Collapse(opened_submenu);
-                            }
-                        }
-                    }
-                }); // addEventListener
-            }) // forEach
-        });
-    </script>
-    {{ bootstrap.load_css() }}
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-<div class="wrap">
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <!-- user image -->
-                <div class="round-widget">
-                    <span>A</span>
-                    <div class="dropdown-content" id="dropdown-content">
-                        <!-- Your dropdown content goes here -->
-                        <a href="#">Option 1</a>
-                        <a href="#">Option 2</a>
-                        <a href="#">Option 3</a>
-                    </div>
-                </div>
-
-                <!-- Navbar toggler for small screens -->
-                <button id="toggleLeftSide" class="navbar-toggler p-2" type="button">
-                    <i class="fa-solid fa-angles-right fa-xl"></i>
-                </button>
-
-            </div>
-        </nav>
-    </header>
-
-    <main id="main">
-        <div class="left-side" id="left-side">
-            <div class="logo-wrap">
-                <a href=""><img class="logo"
-                                src="{{ url_for('emailService.static', filename='img/Orangville-foot-Logo-H.svg') }}"
-                                alt=""></a>
-            </div>
-            <nav>
-                <ul>
-                    <li class="has-submenu"><a class="dropdown-nav" href="#templates"><i
-                            class="fa-solid fa-file-lines fa-lg"></i><span>Templates</span><i
-                            class="fa-solid fa-caret-down"></i></a>
-                        <ul class="submenu collapse">
-                            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu"><a class="dropdown-nav" href="#scheduled"><i
-                            class="fa-solid fa-address-card fa-lg"></i><span>Audience</span><i
-                            class="fa-solid fa-caret-down"></i></a>
-                        <ul class="submenu collapse">
-                            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu"><a class="dropdown-nav" href="#settings"><i
-                            class="fa-solid fa-users-rays "></i><span>Campaigns</span><i
-                            class="fa-solid fa-caret-down"></i></a>
-                        <ul class="submenu collapse">
-                            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 3 </a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#sent"><i class="fa-solid fa-chart-simple fa-lg "></i><span>Analytics</span></a></li>
-                </ul>
-            </nav>
+{% block content %}
+<section id="search">
+    <div class="search-container">
+        <div class="search-input-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search...">
+            <i id="filterBtn" class="fa-solid fa-filter" style="color: #888888; cursor: pointer;"></i>
         </div>
-        <section id="search">
-            <div class="search-container">
-                <div class="search-input-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="search-input" placeholder="Search...">
-                    <i id="filterBtn" class="fa-solid fa-filter" style="color: #888888; cursor: pointer;"></i>
-                </div>
-            </div>
-        </section>
-        <div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
-            <h2 class="mb-0">Quick Action</h2>
-            <button class="show-more">
-                Show More
-            </button>
-        </div>
-
-        <section id="quickAction">
-            <div id="action-list">
-                <button id="createTemplate" class="q-action-btn">
-                    <i class="fa-solid fa-plus fa-lg" style="color: green;"></i>
-                    Add Template
-                </button>
-
-                <button id="createCampaign" class="q-action-btn">
-                    <i class="fa-solid fa-plus fa-lg" style="color: green;"></i>
-                    Add Campaign
-                </button>
-
-                <button id="addContact" class="q-action-btn">
-                    <i class="fa-solid fa-plus fa-lg" style="color: green;"></i>
-                    <span>Add Contact</span>
-                </button>
-            </div>
-        </section>
-
-
-        <div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
-            <h2 class="mb-0">Email Analytics</h2>
-            <button class="show-more">
-                Show More
-            </button>
-        </div>
-
-        <section id="analytics">
-            <div class="clicks-info">
-                <p class="me-5" style="font-size: larger; font-weight: 600;">Clicks</p>
-                <div class="contact-info m-3">
-                    <p class="d-flex justify-content-between align-items-center" style="text-align: left">Click
-                        Rate<i class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
-                    <h2 style="text-align: center">00.00%</h2>
-                </div>
-                <div class="open-rate-info m-3">
-                    <p class="d-flex justify-content-between align-items-center" style="text-align: left">
-                        Open Rate<i
-                            class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
-                    <h2 style="text-align: center">00.00%</h2>
-                </div>
-            </div>
-            <div class="top-campaigns">
-                <p style="font-size: larger; font-weight: 600;">Top Campaigns</p>
-                <table class="responsive-table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>clicks</th>
-                        <th>open rate</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Add your table rows here -->
-                    <tr>
-                        <td><a href="">Food Drive Success! Winner ...</a></td>
-                        <td>Email</td>
-                        <td>100</td>
-                        <td>67.00</td>
-                        <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-                    </tr>
-                    <tr>
-                        <td><a href="">Group 2</a></td>
-                        <td>SMS</td>
-                        <td>150</td>
-                        <td>65.00</td>
-                        <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
-            <h2 class="mb-0">Contacts & Groups</h2>
-            <button class="show-more">
-                Show More
-            </button>
-        </div>
-
-        <section id="audience">
-            <div class="contacts-info-wrap">
-                <p class="me-5" style="font-size: larger; font-weight: 600;">Contacts & Subscribers</p>
-                <div class="contact-info m-3">
-                    <p class="d-flex justify-content-between align-items-center" style="text-align: left">Contacts<i
-                            class="fa-solid fa-plus fa-lg fa-beat" style="color: green;"></i></p>
-                    <h2 style="text-align: center">4001</h2>
-                </div>
-                <div class="subs-info m-3">
-                    <p class="d-flex justify-content-between align-items-center" style="text-align: left">Subscribers<i
-                            class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
-                    <h2 style="text-align: center">3999</h2>
-                </div>
-            </div>
-            <div class="groups-info-wrap">
-                <p style="font-size: larger; font-weight: 600;">Groups and Campaigns</p>
-                <table class="responsive-table">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Recipients</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Add your table rows here -->
-                    <tr>
-                        <td><a href="">Food Drive Success! Winner ...</a></td>
-                        <td>Email</td>
-                        <td>100</td>
-                        <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-                    </tr>
-                    <tr>
-                        <td><a href="">Group 2</a></td>
-                        <td>SMS</td>
-                        <td>150</td>
-                        <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+    </div>
+</section>
+<div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Quick Action</h2>
 </div>
+
+<section id="quickAction">
+    <div id="action-list">
+        <a href="{{url_for('emailService.template_creator')}}" id="createTemplate" class="q-action-btn">
+            <i class="fa-solid fa-plus fa-lg" style="color: green;"></i>
+            Add Template
+        </a>
+
+        <button id="createCampaign" class="q-action-btn">
+            <i class="fa-solid fa-plus fa-lg" style="color: green;"></i>
+            Add Campaign
+        </button>
+
+        <button id="addContact" class="q-action-btn">
+            <i class="fa-solid fa-plus fa-lg" style="color: green;"></i>
+            <span>Add Contact</span>
+        </button>
+    </div>
+</section>
+
+
+<div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Email Analytics</h2>
+    <button class="show-more">
+        Show More
+    </button>
+</div>
+
+<section id="analytics">
+    <div class="clicks-info">
+        <p class="me-5" style="font-size: larger; font-weight: 600;">Clicks</p>
+        <div class="contact-info m-3">
+            <p class="d-flex justify-content-between align-items-center" style="text-align: left">Click
+                Rate<i class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
+            <h2 style="text-align: center">00.00%</h2>
+        </div>
+        <div class="open-rate-info m-3">
+            <p class="d-flex justify-content-between align-items-center" style="text-align: left">
+                Open Rate<i
+                    class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
+            <h2 style="text-align: center">00.00%</h2>
+        </div>
+    </div>
+    <div class="top-campaigns">
+        <p style="font-size: larger; font-weight: 600;">Top Campaigns</p>
+        <table class="responsive-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>clicks</th>
+                <th>open rate</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Add your table rows here -->
+            <tr>
+                <td><a href="">Food Drive Success! Winner ...</a></td>
+                <td>Email</td>
+                <td>100</td>
+                <td>67.00</td>
+                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+            </tr>
+            <tr>
+                <td><a href="">Group 2</a></td>
+                <td>SMS</td>
+                <td>150</td>
+                <td>65.00</td>
+                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+            </tr>
+            <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Contacts & Groups</h2>
+    <button class="show-more">
+        Show More
+    </button>
+</div>
+
+<section id="audience">
+    <div class="contacts-info-wrap">
+        <p class="me-5" style="font-size: larger; font-weight: 600;">Contacts & Subscribers</p>
+        <div class="contact-info m-3">
+            <p class="d-flex justify-content-between align-items-center" style="text-align: left">Contacts<i
+                    class="fa-solid fa-plus fa-lg fa-beat" style="color: green;"></i></p>
+            <h2 style="text-align: center">4001</h2>
+        </div>
+        <div class="subs-info m-3">
+            <p class="d-flex justify-content-between align-items-center" style="text-align: left">Subscribers<i
+                    class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
+            <h2 style="text-align: center">3999</h2>
+        </div>
+    </div>
+    <div class="groups-info-wrap">
+        <p style="font-size: larger; font-weight: 600;">Groups and Campaigns</p>
+        <table class="responsive-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Recipients</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Add your table rows here -->
+            <tr>
+                <td><a href="">Food Drive Success! Winner ...</a></td>
+                <td>Email</td>
+                <td>100</td>
+                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+            </tr>
+            <tr>
+                <td><a href="">Group 2</a></td>
+                <td>SMS</td>
+                <td>150</td>
+                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+            </tr>
+            <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</section>
 <div id="emailContentOverlay">
     <div id="emailContent">
         <!-- Email content goes here -->
@@ -316,36 +187,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
         <!-- Email content goes here -->
     </div>
 </div>
-<div id="dropdownOverlay">
-</div>
-</body>
-<footer>
-    <!-- Initialize Spectrum Color Picker -->
-    <script>
-        $("#color-picker").spectrum({
-            preferredFormat: "hex",
-            showInput: true,
-            showPalette: true,
-            showPaletteOnly: true,
-            togglePaletteOnly: true,
-            palette: [
-                ["#000", "#fff", "#808080", "#999999", "#cccccc", "#e6e6e6", "#f2f2f2"],
-                ["#e60012", "#f39800", "#fff100", "#8fc31f", "#009944", "#009e96", "#00a0e9", "#0068b7", "#1d2088", "#920783"]
-            ],
-            containerClassName: 'sp-container', // Custom class for the container
-            replacerClassName: 'sp-replacer', // Custom class for the color preview box
-            replacerStyle: {border: '1px solid #ced4da', borderRadius: '.5rem'}, // Custom style for the color preview box
-            showInitial: true,
-            color: "#e60012" // Set the default color here
+<div id="dropdownOverlay"></div>
+{% endblock %}
 
-        });
-    </script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://kit.fontawesome.com/ccdcc39714.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
-    <script type="module" src="{{ url_for('emailService.static', filename='js/emailsScript.js') }}"></script>
-    {{ bootstrap.load_js() }}
-</footer>
-</html>

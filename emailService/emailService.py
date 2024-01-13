@@ -23,6 +23,7 @@ def create_app():
 
     # Register the email blueprint
     app.register_blueprint(email_blueprint)
+    # csrf.exempt(email_blueprint)
 
     # Custom Jinja filter for word-based truncation
     @app.template_filter('word_truncate')

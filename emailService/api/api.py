@@ -9,6 +9,7 @@ from ..utilities.filterBody import filter_field
 from flask import jsonify, request
 from ..models.models import User, EmailTemplates, Emails, Bookings, db
 from sqlalchemy import func
+import json
 
 ACCEPTED_APPOINTMENT_TYPE = [
     "Advanced Foot care",
@@ -323,6 +324,31 @@ def delete_email_templates():
     except Exception as e:
         print("Error:", str(e))  # Print the error message to the console
         return jsonify({'error': str(e)}), 500
+
+
+@email_blueprint.route('/add_email_template', methods=['POST'])
+def add_email_template():
+    try:
+        requestJson = request.get_json()
+        # Get data from the request
+        title = requestJson.get('title', "Untitled")
+        email_template_list = EmailTemplates.query.all()
+        for email in email_template_list:
+            if email.name == title:
+                return jsonify({'error': "Check for duplicate names"}), 400
+
+        color = requestJson.get('color', '#e28c0e')  # Default color if not provided
+        jsonConstruct = json.loads(requestJson['jsonConstruct'])
+
+        # Create a new EmailTemplates object and add it to the database
+        new_email_template = EmailTemplates(name=title, color=color, jsonConstruct=jsonConstruct)
+        db.session.add(new_email_template)
+        db.session.commit()
+
+        return jsonify({'message': 'Data added successfully!'}), 200
+    except Exception as e:
+        print("Error:", str(e))
+        return jsonify({'internalError': "Something wrong in our end"}), 500
 
 
 @email_blueprint.route('/send-email', methods=['GET'])
