@@ -456,7 +456,7 @@ section {
     width: 64% !important;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1328px) {
 
     .groups-info-wrap, .contacts-info-wrap, .top-campaigns, .clicks-info {
         width: 100%;
@@ -470,7 +470,7 @@ section {
 }
 
 /* Responsive design for smaller screens */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 991px) {
     header {
         padding: 10px 0;
     }
