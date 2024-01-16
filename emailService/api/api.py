@@ -49,7 +49,7 @@ ACCEPTED_APPOINTMENT_TYPE_ID = ["344266062230980820",
 @email_blueprint.route('/get_patients', methods=['GET'])
 def get_patients():
     external_api_url = "https://api.ca1.cliniko.com/v1/patients"
-    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+    api_key = "{API-KEY}"
     query = {
         "order": Order.ASC,
         "sort": "created_at:desc"
@@ -62,7 +62,7 @@ def get_patients():
 @email_blueprint.route('/get-today-attendees-names', methods=['GET'])
 def get_today_attendees_names():
     external_api_url = "https://api.ca1.cliniko.com/v1/bookings"
-    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+    api_key = "{API-KEY}"
 
     # Convert datetime objects to string format expected by Cliniko API
     # Calculate the time range for the last 10 hours
@@ -116,7 +116,7 @@ def get_bookings():
     try:
         external_api_url_bookings = "https://api.ca1.cliniko.com/v1/bookings"
         external_api_url_appointments = "https://api.ca1.cliniko.com/v1/appointment_types"
-        api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+        api_key = "{API-KEY}"
 
         # Convert datetime objects to string format expected by Cliniko API
         # Calculate the time range for the last 10 hours
@@ -196,7 +196,7 @@ def get_bookings():
 @email_blueprint.route('/get-appointment_types', methods=['GET'])
 def get_appointment_types():
     external_api_url = "https://api.ca1.cliniko.com/v1/appointment_types"
-    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+    api_key = "{API-KEY}"
 
     response = get_data(external_api=external_api_url, api_key=api_key)
 
@@ -206,7 +206,7 @@ def get_appointment_types():
 @email_blueprint.route('/get-appointment-name', methods=['GET'])
 def get_appointment_type_name():
     external_api_url = "https://api.ca1.cliniko.com/v1/appointment_types/436844012444322144"
-    api_key = "MS0xMjc3NzQ5ODY0MzYwMzE1NDAyLVdiRVNvOVdBblZlcmtWZGk3T3IxdHJpY3FHUEVnRVdt"
+    api_key = "{API-KEY}"
 
     response = get_data(external_api=external_api_url, api_key=api_key)
     try:
