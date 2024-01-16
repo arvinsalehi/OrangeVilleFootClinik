@@ -1,6 +1,5 @@
 # __init__.py
 
-from .emailService import create_app
+from .emailService import app, images, csrf
 
-app = create_app()
 

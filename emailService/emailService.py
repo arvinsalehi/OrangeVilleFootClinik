@@ -9,33 +9,32 @@ from .utilities.key_generator import generate_random_secret_key
 import secrets
 from flask_bootstrap import Bootstrap5
 import jinja2
+from flask_uploads import configure_uploads, IMAGES, UploadSet
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
+app.secret_key = secrets.token_urlsafe(16)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Set to a reasonable size in bytes
+
+bootstrap = Bootstrap5(app)
+csrf = CSRFProtect(app)
+
+# Initialize and configure the database
+db = init_app(app)
+
+# Register the email blueprint
+app.register_blueprint(email_blueprint)
+app.config['UPLOADED_IMAGES_DEST'] = './uploads/img'  # Destination folder for uploaded images
+images = UploadSet('images', IMAGES)
+configure_uploads(app, images)
 
 
-def create_app():
-    app = Flask(__name__)
-    CORS(app)  # Enable CORS for all routes
-    app.secret_key = secrets.token_urlsafe(16)
-    bootstrap = Bootstrap5(app)
-    csrf = CSRFProtect(app)
+# csrf.exempt(email_blueprint)
 
-    # Initialize and configure the database
-    db = init_app(app)
-
-    # Register the email blueprint
-    app.register_blueprint(email_blueprint)
-    # csrf.exempt(email_blueprint)
-
-    # Custom Jinja filter for word-based truncation
-    @app.template_filter('word_truncate')
-    def word_truncate(s, max_length, suffix='...'):
-        words = s.split()
-        truncated_words = words[:max_length]
-        truncated_string = ' '.join(truncated_words)
-        return f'{truncated_string} {suffix}' if len(words) > max_length else s
-
-    return app
-
-
-if __name__ == '__main__':
-    # Run the application with debug mode
-    create_app().run(port=5001, debug=True)
+# Custom Jinja filter for word-based truncation
+@app.template_filter('word_truncate')
+def word_truncate(s, max_length, suffix='...'):
+    words = s.split()
+    truncated_words = words[:max_length]
+    truncated_string = ' '.join(truncated_words)
+    return f'{truncated_string} {suffix}' if len(words) > max_length else s

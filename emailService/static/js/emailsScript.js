@@ -8,51 +8,11 @@ import {
     showMore,
     filterPatientCards
 } from './widgetCreator/widgetInit.js';
-import {postData} from './utilities/api.js'
 import {showResponseStatus} from './utilities/ShowResponseStatus.js'
 
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
-    unlayer.init({
-        id: 'editor',
-        displayMode: 'email',
-        projectId: 1234 // REPLACE
-    })
-    // unlayer.addEventListener('design:updated', function (updates) {
-    //
-    //     // Design is updated by the user
-    //
-    // })
-
-    document.getElementById('createTemplate').addEventListener("click", (e) => {
-        const title = document.getElementById('title').value;
-        const colorCode = document.getElementById('color-picker').value;
-        const csrf_token = document.getElementById('csrf_token').value;
-        unlayer.exportHtml(async function (data) {
-            const json = data.design; // design json
-            // console.log(JSON.stringify(json));
-            data = {
-                "title": title,
-                "color": colorCode,
-                "jsonConstruct": JSON.stringify(json),
-
-            }
-            const html = data.html; // design html
-            const res = await postData("http://127.0.0.1:5001/emailService/add_email_template", data, csrf_token);
-            if (showResponseStatus(res)) {
-                isEditMode = false;
-                $("#templates").load(window.location.href + " #templatesList", () => {
-                    initTemplateCard(document);
-                    templateContentOverlay.classList.remove("EditMode");
-                    templateContentOverlay.style.display = 'none';
-                    card.innerHTML = "";
-                    controlsDiv = null;
-                });
-            }
-            // Save the json, or html here
-        })
-    })
     // toggeling left side for screns  <= 768
     $("#toggleLeftSide").click(function () {
         $(".left-side").toggleClass('show-side-bar');

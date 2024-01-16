@@ -1,0 +1,24 @@
+{% extends 'components/__MainLayout__.html' %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" type="text/css"
+      href="{{ url_for('emailService.static', filename='css/templates.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Template List</h2>
+</div>
+
+<div class="template-list-wrap d-flex w-100 h-100">
+
+</div>
+<div id="dropdownOverlay"></div>
+{% endblock %}
+
+{% block footer %}
+{{super()}}
+<script type="module" src="{{ url_for('emailService.static', filename='js/templates.js') }}"></script>
+
+{% endblock %}
