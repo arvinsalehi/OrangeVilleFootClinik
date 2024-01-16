@@ -100,19 +100,19 @@ export function initFilterBtn(document) {
 }
 
 // Close overlay when clicking outside the content
-export function closeOverlay(overlay, content) {
-    overlay.addEventListener("click", (event) => {
-        if (event.target === overlay) {
-            if (overlay.classList.contains('EditMode')) {
+export function closeOverlay(parent, element, {closeParent = false, emptyElement = false} = {}) {
+    parent.addEventListener("click", (event) => {
+        if (event.target === parent) {
+            if (parent.classList.contains('EditMode')) {
                 const userResponse = confirm("Do you want to proceed?");
                 if (userResponse) {
-                    overlay.style.display = "none";
-                    content.innerHTML = '';
-                    overlay.classList.remove("EditMode");
+                    closeParent == true ? parent.style.display = "none" : {};
+                    emptyElement == true ? element.innerHTML = '' : element.style.display = 'none';
+                    parent.classList.remove("EditMode");
                 }
             } else {
-                overlay.style.display = "none";
-                content.innerHTML = '';
+                closeParent == true ? parent.style.display = "none" : {};
+                emptyElement == true ? element.innerHTML = '' : element.style.display = 'none';
             }
         }
     });

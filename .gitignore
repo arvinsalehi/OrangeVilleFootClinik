@@ -6,7 +6,6 @@
 *.pyc
 *.pyc
 *.pyc
-*.pyc
-.__pycache__
-./main_app_sim.py
-*.pyc
+*.xml
+*.xml
+*.xml

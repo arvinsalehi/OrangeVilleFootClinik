@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %} <title>OrangeVille Foot Clinic Email Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/filterForm.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/emails.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('emailService.static', filename='css/newTemplateForm.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.css"
+          integrity="sha512-KuSX+43gVS5MEIJD2ewtrFPOHqC1PJnL8o2f5ciggPC0JUZ8XV0QXlfArO1mSzKkVFdRjsBDfrTU96C5SuRfqQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"
+            integrity="sha512-1aNp9qKP+hKU/VJwCtYqJP9tdZWbMDN5pEEXXoXT0pTAxZq1HHZhNBR/dtTNSrHO4U1FsFGGILbqG1O9nl8Mdg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Include SweetAlert2 CSS and JS -->
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js
+"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
+" rel="stylesheet">
+    {{ bootstrap.load_css() }}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+</head>
+<body>
+<div class="wrap">
+    {% block header %}
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <!-- user image -->
+                <div class="round-widget">
+                    <span>A</span>
+                    <div class="dropdown-content" id="dropdown-content">
+                        <!-- Your dropdown content goes here -->
+                        <a href="#">Option 1</a>
+                        <a href="#">Option 2</a>
+                        <a href="#">Option 3</a>
+                    </div>
+                </div>
+
+                <!-- Navbar toggler for small screens -->
+                <button id="toggleLeftSide" class="navbar-toggler p-2" type="button">
+                    <i class="fa-solid fa-angles-right fa-xl"></i>
+                </button>
+
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
+    <main id="main">
+        <div class="left-side" id="left-side">
+            <div class="logo-wrap">
+                <a href=""><img class="logo"
+                                src="{{ url_for('emailService.static', filename='img/Orangville-foot-Logo-H.svg') }}"
+                                alt=""></a>
+            </div>
+            <nav>
+                <ul>
+                    <li class="has-submenu"><a class="dropdown-nav" href="#templates"><i
+                            class="fa-solid fa-file-lines fa-lg"></i><span>Templates</span><i
+                            class="fa-solid fa-caret-down"></i></a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="#">Template Creator</a></li>
+                            <li><a class="nav-link" href="#">Templates List</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu"><a class="dropdown-nav" href="#scheduled"><i
+                            class="fa-solid fa-address-card fa-lg"></i><span>Audience</span><i
+                            class="fa-solid fa-caret-down"></i></a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
+                            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
+                            <li><a class="nav-link" href="#">Submenu item 3 </a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu"><a class="dropdown-nav" href="#settings"><i
+                            class="fa-solid fa-users-rays "></i><span>Campaigns</span><i
+                            class="fa-solid fa-caret-down"></i></a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
+                            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
+                            <li><a class="nav-link" href="#">Submenu item 3 </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#sent"><i class="fa-solid fa-chart-simple fa-lg "></i><span>Analytics</span></a></li>
+                </ul>
+            </nav>
+        </div>
+
+        {% block content %}{% endblock %}
+    </main>
+</div>
+</body>
+<footer>
+    {% block footer %}
+    <!-- Initialize Spectrum Color Picker -->
+    <script>
+        $("#color-picker").spectrum({
+            preferredFormat: "hex",
+            showInput: true,
+            showPalette: true,
+            showPaletteOnly: true,
+            togglePaletteOnly: true,
+            palette: [
+                ["#000", "#fff", "#808080", "#999999", "#cccccc", "#e6e6e6", "#f2f2f2"],
+                ["#e60012", "#f39800", "#fff100", "#8fc31f", "#009944", "#009e96", "#00a0e9", "#0068b7", "#1d2088", "#920783"]
+            ],
+            containerClassName: 'sp-container', // Custom class for the container
+            replacerClassName: 'sp-replacer', // Custom class for the color preview box
+            replacerStyle: {border: '1px solid #ced4da', borderRadius: '.5rem'}, // Custom style for the color preview box
+            showInitial: true,
+            color: "#e60012" // Set the default color here
+
+        });
+    </script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://kit.fontawesome.com/ccdcc39714.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <script src="https://editor.unlayer.com/embed.js"></script>
+
+    <script type="module" src="{{ url_for('emailService.static', filename='js/emailsScript.js') }}"></script>
+    {{ bootstrap.load_js() }}
+    {% endblock %}
+</footer>
+</html>
+
+

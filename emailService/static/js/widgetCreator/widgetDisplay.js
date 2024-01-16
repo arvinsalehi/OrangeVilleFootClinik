@@ -113,6 +113,7 @@ export async function showTemplateContent(document, template) {
                             formData.append(key, data[key]);
                         }
 
+                        // TODO postData is changed the parameter sent to it should be of type json from now on.
                         const res = await postData("http://127.0.0.1:5001/emailService/update_email_templates", formData);
 
                         if (showResponseStatus(res)) {

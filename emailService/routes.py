@@ -40,6 +40,13 @@ def index():
                            scheduledEmails=scheduledEmails)
 
 
+@email_blueprint.route('/template-creator')
+def template_creator():
+    newTemplateForm = NewTemplate()
+
+    return render_template("test-Unlayer.html", form=newTemplateForm)
+
+
 @email_blueprint.route("/Sent-Emails")
 def sent_emails():
     page = request.args.get('page', 1, type=int)

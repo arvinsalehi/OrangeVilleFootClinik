@@ -44,8 +44,8 @@ class Emails(db.Model):
 class EmailTemplates(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), nullable=False, unique=True)
-    content = db.Column(db.TEXT, nullable=False)
     color = db.Column(db.String(25), nullable=False, default="#e38901")
+    jsonConstruct = db.Column(db.JSON, nullable=False)
 
     @validates('name')
     def validate_name(self, key, name):

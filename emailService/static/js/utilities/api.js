@@ -1,14 +1,14 @@
-export async function postData(url, data, headers = null) {
+export async function postData(url, data, csrf_token = null, headers = null) {
     try {
-        console.log(data)
+        console.log(data);
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                // 'Content-Type': 'application/json',
-                // 'X-CSRFToken': csrf_token,
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrf_token,
                 ...headers,
             },
-            body: data,
+            body: JSON.stringify(data),
         });
 
         const responseData = await response.json();
