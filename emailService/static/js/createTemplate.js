@@ -16,8 +16,6 @@ async function htmlToImage(title, htmlCode, callback) {
 
         // Convert the canvas to an image file
         return canvas.toBlob(async (blob) => {
-
-
             // Use the callback to handle the imageBlob
             await callback(blob);
         }, 'image/png');
@@ -48,21 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData();
                 formData.append('title', title);
                 formData.append('image', imageBlob, `${title}.png`);
-                const headers = {
-                    'Content-Type': 'multipart/form-data',
-                    // Add any other headers as needed
-                };
+
                 const imageUrl = await postData(apiEndpoint, formData, csrf_token)
                     .then(response => {
+                        console.log(`then: ${JSON.stringify(response)}`);
+
                         return response['filename'];
                     })
                     .catch(error => {
-                        alert('Error uploading image');
+
+                        console.log(`catch error: ${error}`);
                         return null;
+                    }).finally(error => {
+                        console.log(`error: ${error}`);
                     });
 
+
                 // Ensure that imageUrl is available before proceeding
-                if (imageUrl !== null) {
+                if (imageUrl !== undefined) {
                     const requestData = {
                         title: title.trim() === '' ? (alert('Title field is empty'), valid = false) : title,
                         color: colorCode,
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 'Content-Type': 'application/json',
                             };
 
-                            const res = await postData('http://127.0.0.1:5001/emailService/add_email_template', requestData, csrf_token, headers);
+                            const res = await postData('http://127.0.0.1:5001/emailService/add_email_template', JSON.stringify(requestData), csrf_token, headers);
 
                             if (showResponseStatus(res)) {
                                 document.getElementById('title').value = '';
@@ -85,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(`Unknown Error: ${e}`);
                         }
                     }
+                } else {
+                    alert('Image was not uploaded. please try again');
                 }
             });
         });

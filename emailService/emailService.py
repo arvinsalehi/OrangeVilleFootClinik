@@ -10,6 +10,7 @@ import secrets
 from flask_bootstrap import Bootstrap5
 import jinja2
 from flask_uploads import configure_uploads, IMAGES, UploadSet
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -24,7 +25,9 @@ db = init_app(app)
 
 # Register the email blueprint
 app.register_blueprint(email_blueprint)
-app.config['UPLOADED_IMAGES_DEST'] = './uploads/img'  # Destination folder for uploaded images
+app.config['UPLOADED_IMAGES_DEST'] = './emailService/uploads/img'  # Destination folder for uploaded images
+# Create the destination folder if it doesn't exist
+
 images = UploadSet('images', IMAGES)
 configure_uploads(app, images)
 

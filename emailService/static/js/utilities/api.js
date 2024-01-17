@@ -4,25 +4,14 @@ export async function postData(url, data, csrf_token = null, headers = null) {
             'X-CSRFToken': csrf_token,
         };
 
-        // Check if data is FormData or JSON
-        let contentType = 'application/json'; // Default to JSON
-        let bodyData = data;
-
-        if (data instanceof FormData) {
-            contentType = 'multipart/form-data';
-        } else if (typeof data === 'object' && data !== null) {
-            // If it's an object (presumed to be JSON), stringify it
-            bodyData = JSON.stringify(data);
-        }
 
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 ...defaultHeaders,
-                'Content-Type': contentType,
                 ...(headers || {}),
             },
-            body: bodyData,
+            body: data,
         });
 
         const responseData = await response.json();
