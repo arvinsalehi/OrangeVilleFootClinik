@@ -1,5 +1,10 @@
 {% extends 'components/__MainLayout__.html' %}
-
+{% block head %}
+{{ super() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
 {% block content %}
 <div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
     <h2 class="mb-0">Create Template</h2>
@@ -8,7 +13,7 @@
 
 
 <div class="editor-wrap d-flex w-100 h-100" id="editor-wrap">
-    <form method="POST" action="javascript:void(0)">
+    <form method="POST" id="createTemplateForm">
         {{ form.hidden_tag() }}
 
         <div class="mb-3">
@@ -33,5 +38,7 @@
 
 {% block footer %}
 {{super()}}
+<script type="module" src="{{ url_for('emailService.static', filename='js/createTemplate.js') }}"></script>
+
 
 {% endblock %}

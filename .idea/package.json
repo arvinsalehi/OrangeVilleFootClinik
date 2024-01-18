@@ -1,0 +1,7 @@
+{
+  "name": ".idea",
+  "version": "1.0.0",
+  "devDependencies": {
+    "dom-to-image": "^2.6.0"
+  }
+}

@@ -1,0 +1,50 @@
+{% extends 'components/__MainLayout__.html' %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/templates.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Template List</h2>
+</div>
+
+<div class="template-list-wrap h-100">
+    <!-- Example: Repeat the following structure for each template -->
+    {% for template in templates %}
+    <div class="template-widget">
+        <div class="overlay-icons">
+            <!-- Add your delete and edit icons here -->
+            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #74C0FC;" id="edit"></i>
+            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;" id="delete"></i>
+        </div>
+        <img class="template-image"
+             src="{{ url_for('emailService.static', filename='uploads/img/' ~ template.imageUrl) }}"
+             alt="Template Image {{ i }}">
+
+        <div class="template-title">{{template.name}}</div>
+
+    </div>
+    {% endfor %}
+    <!-- Repeat structure ends here -->
+</div>
+<div id="dropdownOverlay"></div>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+<script type="module" src="{{ url_for('emailService.static', filename='js/templates.js') }}"></script>
+<script>
+    function handleEdit(icon) {
+        // Handle edit action
+        console.log('Edit clicked for widget', icon.closest('.template-widget'));
+    }
+
+    function handleDelete(icon) {
+        // Handle delete action
+        console.log('Delete clicked for widget', icon.closest('.template-widget'));
+    }
+</script>
+{% endblock %}

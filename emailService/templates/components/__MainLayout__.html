@@ -58,7 +58,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
     <main id="main">
         <div class="left-side" id="left-side">
             <div class="logo-wrap">
-                <a href=""><img class="logo"
+                <a href="/emailService"><img class="logo"
                                 src="{{ url_for('emailService.static', filename='img/Orangville-foot-Logo-H.svg') }}"
                                 alt=""></a>
             </div>
@@ -68,8 +68,9 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
                             class="fa-solid fa-file-lines fa-lg"></i><span>Templates</span><i
                             class="fa-solid fa-caret-down"></i></a>
                         <ul class="submenu collapse">
-                            <li><a class="nav-link" href="#">Template Creator</a></li>
-                            <li><a class="nav-link" href="#">Templates List</a></li>
+                            <li><a class="nav-link" href="{{url_for('emailService.template_creator')}}">Template
+                                Creator</a></li>
+                            <li><a class="nav-link" href="{{url_for('emailService.templates')}}">Templates List</a></li>
                         </ul>
                     </li>
                     <li class="has-submenu"><a class="dropdown-nav" href="#scheduled"><i

@@ -10,6 +10,10 @@ from flask import jsonify, request
 from ..models.models import User, EmailTemplates, Emails, Bookings, db
 from sqlalchemy import func
 import json
+from werkzeug.utils import secure_filename
+import os
+from flask import  send_from_directory
+
 
 ACCEPTED_APPOINTMENT_TYPE = [
     "Advanced Foot care",
@@ -43,6 +47,8 @@ ACCEPTED_APPOINTMENT_TYPE_ID = ["344266062230980820",
                                 "1161697725008316524",
                                 "1161727627837311088",
                                 "1161821441214122106"]
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
 # Define a route that sends a request to an external API
@@ -224,10 +230,17 @@ def get_appointment_type_name():
 
 @email_blueprint.route('/get_email_templates', methods=['GET'])
 def get_email_templates():
-    emailTemplates = EmailTemplates.query.all()
-    emailTemplates = [{'name': template.name, 'content': template.content} for template in emailTemplates]
+    try:
+        emailTemplates = EmailTemplates.query.all()
+        emailTemplates = [{'name': template.name, 'color': template.color, 'construct': template.jsonConstruct} for
+                          template
+                          in
+                          emailTemplates]
 
-    return jsonify(emailTemplates), 200
+        return jsonify(emailTemplates), 200
+    except Exception as e:
+        error_message = {'error': f'An error occurred: {str(e)}'}
+        return jsonify(error_message), 500
 
 
 @email_blueprint.route('/get_email_template_by_name/<name>', methods=['GET'])
@@ -329,7 +342,11 @@ def delete_email_templates():
 @email_blueprint.route('/add_email_template', methods=['POST'])
 def add_email_template():
     try:
+        from .. import app
+        import os
+
         requestJson = request.get_json()
+        print(requestJson)
         # Get data from the request
         title = requestJson.get('title', "Untitled")
         email_template_list = EmailTemplates.query.all()
@@ -340,8 +357,12 @@ def add_email_template():
         color = requestJson.get('color', '#e28c0e')  # Default color if not provided
         jsonConstruct = json.loads(requestJson['jsonConstruct'])
 
+        # TODO handle if imageUrl is None and set a default picture for it
+        imageUrl = requestJson['imageUrl']
+
         # Create a new EmailTemplates object and add it to the database
-        new_email_template = EmailTemplates(name=title, color=color, jsonConstruct=jsonConstruct)
+        new_email_template = EmailTemplates(name=title, color=color, jsonConstruct=jsonConstruct,
+                                            imageUrl=imageUrl)
         db.session.add(new_email_template)
         db.session.commit()
 
@@ -371,6 +392,47 @@ def send_email():
     except Exception as e:
         print("Error:", str(e))  # Print the error message to the console
         return jsonify({'error': str(e)}), 500
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# Flask API endpoint
+@email_blueprint.route('/upload-image', methods=['POST'])
+def upload_image():
+    try:
+        from .. import images, app
+
+        title = request.form.get('title')
+
+        # Check if the 'image' key exists in the request files
+        if 'image' not in request.files:
+            return jsonify({'error': 'No file part'}), 400
+
+        image_file = request.files['image']
+
+        # Check if the file has an allowed extension
+        if image_file and allowed_file(image_file.filename):
+            # Securely save the file
+            filename = secure_filename(image_file.filename)
+            if not os.path.exists(app.config['UPLOADED_IMAGES_DEST']):
+                os.makedirs(app.config['UPLOADED_IMAGES_DEST'])
+            image_file.save(images.path(filename))
+            return jsonify({'message': 'Data added successfully!', 'filename': filename}), 200
+        else:
+            return jsonify({'error': 'Invalid file'}), 400
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'internalError': "Something wrong on our end"}), 500
+
+
+@email_blueprint.route('/uploads/img/<filename>')
+def uploaded_file(filename):
+    from .. import app
+    upload_dir = app.config['UPLOADED_IMAGES_DEST']
+    return send_from_directory(upload_dir, filename)
 
 
 scheduler = BackgroundScheduler()
