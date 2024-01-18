@@ -13,8 +13,6 @@ from .models.models import Emails, EmailTemplates, User, Bookings
 from flask import Blueprint
 from .forms.forms import NewTemplate
 
-# migrate = Migrate(app, db)
-
 email_blueprint = Blueprint('emailService', __name__, url_prefix='/emailService', template_folder='templates',
                             static_folder='static')
 
@@ -34,7 +32,6 @@ def index():
     emailsSent = Emails.query.filter_by(isSent=True)
     scheduledEmails = Emails.query.filter_by(isSent=False)
 
-    # scheduled_emails = E
     newTemplateForm = NewTemplate()
     return render_template("emails.html", emailTemplates=emailTemplates, emailsSent=emailsSent, form=newTemplateForm,
                            scheduledEmails=scheduledEmails)
@@ -43,8 +40,14 @@ def index():
 @email_blueprint.route('/template-creator')
 def template_creator():
     newTemplateForm = NewTemplate()
-
     return render_template("test-Unlayer.html", form=newTemplateForm)
+
+
+@email_blueprint.route('/templates')
+def templates():
+    emailTemplates = EmailTemplates.query.all()
+
+    return render_template("templates.html", templates=emailTemplates)
 
 
 @email_blueprint.route("/Sent-Emails")
