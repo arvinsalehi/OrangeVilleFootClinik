@@ -45,7 +45,9 @@ def template_creator():
 
 @email_blueprint.route('/templates')
 def templates():
-    return render_template("templates.html")
+    emailTemplates = EmailTemplates.query.all()
+
+    return render_template("templates.html", templates=emailTemplates)
 
 
 @email_blueprint.route("/Sent-Emails")

@@ -25,7 +25,7 @@ db = init_app(app)
 
 # Register the email blueprint
 app.register_blueprint(email_blueprint)
-app.config['UPLOADED_IMAGES_DEST'] = './emailService/uploads/img'  # Destination folder for uploaded images
+app.config['UPLOADED_IMAGES_DEST'] = 'emailService/static/uploads/img'  # Destination folder for uploaded images
 # Create the destination folder if it doesn't exist
 
 images = UploadSet('images', IMAGES)

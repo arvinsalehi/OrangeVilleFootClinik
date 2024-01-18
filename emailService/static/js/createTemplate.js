@@ -10,7 +10,9 @@ async function htmlToImage(title, htmlCode, callback) {
     document.body.appendChild(tempDiv);
 
     // Use html2canvas to capture the content of the div
-    return await html2canvas(tempDiv).then(async function (canvas) {
+    return await html2canvas(tempDiv, {
+        useCORS: true, //By passing this option in function Cross origin images will be rendered properly in the downloaded version of the PDF
+    }).then(async function (canvas) {
         // Remove the temporary div
         document.body.removeChild(tempDiv);
 

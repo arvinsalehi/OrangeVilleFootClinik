@@ -1,3 +1,85 @@
 .template-list-wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns with equal width */
+    gap: 10px; /* Adjust the gap between items as needed */
+    overflow-x: auto;
+    white-space: nowrap;
+}
 
+.template-widget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    min-width: 0; /* Allow items to shrink beyond their content width */
+    height: 320px;
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.overlay-icons {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    display: none;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    background-color: rgba(199, 199, 199, 0.49);
+}
+
+.template-widget:hover .overlay-icons {
+    display: flex;
+}
+
+
+.template-image {
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 2;
+}
+
+.template-title {
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+@media screen and (max-width: 1328px) {
+    .template-list-wrap {
+        grid-template-columns: repeat(3, 1fr); /* 4 columns with equal width */
+    }
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 991px) {
+    .template-list-wrap {
+        grid-template-columns: repeat(2, 1fr); /* 4 columns with equal width */
+    }
+
+    .template-widget {
+        height: 365px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .template-list-wrap {
+        grid-template-columns: repeat(1, 1fr); /* 4 columns with equal width */
+    }
+
+    .template-widget {
+        height: 400px;
+    }
+
+    .template-widget:hover .overlay-icons {
+        display: None;
+    }
 }

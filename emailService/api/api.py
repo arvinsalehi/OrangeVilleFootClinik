@@ -12,6 +12,8 @@ from sqlalchemy import func
 import json
 from werkzeug.utils import secure_filename
 import os
+from flask import  send_from_directory
+
 
 ACCEPTED_APPOINTMENT_TYPE = [
     "Advanced Foot care",
@@ -357,11 +359,10 @@ def add_email_template():
 
         # TODO handle if imageUrl is None and set a default picture for it
         imageUrl = requestJson['imageUrl']
-        upload_dir = app.config['UPLOADED_IMAGES_DEST']
 
         # Create a new EmailTemplates object and add it to the database
         new_email_template = EmailTemplates(name=title, color=color, jsonConstruct=jsonConstruct,
-                                            imageUrl=os.path.join(upload_dir, imageUrl))
+                                            imageUrl=imageUrl)
         db.session.add(new_email_template)
         db.session.commit()
 
@@ -425,6 +426,13 @@ def upload_image():
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({'internalError': "Something wrong on our end"}), 500
+
+
+@email_blueprint.route('/uploads/img/<filename>')
+def uploaded_file(filename):
+    from .. import app
+    upload_dir = app.config['UPLOADED_IMAGES_DEST']
+    return send_from_directory(upload_dir, filename)
 
 
 scheduler = BackgroundScheduler()
