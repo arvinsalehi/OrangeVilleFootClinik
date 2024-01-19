@@ -11,21 +11,22 @@
     <h2 class="mb-0">Template List</h2>
 </div>
 
-<div class="template-list-wrap h-100">
+<div class="template-list-wrap h-100" id="template-list-wrap">
     <!-- Example: Repeat the following structure for each template -->
     {% for template in templates %}
     <div class="template-widget">
         <div class="overlay-icons">
             <!-- Add your delete and edit icons here -->
-            <i class="fa-solid fa-pen-to-square fa-xl" style="color: #74C0FC;" id="edit"></i>
-            <i class="fa-solid fa-trash fa-xl" style="color: #ff0000;" id="delete"></i>
+            <i class="fa-solid fa-trash fa-xl delete" style="color: #ff0000;"
+               data-template-name="{{ template.name }}"></i>
+            <a href="{{ url_for('emailService.edit_template', template_name=template.name) }}">
+                <i class="fa-solid fa-pen-to-square fa-xl" style="color: #74C0FC;" id="edit"></i>
+            </a>
         </div>
         <img class="template-image"
              src="{{ url_for('emailService.static', filename='uploads/img/' ~ template.imageUrl) }}"
              alt="Template Image {{ i }}">
-
         <div class="template-title">{{template.name}}</div>
-
     </div>
     {% endfor %}
     <!-- Repeat structure ends here -->

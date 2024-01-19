@@ -1,0 +1,46 @@
+{% extends 'components/__MainLayout__.html' %}
+{% block head %}
+{{ super() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+{% block content %}
+<div id="template-data" data-template='{{ template|tojson|safe }}'></div>
+
+<div class="title-wrap d-flex w-100 justify-content-between align-items-center mb-2">
+    <h2 class="mb-0">Create Template</h2>
+    <p class="mb-0 text-success">Autosave is active</p>
+</div>
+
+
+<div class="editor-wrap d-flex w-100 h-100" id="editor-wrap">
+    <form method="POST" id="createTemplateForm">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            {{ form.title(class="form-control template-name", value=template.name or "Default Name") }}
+            {% for error in form.title.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label for="color" class="form-label">Color</label>
+            <input type="text" id="color-picker" name="color" class="form-control" value="{{ template.color }}"/>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" id="createTemplate">Submit</button>
+        </div>
+    </form>
+    <div class="flex-fill" id="editor" style="height: 100%"></div>
+</div>
+<div id="dropdownOverlay"></div>
+{% endblock %}
+
+{% block footer %}
+{{super()}}
+<script type="module" src="{{ url_for('emailService.static', filename='js/editTemplate.js') }}"></script>
+
+
+{% endblock %}

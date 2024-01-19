@@ -25,13 +25,23 @@ async function htmlToImage(title, htmlCode, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve the template data from the data-* attribute
+    const templateData = document.getElementById('template-data').dataset.template;
+
+    // Parse the JSON data
+    const template = JSON.parse(templateData);
+
+    // Now 'template' variable contains the template data that you can use in your JavaScript code
+    // console.log(template['jsonConstruct']);
+
+
     unlayer.init({
         id: 'editor',
         displayMode: 'email',
         projectId: 207983,
     });
 
-
+    unlayer.loadDesign(template['jsonConstruct']);
     document.getElementById('createTemplateForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const title = document.getElementById('title').value;

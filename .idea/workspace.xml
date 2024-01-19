@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a5c2353-8c23-4d44-8197-e7ac45fbe720" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/emailService/static/uploads/img/A_template.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/emailService/static/uploads/img/image_in_image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/js/editTemplate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/uploads/img/T1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/uploads/img/T2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/static/uploads/img/T_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/emailService/templates/edit_template.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/api/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/api/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/emailService.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/emailService.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/static/css/templates.css" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/css/templates.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/static/js/createTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/createTemplate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/static/js/templates.js" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/js/templates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/templates/components/__MainLayout__.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/components/__MainLayout__.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/emailService/templates/templates.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/templates.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/emailService/uploads/img/A_template.png" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/static/img/A_template.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailService/templates/test-Unlayer.html" beforeDir="false" afterPath="$PROJECT_DIR$/emailService/templates/template_creator.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +28,9 @@
       <list>
         <option value="Python Script" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="package.json" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -50,6 +50,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/emailService/static/js/createTemplate.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/editTemplate.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/emailService/static/js/templates.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/emailService/static/js/widgetCreator/widgetDisplay.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -237,7 +239,7 @@
       <workItem from="1705005021680" duration="4090000" />
       <workItem from="1705093276704" duration="11157000" />
       <workItem from="1705436372020" duration="7253000" />
-      <workItem from="1705527559874" duration="11538000" />
+      <workItem from="1705527559874" duration="16384000" />
     </task>
     <servers />
   </component>
@@ -268,7 +270,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/emailService/api/api.py</url>
-          <line>303</line>
+          <line>302</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

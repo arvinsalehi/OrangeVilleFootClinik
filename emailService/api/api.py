@@ -12,8 +12,7 @@ from sqlalchemy import func
 import json
 from werkzeug.utils import secure_filename
 import os
-from flask import  send_from_directory
-
+from flask import send_from_directory
 
 ACCEPTED_APPOINTMENT_TYPE = [
     "Advanced Foot care",
@@ -321,15 +320,17 @@ def update_email_templates():
         return jsonify({'error': str(e)}), 500
 
 
-@email_blueprint.route('/delete_email_templates', methods=['POST'])
-def delete_email_templates():
+@email_blueprint.route('/delete_email_templates/<template_name>', methods=['GET'])
+def delete_email_templates(template_name):
     try:
+        from .. import app
+        import os
         # Get data from the request
-        name = request.form.get('name')
 
         # Create a new Person object and add it to the database
-        template = EmailTemplates.query.filter_by(name=name).first_or_404()
-
+        template = EmailTemplates.query.filter_by(name=template_name).first_or_404()
+        if os.path.exists(app.config['UPLOADED_IMAGES_DEST']):
+            os.remove(f"{app.config['UPLOADED_IMAGES_DEST']}/{template.imageUrl}")
         db.session.delete(template)
         db.session.commit()
 

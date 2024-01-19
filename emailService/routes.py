@@ -40,7 +40,7 @@ def index():
 @email_blueprint.route('/template-creator')
 def template_creator():
     newTemplateForm = NewTemplate()
-    return render_template("test-Unlayer.html", form=newTemplateForm)
+    return render_template("template_creator.html", form=newTemplateForm)
 
 
 @email_blueprint.route('/templates')
@@ -48,6 +48,22 @@ def templates():
     emailTemplates = EmailTemplates.query.all()
 
     return render_template("templates.html", templates=emailTemplates)
+
+
+@email_blueprint.route('/edit_template/<template_name>', methods=['GET'])
+def edit_template(template_name):
+    template = EmailTemplates.query.filter_by(name=template_name).first_or_404()
+    # Convert the EmailTemplates object to a dictionary
+    template_data = {
+        'name': template.name,
+        'jsonConstruct': template.jsonConstruct,
+        'color': template.color,
+        'imageUrl': template.imageUrl
+        # Add other attributes as needed
+    }
+    newTemplateForm = NewTemplate()
+
+    return render_template("edit_template.html", template=template_data, form=newTemplateForm)
 
 
 @email_blueprint.route("/Sent-Emails")
