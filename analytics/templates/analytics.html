@@ -1,0 +1,340 @@
+{% extends 'components/__MainLayout__.html' %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('analytics.static', filename='css/global.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('analytics.static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section id="analytics">
+        <div class="analytics-wrap">
+            <div class="second-header-wrap">
+                <div class="second-header">
+                    <button class="second-header-nav">Campaigns</button>
+                    <button class="second-header-nav">Audience</button>
+                </div>
+            </div>
+            <div class="dashboard-wrap">
+                <div class="dashboard">
+                    <div class="left-column">
+                        <div class="left-column-content">
+                            <div class="data-row">
+                                <div class="info-card">
+                  <span class="span-4">
+                    <div class="div-16">Active Users</div>
+                    <div class="div-17">72</div>
+                    <span class="span-5">
+                      <div class="div-18">View refferals</div>
+                      <img
+                              loading="lazy"
+                              src="https://cdn.builder.io/api/v1/image/assets/TEMP/17282b23f4a666b58699efd34e5ce3c529271dd8303739335325e5c55604e0e8?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                              class="img-3"
+                      />
+                    </span>
+                  </span>
+                                </div>
+                                <div class="chart">
+                                    <canvas id="chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="div-56">
+                                <div class="div-57">
+                                    <div class="column-7">
+                  <span class="span-8">
+                    <span class="span-9">
+                      <div class="div-58">Users</div>
+                      <span class="span-10">
+                        <img
+                                loading="lazy"
+                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/89950aeb53323387798ef96d2967a7f4937dff65e9a2aaab1fc1cf692d8a8a47?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                class="img-6"
+                        />
+                        <div class="div-59">268%</div>
+                      </span>
+                    </span>
+                    <div class="div-60">15K</div>
+                  </span>
+                                    </div>
+                                    <div class="column-8">
+                  <span class="span-11">
+                    <span class="span-12">
+                      <div class="div-61">Sessions</div>
+                      <span class="span-13">
+                        <img
+                                loading="lazy"
+                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/89950aeb53323387798ef96d2967a7f4937dff65e9a2aaab1fc1cf692d8a8a47?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                class="img-7"
+                        />
+                        <div class="div-62">268%</div>
+                      </span>
+                    </span>
+                    <div class="div-63">17K</div>
+                  </span>
+                                    </div>
+                                    <div class="column-9">
+                  <span class="span-14">
+                    <span class="span-15">
+                      <div class="div-64">Bounce Rate</div>
+                      <span class="span-16">
+                        <img
+                                loading="lazy"
+                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6b92cc1924046a4f8cf1ce33ba1378508be018e2a94fbe6d7064cec66319aeb4?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                class="img-8"
+                        />
+                        <div class="div-65">19.6%</div>
+                      </span>
+                    </span>
+                    <div class="div-66">62.57%</div>
+                  </span>
+                                    </div>
+                                    <div class="column-10">
+                  <span class="span-17">
+                    <span class="span-18">
+                      <div class="div-67">Session Duration</div>
+                      <span class="span-19">
+                        <img
+                                loading="lazy"
+                                src="https://cdn.builder.io/api/v1/image/assets/TEMP/53dd92fab7934f239547b9fb0e1315ef3c3c596381e0a207528a732b21b8d140?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                class="img-9"
+                        />
+                        <div class="div-68">29.7%</div>
+                      </span>
+                    </span>
+                    <div class="div-69">1m 37s</div>
+                  </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-70">
+                                <img
+                                        loading="lazy"
+                                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/1e9e4d9a13795d56032f315c9274a3899c39c6abd717469e6df208988c29ef8e?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                        class="img-10"
+                                />
+                                <div class="div-71">
+                                    <img
+                                            loading="lazy"
+                                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/2cedba5f285b320d153f0ba3eb2aaf6f6004f00bb02ab59d36a44d678b055aff?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                            class="img-11"
+                                    />
+                                    <span class="span-20">
+                  <div class="div-72">No alerts set</div>
+                  <div class="div-73">
+                    Get notified when your data drasticaly change
+                  </div>
+                </span>
+                                </div>
+                                <span class="span-21">Set alert</span>
+                            </div>
+                            <div class="div-74">
+                                <div class="div-75">
+                                    <div class="column-11">
+                  <span class="span-22">
+                    <div class="div-76">Devices</div>
+                    <span class="span-23">
+                      <span class="span-24">May</span>
+                      <div class="div-77">June</div>
+                      <div class="div-78">July</div>
+                      <div class="div-79">August</div>
+                    </span>
+                    <div class="div-80">Desktop | 52%</div>
+                    <div class="div-81"></div>
+                    <div class="div-82">Tablet | 15%</div>
+                    <div class="div-83"></div>
+                    <div class="div-84">Mobile | 36%</div>
+                    <div class="div-85"></div>
+                  </span>
+                                    </div>
+                                    <div class="column-12">
+                                        <div class="div-86">
+                                            <img
+                                                    loading="lazy"
+                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/68d9e782a1f437de50e4b98d70fd692a48aacb3c138ee33cd73b25653360f0b1?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                                                    class="img-12"
+                                            />
+                                            <span class="span-25">
+                      <span class="span-26">
+                        <div class="div-87">Devices</div>
+                        <div class="div-88">
+                          Direct
+                          <br/>
+                          Organic
+                          <br/>
+                          Social
+                          <br/>
+                          Referral
+                          <br/>
+                          Social
+                        </div>
+                      </span>
+                      <div class="div-89">
+                        24
+                        <br/>
+                        14
+                        <br/>
+                        5
+                        <br/>
+                        5
+                        <br/>
+                        2
+                      </div>
+                    </span>
+                                            <div class="div-90"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="top">
+                        <div class="div-91">
+            <span class="span-27">
+              <div class="div-92">Top pages</div>
+              <div class="div-93">Visits</div>
+            </span>
+                            <span class="span-28">
+              <div class="div-94">
+                /
+                <br/>
+                <br/>
+                /about
+                <br/>
+                <br/>
+                /license
+                <br/>
+                <br/>
+                /posts/sketch-help-ce...links-search-day-1120
+                <br/>
+                <br/>
+                /posts/sketch-pricing...n-card-cards-day-1116
+                <br/>
+                <br/>
+                /posts/sketch-stats-ca...istics-cards-day-1119
+                <br/>
+                <br/>
+                /posts/sketch-dark-c...ogress-bar-day-1112
+                <br/>
+                <br/>
+                /posts/sketch-messages-me...-messaging-ui-kit-day-595 1
+                <br/>
+                <br/>
+                /posts/sketch-modal-discount-day-1061 1
+              </div>
+              <div class="div-95">
+                23,956
+                <br/>
+                <br/>
+                565
+                <br/>
+                <br/>
+                477
+                <br/>
+                <br/>
+                458
+                <br/>
+                <br/>
+                <br/>
+                447
+                <br/>
+                <br/>
+                <br/>
+                785
+                <br/>
+                <br/>
+                <br/>
+                962
+                <br/>
+                <br/>
+                <br/>
+                558
+                <br/>
+                <br/>
+                <br/>
+                486
+              </div>
+            </span>
+                            <span class="span-29">
+              <span class="span-30">
+                <div class="div-96">More stats</div>
+                <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/5c243731346abbc23ad1395b5d24a9f0a890769ab82baeab4f4a7ce810dab6c7?apiKey=099edb3b00714a918dd525ea4f1605d6&"
+                        class="img-13"
+                />
+              </span>
+              <div class="div-97">More stats</div>
+              <div class="div-98">42K</div>
+              <div class="div-99">More stats</div>
+              <div class="div-100">47.45%</div>
+            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block footer %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script type="module">
+        const ctx = document.getElementById('chart');
+
+        const mixedChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                datasets: [{
+                    label: 'Bar Dataset',
+                    data: [10, 20, 30, 40],
+                    // this dataset is drawn below
+                    order: 2
+                }, {
+                    label: 'Line Dataset',
+                    data: [10, 20, 30, 5],
+                    type: 'line',
+                    // this dataset is drawn on top
+                    order: 1
+                }],
+                labels: ['January', 'February', 'March', 'April'],
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Month',
+                            color: '#911',
+                            font: {
+                                family: 'Comic Sans MS',
+                                size: 20,
+                                weight: 'bold',
+                                lineHeight: 1.2,
+                            },
+                            padding: {top: 20, left: 0, right: 0, bottom: 0}
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Value',
+                            color: '#191',
+                            font: {
+                                family: 'Times',
+                                size: 20,
+                                style: 'normal',
+                                lineHeight: 1.2
+                            },
+                            padding: {top: 30, left: 0, right: 0, bottom: 0}
+                        }
+                    }
+                }
+            },
+        });
+    </script>
+{% endblock %}
