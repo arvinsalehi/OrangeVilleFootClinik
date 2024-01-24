@@ -154,62 +154,12 @@
                                 </div>
                             </div>
 
-                            <div class="data-row">
-                                <div class="div-75">
-                                    <div class="column-11">
-                  <span class="span-22">
-                    <div class="div-76">Devices</div>
-                    <span class="span-23">
-                      <span class="span-24">May</span>
-                      <div class="div-77">June</div>
-                      <div class="div-78">July</div>
-                      <div class="div-79">August</div>
-                    </span>
-                    <div class="div-80">Desktop | 52%</div>
-                    <div class="div-81"></div>
-                    <div class="div-82">Tablet | 15%</div>
-                    <div class="div-83"></div>
-                    <div class="div-84">Mobile | 36%</div>
-                    <div class="div-85"></div>
-                  </span>
-                                    </div>
-                                    <div class="column-12">
-                                        <div class="div-86">
-                                            <img
-                                                    loading="lazy"
-                                                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/68d9e782a1f437de50e4b98d70fd692a48aacb3c138ee33cd73b25653360f0b1?apiKey=099edb3b00714a918dd525ea4f1605d6&"
-                                                    class="img-12"
-                                            />
-                                            <span class="span-25">
-                      <span class="span-26">
-                        <div class="div-87">Devices</div>
-                        <div class="div-88">
-                          Direct
-                          <br/>
-                          Organic
-                          <br/>
-                          Social
-                          <br/>
-                          Referral
-                          <br/>
-                          Social
-                        </div>
-                      </span>
-                      <div class="div-89">
-                        24
-                        <br/>
-                        14
-                        <br/>
-                        5
-                        <br/>
-                        5
-                        <br/>
-                        2
-                      </div>
-                    </span>
-                                            <div class="div-90"></div>
-                                        </div>
-                                    </div>
+                            <div class="data-row scroll-x">
+                                <div class="chart-wrap">
+                                    <canvas class="col-md-4 m-4" id="chart"></canvas>
+                                </div>
+                                <div class="chart-wrap">
+                                    <canvas class="col-md-4 m-4" id="chart2"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -226,6 +176,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script type="module">
         const ctx = document.getElementById('chart');
+        const ctx2 = document.getElementById('chart2');
+        const ctx3 = document.getElementById('chart3');
+        const ctx4 = document.getElementById('chart4');
 
         const mixedChart = new Chart(ctx, {
             data: {
@@ -281,5 +234,55 @@
                 }
             },
         });
+        const chart2 = new Chart(ctx2,
+            {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: [{x: 'Sales', y: 20}, {x: 'Revenue', y: 10}]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Month',
+                                color: '#0e1731',
+                                font: {
+                                    family: 'Comic Sans MS',
+                                    size: 20,
+                                    weight: 'bold',
+                                    lineHeight: 1.2,
+                                },
+                                padding: {top: 20, left: 0, right: 0, bottom: 0}
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Value',
+                                color: '#0e1731',
+                                font: {
+                                    family: 'Times',
+                                    size: 20,
+                                    style: 'normal',
+                                    lineHeight: 1.2
+                                },
+                                padding: {top: 30, left: 0, right: 0, bottom: 0}
+                            }
+                        }
+                    }
+                }
+
+            })
     </script>
 {% endblock %}
