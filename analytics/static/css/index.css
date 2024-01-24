@@ -30,7 +30,6 @@
     display: flex;
 }
 
-
 .second-header-wrap {
     display: flex;
     align-items: start;
@@ -60,7 +59,6 @@
 
 }
 
-
 .dashboard-wrap {
     margin: 37px 0;
 }
@@ -71,7 +69,6 @@
     justify-content: space-between;
     overflow-x: hidden;
 }
-
 
 .left-column {
     display: flex;
@@ -86,15 +83,9 @@
     flex-direction: column;
 }
 
-
 .data-row {
     display: flex;
     margin-bottom: 1rem;
-}
-
-.scroll-x {
-    flex-wrap: nowrap !important;
-    overflow-x: scroll !important;
 }
 
 .info-card {
@@ -112,7 +103,11 @@
     cursor: pointer;
 }
 
-.groups-info-wrap, .top-campaigns {
+.info-card:hover {
+    box-shadow: 10px 10px 5px rgb(184, 184, 184);
+}
+
+.top-campaigns {
     padding: 1rem;
     background-color: white;
     border-radius: 10px;
@@ -124,7 +119,12 @@
     margin: 10px 0 auto;
 }
 
-.groups-info-wrap table {
+.scroll-x {
+    flex-wrap: nowrap !important;
+    overflow-x: scroll !important;
+}
+
+.top-campaigns table {
     width: 100%;
 }
 
@@ -135,7 +135,7 @@
         padding: 10px;
     }
 
-    .groups-info-wrap, .contacts-info-wrap, .top-campaigns, .clicks-info {
+    .top-campaigns {
         width: 50%;
         margin-bottom: 1.5rem;
     }
@@ -162,7 +162,8 @@
     border-radius: 10px;
     background-color: #fff;
     display: flex;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     flex-grow: 1;
     flex-direction: column;
     margin: 0 auto;
@@ -193,8 +194,6 @@
 }
 
 .user-count {
-    align-items: end;
-    display: flex;
     width: 100%;
     flex-grow: 1;
     font: 700 36px Mulish, sans-serif;
@@ -214,7 +213,7 @@
     width: 33.333333%;
     margin-right: 10px;
     border-radius: 10px;
-    min-width: 50%;
+    min-width: 48%;
     display: flex;
     justify-content: center;
 }
@@ -301,7 +300,11 @@ canvas {
         padding: 0 !important;
     }
 
-    .groups-info-wrap, .info-card {
+    .data-row {
+        flex-wrap: wrap;
+    }
+
+    .top-campaigns, .info-card {
         width: 100%
     }
 
