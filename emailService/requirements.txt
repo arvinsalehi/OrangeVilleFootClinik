@@ -23,7 +23,7 @@ matplotlib==3.8.2
 mysql-connector-python==8.2.0
 numpy==1.26.2
 packaging==23.2
-Pillow==10.1.0
+Pillow==10.2.0
 protobuf==4.21.12
 pycparser==2.21
 PyMySQL==1.1.0
