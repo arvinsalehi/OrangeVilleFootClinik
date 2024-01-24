@@ -456,7 +456,7 @@ section {
     width: 64% !important;
 }
 
-@media screen and (max-width: 1328px) {
+@media screen and (max-width: 1410px) {
 
     .groups-info-wrap, .contacts-info-wrap, .top-campaigns, .clicks-info {
         width: 100%;
