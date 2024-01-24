@@ -166,7 +166,6 @@
     height: 250px;
     flex-grow: 1;
     flex-direction: column;
-    margin: 0 auto;
     padding: 1.7rem;
 }
 
