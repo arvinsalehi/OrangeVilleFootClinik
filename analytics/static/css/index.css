@@ -160,8 +160,7 @@
     border-radius: 10px;
     background-color: #fff;
     display: flex;
-    width: 250px;
-    height: 250px;
+    height: 200px;
     flex-grow: 1;
     flex-direction: column;
     margin: 0 auto;
@@ -192,6 +191,8 @@
 }
 
 .user-count {
+    align-items: end;
+    display: flex;
     width: 100%;
     flex-grow: 1;
     font: 700 36px Mulish, sans-serif;
@@ -211,7 +212,7 @@
     width: 33.333333%;
     margin-right: 10px;
     border-radius: 10px;
-    min-width: 48%;
+    min-width: 50%;
     display: flex;
     justify-content: center;
 }
@@ -293,9 +294,11 @@ canvas {
     main {
         padding: 10px !important;
     }
+
     .analytics-wrap, .dashboard-wrap, .left-column {
         padding: 0 !important;
     }
+
     .groups-info-wrap, .info-card {
         width: 100%
     }
