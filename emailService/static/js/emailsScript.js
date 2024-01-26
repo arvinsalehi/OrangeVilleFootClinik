@@ -84,15 +84,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     // closeOverlay(document.getElementById("NewTemplateContentOverlay"), null, {closeParent: true, emptyElement: true});
 
-    document.getElementById("filterContentOverlay") == null ? {} :
-        closeOverlay(document.getElementById("filterContentOverlay"), document.getElementById("filterModalContent"), {
-            closeParent: true,
-            emptyElement: true
-        });
-
-    document.getElementById('dropdownOverlay') == null ? {} : closeOverlay(document.getElementById('dropdownOverlay'), document.getElementById("dropdown-content"), {
+    document.getElementById("filterContentOverlay") != null ? closeOverlay(document.getElementById("filterContentOverlay"), document.getElementById("filterModalContent"), {
         closeParent: true,
-    });
+        emptyElement: true
+    }) : {};
+
+    document.getElementById('dropdownOverlay') != null ? closeOverlay(document.getElementById('dropdownOverlay'), document.getElementById("dropdown-content"), {
+        closeParent: true,
+    }) : {};
     // initialize show more button
     $('.show-more').on('click', function () {
         const urls = [

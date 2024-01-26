@@ -50,20 +50,6 @@ ACCEPTED_APPOINTMENT_TYPE_ID = ["344266062230980820",
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 
-# Define a route that sends a request to an external API
-@email_blueprint.route('/get_patients', methods=['GET'])
-def get_patients():
-    external_api_url = "https://api.ca1.cliniko.com/v1/patients"
-    api_key = "{API-KEY}"
-    query = {
-        "order": Order.ASC,
-        "sort": "created_at:desc"
-    }
-
-    response = get_data(external_api=external_api_url, api_key=api_key, query=query)
-    return response
-
-
 @email_blueprint.route('/get-today-attendees-names', methods=['GET'])
 def get_today_attendees_names():
     external_api_url = "https://api.ca1.cliniko.com/v1/bookings"
@@ -260,64 +246,38 @@ def get_email_template_by_name(name):
         return jsonify({'internalError': "Something wrong in our end"}), 500
 
 
-@email_blueprint.route('/create_email_templates', methods=['POST'])
-def create_email_templates():
-    try:
-        # Get data from the request
-        title = request.form.get('title')
-        email_template_lis = EmailTemplates.query.all()
-        for email in email_template_lis:
-            if email.name == title:
-                return jsonify({'error': "Check for duplicate names"}), 400
-
-        content = request.form.get('content')
-        color = request.form.get('color', '#e28c0e')  # Default color if not provided
-
-        # Create a new EmailTemplates object and add it to the database
-        new_email_template = EmailTemplates(name=title, content=content, color=color)
-        db.session.add(new_email_template)
-        db.session.commit()
-
-        return jsonify({'message': 'Data added successfully!'}), 200
-    except Exception as e:
-        print("Error:", str(e))
-        return jsonify({'internalError': "Something wrong in our end"}), 500
-
-
 @email_blueprint.route('/update_email_templates', methods=['POST'])
 def update_email_templates():
     try:
-        # Get data from the request
-        name = request.form.get('name')
+        template_id = request.json.get('id', None)
 
-        template = EmailTemplates.query.filter_by(name=name).first()
+        if template_id is not None:
+            # Fetch the existing email template from the database
+            existing_template = EmailTemplates.query.filter_by(id=template_id).first_or_404()
 
-        if template is not None:
-            new_name = request.form.get('new_name', name)
-            new_content = request.form.get('new_content', template.content)
-            color_input = request.form.get('color_value', template.color)
+            if existing_template:
+                # Get data from the request
+                title = request.json.get('title', existing_template.name)
+                color = request.json.get('color', existing_template.color)
+                json_construct = json.loads(request.json.get('jsonConstruct', existing_template.jsonConstruct))
+                imageUrl = request.json.get('imageUrl', existing_template.imageUrl)
 
-            # Create a new Person object and add it to the database
+                # Update the attributes of the existing template
+                existing_template.name = title
+                existing_template.color = color
+                existing_template.jsonConstruct = json_construct
+                existing_template.imageUrl = imageUrl
 
-            emailsSent = Emails.query.filter_by(template_color_code=template.color)
-            if emailsSent is not None:
-                for email in emailsSent:
-                    email.template_color_code = color_input
+                # Commit the changes to the database
+                db.session.commit()
 
-            emailsSent = Emails.query.filter_by(template=template.name)
-            template.name = new_name
-            template.content = new_content
-            template.color = color_input
-            if emailsSent is not None:
-                for email in emailsSent:
-                    email.template = new_name
+                return jsonify({'message': 'Data updated successfully!'}), 200
+            else:
+                return jsonify({'error': 'Email template not found'}), 404
 
-            db.session.commit()
-
-            return jsonify({'message': 'Data Updated successfully!'}), 200
     except Exception as e:
-        print("Error:", str(e))  # Print the error message to the console
-        return jsonify({'error': str(e)}), 500
+        print("Error:", str(e))
+        return jsonify({'internalError': "Something went wrong on our end"}), 500
 
 
 @email_blueprint.route('/delete_email_templates/<template_name>', methods=['GET'])

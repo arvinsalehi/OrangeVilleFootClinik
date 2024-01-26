@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Ensure that imageUrl is available before proceeding
                 if (imageUrl !== undefined) {
                     const requestData = {
+                        id: template['id'],
                         title: title.trim() === '' ? (alert('Title field is empty'), valid = false) : title,
                         color: colorCode,
                         jsonConstruct: json === undefined ? (alert('Wait for the email creator'), valid = false) : JSON.stringify(json),
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 'Content-Type': 'application/json',
                             };
 
-                            const res = await postData('http://127.0.0.1:5001/emailService/add_email_template', JSON.stringify(requestData), csrf_token, headers);
+                            const res = await postData('http://127.0.0.1:5001/emailService/update_email_templates', JSON.stringify(requestData), csrf_token, headers);
 
                             if (showResponseStatus(res)) {
                                 document.getElementById('title').value = '';

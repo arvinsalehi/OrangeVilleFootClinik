@@ -55,6 +55,7 @@ def edit_template(template_name):
     template = EmailTemplates.query.filter_by(name=template_name).first_or_404()
     # Convert the EmailTemplates object to a dictionary
     template_data = {
+        'id': template.id,
         'name': template.name,
         'jsonConstruct': template.jsonConstruct,
         'color': template.color,
