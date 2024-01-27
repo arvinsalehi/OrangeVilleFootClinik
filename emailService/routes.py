@@ -67,20 +67,9 @@ def edit_template(template_name):
     return render_template("edit_template.html", template=template_data, form=newTemplateForm)
 
 
-@email_blueprint.route("/Sent-Emails")
-def sent_emails():
-    page = request.args.get('page', 1, type=int)
-    items_per_page = 30
-    sentEmails = Emails.query.filter_by(isSent=True).paginate(page=page, per_page=items_per_page, error_out=False)
-    return render_template('emailsSent.html', sentEmails=sentEmails)
-
-
-@email_blueprint.route("/Scheduled-Emails")
-def scheduled_emails():
-    page = request.args.get('page', 1, type=int)
-    items_per_page = 150
-    sentEmails = Emails.query.filter_by(isSent=False).paginate(page=page, per_page=items_per_page, error_out=False)
-    return render_template('emailsSent.html', sentEmails=sentEmails)
+@email_blueprint.route('/campaigns')
+def campaigns():
+    return render_template("campaigns.html")
 
 
 from .api.api import *

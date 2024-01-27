@@ -1,5 +1,10 @@
 {% extends 'components/__MainLayout__.html' %}
 
+{% block head %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/emails.css') }}">
+{% endblock %}
+
 {% block content %}
 <section id="search">
     <div class="search-container">
@@ -51,8 +56,7 @@
         </div>
         <div class="open-rate-info m-3">
             <p class="d-flex justify-content-between align-items-center" style="text-align: left">
-                Open Rate<i
-                    class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
+                Open Rate<i class="fa-solid fa-circle-info fa-lg" style="color: grey;"></i></p>
             <h2 style="text-align: center">00.00%</h2>
         </div>
     </div>
@@ -60,30 +64,30 @@
         <p style="font-size: larger; font-weight: 600;">Top Campaigns</p>
         <table class="responsive-table">
             <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>clicks</th>
-                <th>open rate</th>
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>clicks</th>
+                    <th>open rate</th>
+                </tr>
             </thead>
             <tbody>
-            <!-- Add your table rows here -->
-            <tr>
-                <td><a href="">Food Drive Success! Winner ...</a></td>
-                <td>Email</td>
-                <td>100</td>
-                <td>67.00</td>
-                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-            </tr>
-            <tr>
-                <td><a href="">Group 2</a></td>
-                <td>SMS</td>
-                <td>150</td>
-                <td>65.00</td>
-                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-            </tr>
-            <!-- Add more rows as needed -->
+                <!-- Add your table rows here -->
+                <tr>
+                    <td><a href="">Food Drive Success! Winner ...</a></td>
+                    <td>Email</td>
+                    <td>100</td>
+                    <td>67.00</td>
+                    <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+                </tr>
+                <tr>
+                    <td><a href="">Group 2</a></td>
+                    <td>SMS</td>
+                    <td>150</td>
+                    <td>65.00</td>
+                    <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+                </tr>
+                <!-- Add more rows as needed -->
             </tbody>
         </table>
     </div>
@@ -114,27 +118,27 @@
         <p style="font-size: larger; font-weight: 600;">Groups and Campaigns</p>
         <table class="responsive-table">
             <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Recipients</th>
-            </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Recipients</th>
+                </tr>
             </thead>
             <tbody>
-            <!-- Add your table rows here -->
-            <tr>
-                <td><a href="">Food Drive Success! Winner ...</a></td>
-                <td>Email</td>
-                <td>100</td>
-                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-            </tr>
-            <tr>
-                <td><a href="">Group 2</a></td>
-                <td>SMS</td>
-                <td>150</td>
-                <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
-            </tr>
-            <!-- Add more rows as needed -->
+                <!-- Add your table rows here -->
+                <tr>
+                    <td><a href="">Food Drive Success! Winner ...</a></td>
+                    <td>Email</td>
+                    <td>100</td>
+                    <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+                </tr>
+                <tr>
+                    <td><a href="">Group 2</a></td>
+                    <td>SMS</td>
+                    <td>150</td>
+                    <td><i class="fa-solid fa-arrow-right fa-fade fa-lg" style="color: #005eff;"></i></td>
+                </tr>
+                <!-- Add more rows as needed -->
             </tbody>
         </table>
     </div>
@@ -171,7 +175,7 @@
 
             <div class="mb-3">
                 <label for="color" class="form-label">Color</label>
-                <input type="text" id="color-picker" name="color" class="form-control" value="#e60012"/>
+                <input type="text" id="color-picker" name="color" class="form-control" value="#e60012" />
             </div>
 
             <div class="mb-3">
@@ -189,4 +193,3 @@
 </div>
 <div id="dropdownOverlay"></div>
 {% endblock %}
-
