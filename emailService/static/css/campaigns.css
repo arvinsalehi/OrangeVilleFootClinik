@@ -1,0 +1,117 @@
+.container {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 30px auto;
+    position: relative;
+    /* width: 600px; */
+}
+
+.progress-bar {
+    margin-bottom: 30px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.progress-bar::before,
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 6.3%;
+    transform: translateY(-50%);
+    height: 2px;
+    background-color: #ddd;
+    width: 100%;
+    max-width: 559px;
+    z-index: 0;
+}
+
+.active-step {
+    background-color: #e28c0e !important;
+
+}
+
+.progress-bar:first-child::after {
+    background-color: #e28c0e;
+    width: 47%;
+}
+
+.progress-bar li {
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.form-page {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.form-page.active {
+    display: block;
+    opacity: 1;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-section input[type="text"],
+.form-section select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.form-section select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-section button {
+    padding: 10px 20px;
+    background-color: #5c6bc0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-section button:hover {
+    background-color: #3f51b5;
+}
+
+@media screen and (max-width: 991px) {
+
+    .progress-bar::before {
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+
+    .progress-bar::before {
+        width: 80%;
+    }
+
+}

@@ -1,7 +1,48 @@
 {% extends 'components/__MainLayout__.html' %}
-
+{% block head %}
+{{super()}}
+<link rel="stylesheet" type="text/css" href="{{ url_for('emailService.static', filename='css/campaigns.css') }}">
+{% endblock %}
 {% block content %}
+<div class="container">
+    <ul class="progress-bar">
+        <li class="active-step">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
 
+    <form action="/submit-form" method="post">
+        <div class="form-page active" id="firstPage">
+            <div class="form-section">
+                <label for="campaignName">Campaign Name</label>
+                <input type="text" id="campaignName" name="campaignName" placeholder="Campaigns Name">
+            </div>
+            <div class="form-section">
+                <label for="Subject">Subject</label>
+                <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
+            </div>
+        </div>
+        <div class="form-page" id="secondPage">
+            <div class="form-section">
+                <label for="campaignName">Campaign Name</label>
+                <input type="text" id="campaignName" name="campaignName" placeholder="Campaigns Name">
+            </div>
+            <div class="form-section">
+                <label for="Subject">Subject</label>
+                <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
+            </div>
+            <div class="form-section">
+                <label for="language">Language</label>
+                <select id="language" name="language">
+                    <option value="English">English</option>
+                    <!-- Add other language options here -->
+                </select>
+            </div>
+        </div>
+        <div class="form-section d-flex justify-content-end ">
+            <button type="submit">Next Step</button>
+        </div>
+    </form>
+</div>
 <div id="dropdownOverlay"></div>
 {% endblock %}
-
