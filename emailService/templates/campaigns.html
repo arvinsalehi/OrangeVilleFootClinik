@@ -35,8 +35,9 @@
             </div>
 
         </div>
-        <div class="form-section d-flex justify-content-end ">
-            <button type="submit">Next Step</button>
+        <div class="form-section d-flex justify-content-between  ">
+            <button class="d-none" id="previous" type="submit">Previous Step</button>
+            <button type="submit" id="next">Next Step</button>
         </div>
     </form>
 </div>
@@ -44,6 +45,7 @@
 {% endblock %}
 
 {% block footer %}
+{{super()}}
 <script>
     // Function to change the width
     function setProgressBarWidth(newWidth) {
@@ -51,19 +53,30 @@
         document.documentElement.style.setProperty('--progress-bar-width', newWidth);
     }
     document.addEventListener('DOMContentLoaded', function () {
-        const nextButton = document.querySelector('.form-section button[type="submit"]');
+        const directionButtons = document.querySelectorAll('.form-section button[type="submit"]');
+        const previousButton = directionButtons[0];
+        const nextButton = directionButtons[1];
         const formPages = document.querySelector('.form-pages');
         const activeStep = document.querySelectorAll('.progress-bar li');
         let pageIndex = 1;
 
         nextButton.addEventListener('click', function (e) {
             e.preventDefault(); // Prevent the form from submitting for demonstration
-
+            previousButton.classList.remove('d-none');
             // Slide to the second page
             formPages.style.transform = 'translateX(-100%)';
             activeStep[pageIndex].classList.toggle('active-step');
             setProgressBarWidth(`${47 * pageIndex}%`); // Change width to 60%
             pageIndex++;
+        });
+
+        previousButton.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent the form from submitting for demonstration
+            pageIndex--;
+            // Slide to the previous page
+            formPages.style.transform = 'translateX(0)';
+            activeStep[pageIndex].classList.toggle('active-step');
+            setProgressBarWidth(`${47 / (47*pageIndex)}%`); // Change width to 60%
         });
     });
 </script>
