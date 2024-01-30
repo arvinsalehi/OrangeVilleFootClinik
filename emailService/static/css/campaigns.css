@@ -6,6 +6,7 @@
     max-width: 600px;
     margin: 30px auto;
     position: relative;
+    overflow: hidden;
     /* width: 600px; */
 }
 
@@ -22,13 +23,14 @@
 .progress-bar::after {
     content: '';
     position: absolute;
-    top: 6.3%;
+    top: 35px;
     transform: translateY(-50%);
     height: 2px;
     background-color: #ddd;
     width: 100%;
     max-width: 559px;
     z-index: 0;
+    transition: .5s;
 }
 
 .active-step {
@@ -36,9 +38,9 @@
 
 }
 
-.progress-bar:first-child::after {
+.progress-bar::after {
     background-color: #e28c0e;
-    width: 47%;
+    width: var(--progress-bar-width, 0); /* Default to 47% */
 }
 
 .progress-bar li {
@@ -52,15 +54,20 @@
     z-index: 1;
 }
 
+.form-pages {
+    width: 200%; /* Adjust based on the number of pages */
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth transition for the sliding effect */
+}
+
+
 .form-page {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    width: 50%; /* Adjust based on the number of pages */
+    flex-shrink: 0; /* Prevent the flex items from shrinking */
 }
 
 .form-page.active {
-    display: block;
-    opacity: 1;
+    transform: translateX(0); /* Start with the first page in view */
 }
 
 .form-section {

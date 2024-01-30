@@ -12,32 +12,28 @@
     </ul>
 
     <form action="/submit-form" method="post">
-        <div class="form-page active" id="firstPage">
-            <div class="form-section">
-                <label for="campaignName">Campaign Name</label>
-                <input type="text" id="campaignName" name="campaignName" placeholder="Campaigns Name">
+        <div class="form-pages">
+            <div class="form-page " id="firstPage">
+                <div class="form-section">
+                    <label for="campaignName">Campaign Name</label>
+                    <input type="text" id="campaignName" name="campaignName" placeholder="Campaigns Name">
+                </div>
+                <div class="form-section">
+                    <label for="Subject">Subject</label>
+                    <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
+                </div>
             </div>
-            <div class="form-section">
-                <label for="Subject">Subject</label>
-                <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
+            <div class="form-page" style="transform: translateX(100%);" id="secondPage">
+
+                <div class="form-section">
+                    <label for="language">Language</label>
+                    <select id="language" name="language">
+                        <option value="English">English</option>
+                        <!-- Add other language options here -->
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="form-page" id="secondPage">
-            <div class="form-section">
-                <label for="campaignName">Campaign Name</label>
-                <input type="text" id="campaignName" name="campaignName" placeholder="Campaigns Name">
-            </div>
-            <div class="form-section">
-                <label for="Subject">Subject</label>
-                <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
-            </div>
-            <div class="form-section">
-                <label for="language">Language</label>
-                <select id="language" name="language">
-                    <option value="English">English</option>
-                    <!-- Add other language options here -->
-                </select>
-            </div>
+
         </div>
         <div class="form-section d-flex justify-content-end ">
             <button type="submit">Next Step</button>
@@ -45,4 +41,30 @@
     </form>
 </div>
 <div id="dropdownOverlay"></div>
+{% endblock %}
+
+{% block footer %}
+<script>
+    // Function to change the width
+    function setProgressBarWidth(newWidth) {
+        // Set the CSS variable
+        document.documentElement.style.setProperty('--progress-bar-width', newWidth);
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        const nextButton = document.querySelector('.form-section button[type="submit"]');
+        const formPages = document.querySelector('.form-pages');
+        const activeStep = document.querySelectorAll('.progress-bar li');
+        let pageIndex = 1;
+
+        nextButton.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent the form from submitting for demonstration
+
+            // Slide to the second page
+            formPages.style.transform = 'translateX(-100%)';
+            activeStep[pageIndex].classList.toggle('active-step');
+            setProgressBarWidth(`${47 * pageIndex}%`); // Change width to 60%
+            pageIndex++;
+        });
+    });
+</script>
 {% endblock %}
