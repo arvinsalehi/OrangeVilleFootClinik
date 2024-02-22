@@ -6,7 +6,7 @@ cffi==1.16.0
 charset-normalizer==3.3.2
 click==8.1.7
 contourpy==1.2.0
-cryptography==41.0.7
+cryptography==42.0.4
 cycler==0.12.1
 Flask==3.0.0
 Flask-Migrate==4.0.5
