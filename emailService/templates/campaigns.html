@@ -23,19 +23,64 @@
                     <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
                 </div>
             </div>
-            <div class="form-page" style="transform: translateX(100%);" id="secondPage">
+            <div class="form-page"  id="secondPage">
 
                 <div class="form-section">
-                    <label for="language">Language</label>
-                    <select id="language" name="language">
-                        <option value="English">English</option>
-                        <!-- Add other language options here -->
-                    </select>
+                    <div class="recipients-section my-4">
+                        <label for="recipients">
+                            <i class="fa-solid fa-square-check fa-lg" style="color: #63E6BE;"></i>
+                            <span style="font-size: larger; font-weight: 700;">
+                                To
+                            </span>
+                            <div class="recipients-info">
+                                All subscribed contacts in the audience Orangeville Foot Clinic.
+                                <span class="recipients-count">4,079 recipients</span>
+                            </div>
+                        </label>
+                        <button type="button" class="edit-recipients-btn">Edit</button>
+                    </div>
+                    <div class="template-section my-4">
+                        <label for="template">
+                            <i class="fa-solid fa-square-check fa-lg" style="color: #ccc;"></i>
+                            <span style="font-size: larger; font-weight: 700;">
+                                Template
+                            </span>
+                            <div class="template-info">
+                                Select a template or create <a href="">New template</a>
+                            </div>
+                        </label>
+                        <button type="button" class="edit-recipients-btn">Select</button>
+                    </div>
+                    <div class="time-schedule-section my-4">
+                        <label class="d-flex flex-column w-100 " for="time">
+                            <div>
+                                <i class="fa-solid fa-square-check fa-lg" style="color: #ccc;"></i>
+
+                                <span style="font-size: larger; font-weight: 700;">
+
+                                    Send time
+                                </span>
+                            </div>
+                            <div class="schedule-info d-flex justify-content-between ">
+                                Set Time when you want the emails to be sent
+                                <button type="button" class="edit-recipients-btn">Edit</button>
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </div>
-
+            <div class="form-page " id="thirdPage">
+                <div class="form-section">
+                    <label for="campaignName">Campaign Name</label>
+                    <input type="text" id="campaignName" name="campaignName" placeholder="Campaigns Name">
+                </div>
+                <div class="form-section">
+                    <label for="Subject">Subject</label>
+                    <input type="text" id="Subject" name="Subject" placeholder="This will be shown as email subject">
+                </div>
+            </div>
         </div>
-        <div class="form-section d-flex justify-content-between  ">
+        <div class="form-section d-flex justify-content-between">
             <button class="d-none" id="previous" type="submit">Previous Step</button>
             <button type="submit" id="next">Next Step</button>
         </div>
@@ -58,25 +103,34 @@
         const nextButton = directionButtons[1];
         const formPages = document.querySelector('.form-pages');
         const activeStep = document.querySelectorAll('.progress-bar li');
-        let pageIndex = 1;
+        let pageIndex = 0;
 
         nextButton.addEventListener('click', function (e) {
             e.preventDefault(); // Prevent the form from submitting for demonstration
             previousButton.classList.remove('d-none');
-            // Slide to the second page
-            formPages.style.transform = 'translateX(-100%)';
-            activeStep[pageIndex].classList.toggle('active-step');
-            setProgressBarWidth(`${47 * pageIndex}%`); // Change width to 60%
             pageIndex++;
+
+            // Slide to the second page
+            formPages.style.transform = `translateX(-${24*pageIndex}%)`;
+            activeStep[pageIndex].classList.add('active-step');
+            setProgressBarWidth(`${47 * pageIndex}%`); // Change width to 60%
         });
 
         previousButton.addEventListener('click', function (e) {
+
             e.preventDefault(); // Prevent the form from submitting for demonstration
+            activeStep[pageIndex].classList.remove('active-step');
             pageIndex--;
-            // Slide to the previous page
-            formPages.style.transform = 'translateX(0)';
-            activeStep[pageIndex].classList.toggle('active-step');
-            setProgressBarWidth(`${47 / (47*pageIndex)}%`); // Change width to 60%
+            
+            // Slide to the previous page   
+            formPages.style.transform = `translateX(-${33*pageIndex}%)`;
+            setProgressBarWidth(`${47 / (47 * pageIndex)}%`); // Change width to 60%
+
+
+            if (pageIndex == 0) {
+                previousButton.classList.add('d-none');
+            }
+
         });
     });
 </script>

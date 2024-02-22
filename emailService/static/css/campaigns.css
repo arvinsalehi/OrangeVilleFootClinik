@@ -40,7 +40,8 @@
 
 .progress-bar::after {
     background-color: #e28c0e;
-    width: var(--progress-bar-width, 0); /* Default to 47% */
+    width: var(--progress-bar-width, 0);
+    /* Default to 47% */
 }
 
 .progress-bar li {
@@ -55,19 +56,23 @@
 }
 
 .form-pages {
-    width: 200%; /* Adjust based on the number of pages */
+    width: 300%;
+    /* Adjust based on the number of pages */
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Smooth transition for the sliding effect */
+    transition: transform 0.5s ease-in-out;
+    /* Smooth transition for the sliding effect */
 }
 
 
 .form-page {
-    width: 50%; /* Adjust based on the number of pages */
-    flex-shrink: 0; /* Prevent the flex items from shrinking */
+    width: 32%;
+    margin: 0rem 4% 0rem 0rem;
+    flex-shrink: 0;
 }
 
 .form-page.active {
-    transform: translateX(0); /* Start with the first page in view */
+    transform: translateX(0);
+    /* Start with the first page in view */
 }
 
 .form-section {
@@ -105,6 +110,49 @@
 
 .form-section button:hover {
     background-color: #3f51b5;
+}
+
+.recipients-section,
+.template-section,
+.time-schedule-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    /* Adjust color as needed */
+    padding-bottom: 10px;
+}
+
+
+.checkmark {
+    color: green;
+    /* Adjust the color as needed */
+    margin-right: 5px;
+}
+
+.recipients-info {
+    display: inline-block;
+}
+
+.recipients-count {
+    font-size: smaller;
+    color: blue;
+    cursor: pointer;
+}
+
+.edit-recipients-btn {
+    padding: 4px 16px !important;
+    color: black !important;
+    background-color: #ddd !important;
+    border: none !important;
+    border-radius: 22px !important;
+    cursor: pointer !important;
+}
+
+/* Additional styling for the button on hover can be added */
+.edit-recipients-btn:hover {
+    background-color: #e28c0e !important;
+    /* Darker shade for hover effect */
 }
 
 @media screen and (max-width: 991px) {

@@ -82,13 +82,13 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css
                             <li><a class="nav-link" href="#">Submenu item 3 </a></li>
                         </ul>
                     </li>
-                    <li class="has-submenu"><a class="dropdown-nav" href="#settings"><i
+                    <li class="has-submenu"><a class="dropdown-nav" href=""><i
                             class="fa-solid fa-users-rays "></i><span>Campaigns</span><i
                             class="fa-solid fa-caret-down"></i></a>
                         <ul class="submenu collapse">
-                            <li><a class="nav-link" href="#">Submenu item 1 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 2 </a></li>
-                            <li><a class="nav-link" href="#">Submenu item 3 </a></li>
+                            <li><a class="nav-link" href="{{url_for('emailService.campaigns')}}">Create Campaign </a></li>
+                            <li><a class="nav-link" href="#">Campaigns List </a></li>
+                            <li><a class="nav-link" href="#">Automations </a></li>
                         </ul>
                     </li>
                     <li><a href="http://127.0.0.1:5002/analytics/"><i class="fa-solid fa-chart-simple fa-lg "></i><span>Analytics</span></a></li>

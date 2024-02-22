@@ -149,6 +149,7 @@
 .scroll-able-widget {
     gap: 20px;
     display: flex;
+    justify-content: space-between;
 }
 
 .user-widget-wrap {
@@ -156,6 +157,10 @@
     flex-direction: column;
     line-height: normal;
     margin-left: 0;
+}
+
+.user-widget-wrap:last-child {
+    padding-right: 0;
 }
 
 .user-widget {
@@ -212,7 +217,7 @@
     width: 33.333333%;
     margin-right: 10px;
     border-radius: 10px;
-    min-width: 48%;
+    min-width: 50%;
     display: flex;
     justify-content: center;
 }
